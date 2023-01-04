@@ -226,6 +226,15 @@
     },
     {
       "files": [
+        "*.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/no-extra-parens": "off",
+        "no-extra-parens": "off"
+      }
+    },
+    {
+      "files": [
         "**/*.cy.ts",
         "**/*.cy.tsx"
       ],
