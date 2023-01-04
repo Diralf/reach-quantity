@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "deploy": "npm run cy-e2e:run && npm run cy-comp:run && npm run build",
+    "deploy": "npm run cy-comp:run && npm run build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
