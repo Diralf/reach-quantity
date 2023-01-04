@@ -20,6 +20,8 @@ jobs:
           CYPRESS_RETRIES: 1
         with:
           config-file: cypress.config.js
+          build: npx cypress info
+          headless: true
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
