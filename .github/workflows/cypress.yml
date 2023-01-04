@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 16.x
       - name: Run Cypress
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4.1.0
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
           CYPRESS_SECRET: ${{ secrets.CYPRESS_SECRET }}
