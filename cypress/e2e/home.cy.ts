@@ -1,10 +1,10 @@
 describe('Home', () => {
   it('Should passes', () => {
-    cy.visit('http://localhost:3000');
+    cy.visit('/');
   });
 
   it('Should navigate to examples', () => {
-    cy.visit('http://localhost:3000');
+    cy.visit('/');
     cy.get('a[href*="example"]').click();
 
     cy.url().should('include', '/example');
