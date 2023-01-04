@@ -28,3 +28,31 @@ jobs:
           retention-days: 1
           path: |
             cypress/videos
+  integration:
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - uses: bahmutov/npm-install@v1
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4.1.0
+        env:
+          CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          CYPRESS_SECRET: ${{ secrets.CYPRESS_SECRET }}
+          CYPRESS_RETRIES: 1
+        with:
+          config-file: cypress.config.ts
+          build: npx cypress info
+          component: true
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          retention-days: 1
+          path: |
+            cypress/screenshots
+
