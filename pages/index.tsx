@@ -15,6 +15,7 @@ const Home = () =>
     <main className={styles.main}>
       <BasicDatePicker/>
       <nav>
+        <Link href="/create">Create New Target</Link>
         <Link href="/example">Example</Link>
       </nav>
     </main>
