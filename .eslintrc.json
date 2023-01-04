@@ -226,13 +226,13 @@
     },
     {
       "files": [
-        "*.spec.ts"
+        "cypress/**/*.spec.ts"
       ],
       "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module",
         "project": [
-          "./tsconfig.spec.json"
+          "./cypress/tsconfig.json"
         ]
       },
       "rules": {
