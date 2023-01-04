@@ -19,7 +19,7 @@ jobs:
           CYPRESS_SECRET: ${{ secrets.CYPRESS_SECRET }}
           CYPRESS_RETRIES: 1
         with:
-          config-file: cypress.config.js
+          config-file: cypress.config.ts
           build: npx cypress info
           headless: true
       - uses: actions/upload-artifact@v2
