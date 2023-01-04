@@ -17,6 +17,8 @@ jobs:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
           CYPRESS_SECRET: ${{ secrets.CYPRESS_SECRET }}
           CYPRESS_RETRIES: 1
+        with:
+          config-file: cypress.config.js
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
