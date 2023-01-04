@@ -1,12 +1,13 @@
 import { Inter } from '@next/font/google';
 import React from 'react';
+import Layout from '../../components/Layout/Layout';
 import styles from '../../styles/Home.module.css';
 import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const Example = () =>
-  <>
+const Example = () => (
+  <Layout>
     <h1>Example</h1>
     <div className={styles.description}>
       <p>
@@ -105,5 +106,6 @@ const Example = () =>
         </p>
       </a>
     </div>
-  </>;
+  </Layout>
+);
 export default Example;
