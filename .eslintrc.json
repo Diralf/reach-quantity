@@ -226,7 +226,8 @@
     },
     {
       "files": [
-        "cypress/**/*.spec.ts"
+        "**/*.cy.ts",
+        "**/*.cy.tsx"
       ],
       "parserOptions": {
         "ecmaVersion": 12,
