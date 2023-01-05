@@ -1,10 +1,10 @@
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 
 const CreateTarget: React.FC = () => (
   <Layout>
-    <h1>Create New Target</h1>
+    <Typography variant="h2" component="h1">Create New Target</Typography>
     <TextField label="Target"/>
   </Layout>
 );
