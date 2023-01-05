@@ -235,6 +235,7 @@
     },
     {
       "files": [
+        "cypress/**/*.ts",
         "**/*.cy.ts",
         "**/*.cy.tsx"
       ],

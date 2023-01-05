@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": [
-      "es5",
+      "es6",
       "dom"
     ],
     "types": [
@@ -11,7 +11,8 @@
       "@testing-library/cypress"
     ],
     "esModuleInterop": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "moduleResolution": "node"
   },
   "include": [
     "**/*.ts",
