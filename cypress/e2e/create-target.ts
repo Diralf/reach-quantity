@@ -4,6 +4,6 @@ When('I go to create target page', () => {
   cy.findByText('Create', { selector: 'a' }).click();
 });
 
-When('I start target create process', function() {
+When('I start target create process', function () {
   Step(this, 'I go to create target page');
 });

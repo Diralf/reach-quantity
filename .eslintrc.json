@@ -255,7 +255,9 @@
         "@typescript-eslint/no-explicit-any": "warn",
         "max-statements": "off",
         "max-classes-per-file": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "func-names": "off",
+        "@typescript-eslint/no-invalid-this": "off"
       }
     }
   ],
