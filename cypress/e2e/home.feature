@@ -1,4 +1,5 @@
 Feature: Home page
   Scenario: visit the home page
-    When I visit home page
-    Then I should see navbar
+    When user visit home page
+    Then user should see navbar
+    And use should see 'Create New Target' page

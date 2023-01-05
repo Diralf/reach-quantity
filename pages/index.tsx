@@ -1,11 +1,18 @@
-import React from 'react';
+import { CircularProgress } from '@mui/material';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import Layout from '../components/Layout/Layout';
-import BasicDatePicker from '../components/BasicDatePicker';
 
-const Home = () => (
-  <Layout>
-    <BasicDatePicker/>
-  </Layout>
-);
+const Home = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/create');
+  });
+  return (
+    <Layout>
+      <CircularProgress/>
+    </Layout>
+  );
+};
 
 export default Home;

@@ -1,9 +1,13 @@
 import { When, Then } from '@badeball/cypress-cucumber-preprocessor';
 
-When(/^I visit home page$/, () => {
+When('user visit home page', () => {
   cy.visit('/');
 });
 
-Then(/^I should see navbar$/, () => {
-  cy.get('nav').should('exist');
+Then('user should see navbar', () => {
+  cy.findByRole('tablist', { exact: false });
+});
+
+Then('use should see {string} page', (title: string) => {
+  cy.findByText(title, { selector: 'h1' }).should('exist');
 });

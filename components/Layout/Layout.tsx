@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import React from 'react';
 import styles from '../../styles/Home.module.css';
+import Navigation from '../Navigation';
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => (
   <>
@@ -12,10 +12,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => (
       <link rel="icon" href="/favicon.ico"/>
     </Head>
     <main className={styles.main}>
-      <nav>
-        <Link href="/create">Create New Target</Link>
-        <Link href="/example">Example</Link>
-      </nav>
+      <Navigation/>
       {children}
     </main>
   </>
