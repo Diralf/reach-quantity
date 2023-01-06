@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-const useRouteMatch = (patterns: readonly string[]) => {
+const useRouteMatch = (patterns: readonly string[]): string | null => {
   const { pathname } = useRouter();
 
   for (let i = 0; i < patterns.length; i += 1) {

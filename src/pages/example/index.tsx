@@ -6,7 +6,8 @@ import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const Example = () => (
+// eslint-disable-next-line max-lines-per-function
+const Example: React.FC = () => (
   <Layout>
     <h1>Example</h1>
     <div className={styles.description}>

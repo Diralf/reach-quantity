@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Layout from '../components/Layout/Layout';
 
-const Home = () => {
+const Home: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
     router.push('/create');
