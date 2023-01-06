@@ -9,6 +9,6 @@ Feature: Create target
     When I start target create process
     And I specify the name 'Paper Cranes' for target
     And I specify target 100 of 'paper cranes'
-    And I specify date range for 'Current Quarter'
+    And I specify date range for Current Quarter
     And I submit the target
     Then I should see the target 'Paper Cranes' on dashboard
