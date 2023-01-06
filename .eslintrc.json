@@ -356,7 +356,7 @@
     "implicit-arrow-linebreak": "off",
     "indent": [
       "error",
-      4,
+      2,
       {
         "SwitchCase": 1,
         "ignoredNodes": [
