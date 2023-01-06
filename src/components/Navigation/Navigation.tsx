@@ -17,12 +17,13 @@ const useRouteMatch = (patterns: readonly string[]): string | null => {
 };
 
 const Navigation: React.FC = () => {
-  const currentTab = useRouteMatch(['/create', '/example']);
+  const currentTab = useRouteMatch(['/dashboard', '/create', '/example']);
 
   return (
     <Tabs value={currentTab}>
-      <Tab label="Create" value="/create" href="/create" component={Link} />
-      <Tab label="Example" value="/example" href="/example" component={Link} />
+      <Tab label="Dashboard" value="/dashboard" href="/dashboard" component={Link}/>
+      <Tab label="Create" value="/create" href="/create" component={Link}/>
+      <Tab label="Example" value="/example" href="/example" component={Link}/>
     </Tabs>
   );
 };

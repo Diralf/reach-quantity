@@ -6,7 +6,7 @@ import Layout from '../components/Layout/Layout';
 const Home: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push('/create');
+    router.push('/dashboard');
   });
   return (
     <Layout>
