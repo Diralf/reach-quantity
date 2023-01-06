@@ -1,8 +1,5 @@
 import { defineParameterType } from '@badeball/cypress-cucumber-preprocessor';
-
-enum DateRange {
-  CURRENT_QUARTER = 'Current Quarter',
-}
+import { DateRange } from '../../../src/constants/date-range';
 
 defineParameterType({
   name: 'dateRange',

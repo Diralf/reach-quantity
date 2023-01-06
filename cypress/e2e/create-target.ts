@@ -1,4 +1,5 @@
 import { When, Step, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { DateRange } from '../../src/constants/date-range';
 
 When('I go to create target page', () => {
   cy.findByText('Create', { selector: 'a' }).click();
@@ -23,7 +24,15 @@ When('I specify target {int} of {string}', (target: number, measure: string) => 
     .clear()
     .type(measure);
 });
-When('I specify date range for {dateRange}', (dateRange) => 'pending');
-When('I submit the target', () => 'pending');
+When('I specify date range for {dateRange}', (dateRange: DateRange) => {
+  cy.findByLabelText('Date range').click();
+  cy.findByText(dateRange).click();
+});
+When('I submit the target', () => {
+  cy.findByText('Submit', { selector: 'button' }).click();
+});
 
-Then('I should see the target {string} on dashboard', () => 'pending');
+Then('I should see the target {string} on dashboard', (targetName: string) => {
+  Step(this, 'I should see "Dashboard" page');
+  cy.findByText(targetName, { selector: 'span' });
+});
