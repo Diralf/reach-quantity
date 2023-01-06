@@ -10,7 +10,8 @@
     "lint": "next lint",
     "cypress": "cypress open",
     "cy-e2e:run": "cypress run --e2e",
-    "cy-comp:run": "cypress run --component"
+    "cy-comp:run": "cypress run --component",
+    "local:check": "npm run lint && npm run cy-comp:run && npm run cy-e2e:run"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
