@@ -5,6 +5,7 @@ import Layout from '../components/Layout/Layout';
 const Dashboard: React.FC = () => (
   <Layout>
     <Typography variant="h2" component="h1">Dashboard</Typography>
+    <Typography component="span">Paper Cranes</Typography>
   </Layout>
 );
 

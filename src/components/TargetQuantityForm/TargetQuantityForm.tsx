@@ -11,7 +11,11 @@ export interface TargetQuantityFormValues {
   dateRange: DateRange | '';
 }
 
-const TargetQuantityForm: React.FC = () => {
+interface Props {
+  onSubmit(): void;
+}
+
+const TargetQuantityForm: React.FC<Props> = ({ onSubmit }) => {
   const {
     control,
     handleSubmit,
@@ -20,10 +24,6 @@ const TargetQuantityForm: React.FC = () => {
       dateRange: '',
     },
   });
-
-  const onSubmit = (values: TargetQuantityFormValues): void => {
-    // console.log(values);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
