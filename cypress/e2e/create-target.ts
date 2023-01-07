@@ -1,35 +1,39 @@
 import { When, Step, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { DateRange } from '../../src/constants/date-range';
+import { NumberRadix } from '../../src/constants/number-radix';
 
 When('I go to create target page', () => {
-  cy.findByText('Create', { selector: 'a' }).click();
+  cy.findByText('Create', { selector: 'a' })
+    .click();
 });
 
 When('I start target create process', function () {
-  Step(this, 'I visit home page');
   Step(this, 'I go to create target page');
   Step(this, 'I should see "Create Target" page');
 });
 
 When('I specify the name {string} for target', (name: string) => {
-  cy.findByLabelText('Target name', { exact: false })
+  cy.findByLabelText('Name', { exact: false })
     .clear()
     .type(name);
 });
 When('I specify target {int} of {string}', (target: number, measure: string) => {
-  cy.findByLabelText('Target')
+  cy.findByLabelText('Quantity')
     .clear()
-    .type(target.toString(10));
-  cy.findByLabelText('Measurement')
+    .type(target.toString(NumberRadix.Decimal));
+  cy.findByLabelText('Measure')
     .clear()
     .type(measure);
 });
 When('I specify date range for {dateRange}', (dateRange: DateRange) => {
-  cy.findByLabelText('Date range').click();
-  cy.findByText(dateRange).click();
+  cy.findByLabelText('Date Range')
+    .click();
+  cy.findByText(dateRange)
+    .click();
 });
 When('I submit the target', () => {
-  cy.findByText('Submit', { selector: 'button' }).click();
+  cy.findByText('Submit', { selector: 'button' })
+    .click();
 });
 
 Then('I should see the target {string} on dashboard', (targetName: string) => {

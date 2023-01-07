@@ -1,8 +1,10 @@
 Feature: Create target
 
+  Background:
+    Given I on home page
+
   Scenario: navigation to create target page
-    When I visit home page
-    And I go to create target page
+    When I go to create target page
     Then I should see 'Create Target' page
 
   Scenario: create target to make 100 paper cranes during current quarter
