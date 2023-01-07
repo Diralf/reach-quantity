@@ -1,13 +1,10 @@
 import { CircularProgress } from '@mui/material';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '../components/Layout/Layout';
+import useDefaultPage from '../hooks/useDefaultPage';
 
 const Home: React.FC = () => {
-  const router = useRouter();
-  useEffect(() => {
-    router.push('/dashboard');
-  });
+  useDefaultPage({ defaultPage: '/dashboard' });
   return (
     <Layout>
       <CircularProgress/>
