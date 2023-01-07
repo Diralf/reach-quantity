@@ -2,27 +2,30 @@ import { InputLabel, Select, MenuItem, FormControl, SelectChangeEvent } from '@m
 import React from 'react';
 import { DateRange } from '../../constants/date-range';
 
-const SymbolicDateRange: React.FC = () => {
-  const [dateRange, setDateRange] = React.useState<DateRange | null>(null);
+interface Props {
+  label: string;
+  value: DateRange | '';
 
-  const handleChange = (event: SelectChangeEvent): void => {
-    setDateRange(event.target.value as DateRange);
-  };
+  onChange(event: SelectChangeEvent): void;
+}
 
-  return (
-    <FormControl fullWidth>
-      <InputLabel id="date-range-select">Date Range</InputLabel>
-      <Select
-        labelId="date-range-select"
-        value={dateRange ?? ''}
-        label="Date Range"
-        onChange={handleChange}
-      >
-        <MenuItem value="">None</MenuItem>
-        <MenuItem value={DateRange.CURRENT_QUARTER}>{DateRange.CURRENT_QUARTER}</MenuItem>
-      </Select>
-    </FormControl>
-  );
-};
+const SymbolicDateRange: React.FC<Props> = ({
+  label,
+  value,
+  onChange,
+}) => (
+  <FormControl fullWidth>
+    <InputLabel id="date-range-select">{label}</InputLabel>
+    <Select
+      labelId="date-range-select"
+      value={value}
+      label={label}
+      onChange={onChange}
+    >
+      <MenuItem value="">None</MenuItem>
+      <MenuItem value={DateRange.CURRENT_QUARTER}>{DateRange.CURRENT_QUARTER}</MenuItem>
+    </Select>
+  </FormControl>
+);
 
 export default SymbolicDateRange;
