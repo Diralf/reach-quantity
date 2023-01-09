@@ -7,6 +7,9 @@ const regexOfValues = SymbolicRange.values()
 
 defineParameterType({
   name: 'dateRange',
-  regexp: new RegExp(regexOfValues),
+  regexp: /(Current Quarter)|(Next 10 Days)/,
+  // regexp: new RegExp('(Current Quarter)|(Next 10 Days)'),
+
+  // regexp: new RegExp(regexOfValues),
   transformer: (value) => value as SymbolicRange,
 });
