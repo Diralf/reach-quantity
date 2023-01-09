@@ -1,7 +1,7 @@
 import { Typography, TextField, Button, Grid } from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { DateRange } from '../../constants/date-range';
+import { DateRange } from '../../constants/symbolic-range';
 import SymbolicDateRange from '../SymbolicDateRange';
 
 export interface TargetQuantityFormValues {

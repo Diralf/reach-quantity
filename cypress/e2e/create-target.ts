@@ -1,6 +1,6 @@
 import { When, Step, Then } from '@badeball/cypress-cucumber-preprocessor';
-import { DateRange } from '../../src/constants/date-range';
 import { NumberRadix } from '../../src/constants/number-radix';
+import { SymbolicRange } from '../../src/constants/symbolic-range';
 
 When('I go to create target page', () => {
   cy.findByText('Create', { selector: 'a' })
@@ -25,7 +25,7 @@ When('I specify target {int} of {string}', (target: number, measure: string) => 
     .clear()
     .type(measure);
 });
-When('I specify date range for {dateRange}', (dateRange: DateRange) => {
+When('I specify date range for {dateRange}', (dateRange: SymbolicRange) => {
   cy.findByLabelText('Date Range')
     .click();
   cy.findByText(dateRange)

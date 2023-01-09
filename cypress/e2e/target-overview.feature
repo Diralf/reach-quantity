@@ -1,9 +1,8 @@
 Feature: Target overview
 
   Background:
-    Given I have created "Paper Cranes" target for 100 of "paper cranes" during Current Quarter
+    Given I have created "Paper Cranes" target for 100 of "paper cranes" during Next 10 Days
     And I on home page
-    And Today is First Day Of Period
     When I found "Paper Cranes" target
 
   Scenario: Looking for Paper Cranes common target on dashboard

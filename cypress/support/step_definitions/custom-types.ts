@@ -1,8 +1,12 @@
 import { defineParameterType } from '@badeball/cypress-cucumber-preprocessor';
-import { DateRange } from '../../../src/constants/date-range';
+import { SymbolicRange } from '../../../src/constants/symbolic-range';
+
+const regexOfValues = SymbolicRange.values()
+  .map((value) => `(${value})`)
+  .join('|');
 
 defineParameterType({
   name: 'dateRange',
-  regexp: /(Current Quarter)/,
-  transformer: (value) => value as DateRange,
+  regexp: new RegExp(regexOfValues),
+  transformer: (value) => value as SymbolicRange,
 });

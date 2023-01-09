@@ -1,6 +1,6 @@
 import { InputLabel, Select, MenuItem, FormControl, SelectChangeEvent } from '@mui/material';
 import React from 'react';
-import { DateRange } from '../../constants/date-range';
+import { DateRange } from '../../constants/symbolic-range';
 
 interface Props {
   label: string;
