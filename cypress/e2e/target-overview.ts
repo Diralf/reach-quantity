@@ -1,4 +1,5 @@
-import { Given, Step, When } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, Step, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import * as Cypress from 'cypress';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
 
 Given('I have created {string} target for {int} of {string} during {dateRange}', function (
@@ -18,6 +19,27 @@ Given('I visit dashboard page', () => {
   cy.visit('/dashboard');
 });
 
-When('I found target by name {string} on dashboard', function (name: string) {
-  Step(this, `I should see the target "${name}" on dashboard`);
+interface CardContext extends Mocha.Context {
+  card?: Cypress.Chainable<JQuery>;
+}
+
+When<unknown[], CardContext>('I found {string} target card on dashboard', function (
+  name: string,
+) {
+  this.card = cy.findByLabelText(`${name} card`);
+});
+
+Then<unknown[], CardContext>('I should see small property {string} with value {string}/{dateRange} on the card', function (
+  fieldName: string,
+  value: string | SymbolicRange,
+) {
+  if (!this.card) {
+    throw new Error('context.card should be defined');
+  }
+  this.card.within(() => {
+    cy.findByText(fieldName, { selector: 'strong' })
+      .should('exist');
+    cy.findByText(value, { selector: 'span' })
+      .should('exist');
+  });
 });
