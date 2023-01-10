@@ -59,3 +59,11 @@ Then<unknown[], CardContext>('I should see today target with label {string}', fu
     cy.findByText(label, { selector: 'span' });
   });
 });
+Then<unknown[], CardContext>('I should see today target value {int}', function (
+  quantity: number,
+) {
+  checkContext.call(this);
+  this.card.within(() => {
+    cy.findByText(quantity, { selector: 'h2' });
+  });
+});
