@@ -1,14 +1,14 @@
 import { Typography, TextField, Button, Grid } from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { DateRange } from '../../constants/symbolic-range';
+import { SymbolicRange } from '../../constants/symbolic-range';
 import SymbolicDateRange from '../SymbolicDateRange';
 
 export interface TargetQuantityFormValues {
   name: string;
   quantity: number;
   measure: string;
-  dateRange: DateRange | '';
+  dateRange: SymbolicRange | '';
 }
 
 interface Props {
