@@ -56,7 +56,8 @@ Then<unknown[], CardContext>('I should see today target with label {string}', fu
 ) {
   checkContext.call(this);
   this.card.within(() => {
-    cy.findByText(label, { selector: 'span' });
+    cy.findByText(label, { selector: 'span' })
+      .should('exist');
   });
 });
 Then<unknown[], CardContext>('I should see today target value {int}', function (
@@ -64,6 +65,20 @@ Then<unknown[], CardContext>('I should see today target value {int}', function (
 ) {
   checkContext.call(this);
   this.card.within(() => {
-    cy.findByText(quantity, { selector: 'h2' });
+    cy.findByText(quantity, { selector: 'h2' })
+      .should('exist');
+  });
+});
+Then<unknown[], CardContext>('I should see target {number} for {string}', function (
+  quantity: number,
+  dayLabel: string,
+) {
+  checkContext.call(this);
+  this.card.within(() => {
+    cy.findByLabelText(dayLabel)
+      .within(() => {
+        cy.findByText(quantity)
+          .should('exist');
+      });
   });
 });

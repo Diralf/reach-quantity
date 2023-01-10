@@ -15,7 +15,7 @@ Feature: Target overview
     And I should see today target value 5
 
   Scenario: Looking for Paper Cranes target for next 5 days
-    Then I should see target 5 for <day>
+    Then I should see target 5 for "<day>"
       | day   |
       | Day 1 |
       | Day 2 |
