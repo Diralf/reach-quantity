@@ -29,17 +29,33 @@ When<unknown[], CardContext>('I found {string} target card on dashboard', functi
   this.card = cy.findByLabelText(`${name} card`);
 });
 
-Then<unknown[], CardContext>('I should see small property {string} with value {string}/{dateRange} on the card', function (
-  fieldName: string,
-  value: string | SymbolicRange,
-) {
+function checkContext() {
   if (!this.card) {
     throw new Error('context.card should be defined');
   }
+}
+
+Then<unknown[], CardContext>(
+  'I should see small property {string} with value {string}/{dateRange} on the card',
+  function (
+    fieldName: string,
+    value: string | SymbolicRange,
+  ) {
+    checkContext.call(this);
+    this.card.within(() => {
+      cy.findByText(fieldName, { selector: 'strong' })
+        .should('exist');
+      cy.findByText(value, { selector: 'span' })
+        .should('exist');
+    });
+  },
+);
+
+Then<unknown[], CardContext>('I should see today target with label {string}', function (
+  label: string,
+) {
+  checkContext.call(this);
   this.card.within(() => {
-    cy.findByText(fieldName, { selector: 'strong' })
-      .should('exist');
-    cy.findByText(value, { selector: 'span' })
-      .should('exist');
+    cy.findByText(label, { selector: 'span' });
   });
 });
