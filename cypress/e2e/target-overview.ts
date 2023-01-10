@@ -1,4 +1,4 @@
-import { Given, Step } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, Step, When } from '@badeball/cypress-cucumber-preprocessor';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
 
 Given('I have created {string} target for {int} of {string} during {dateRange}', function (
@@ -13,4 +13,11 @@ Given('I have created {string} target for {int} of {string} during {dateRange}',
   Step(this, `I specify date range for ${dateRange}`);
   Step(this, 'I submit the target');
   Step(this, `I should see the target '${name}' on dashboard`);
+});
+Given('I visit dashboard page', () => {
+  cy.visit('/dashboard');
+});
+
+When('I found target by name {string} on dashboard', function (name: string) {
+  Step(this, `I should see the target "${name}" on dashboard`);
 });
