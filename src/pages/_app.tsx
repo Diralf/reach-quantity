@@ -1,4 +1,4 @@
-import { Analytics } from '@vercel/analytics/dist/react';
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import '../styles/globals.css';
