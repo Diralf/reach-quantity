@@ -1,4 +1,9 @@
-import { Given, Step, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import {
+  Given,
+  Step,
+  When,
+  Then,
+} from '@badeball/cypress-cucumber-preprocessor';
 import * as Cypress from 'cypress';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
 
@@ -60,6 +65,7 @@ Then<unknown[], CardContext>('I should see today target with label {string}', fu
       .should('exist');
   });
 });
+
 Then<unknown[], CardContext>('I should see today target value {int}', function (
   quantity: number,
 ) {
@@ -69,6 +75,7 @@ Then<unknown[], CardContext>('I should see today target value {int}', function (
       .should('exist');
   });
 });
+
 Then<unknown[], CardContext>('I should see target {number} for {string}', function (
   quantity: number,
   dayLabel: string,
