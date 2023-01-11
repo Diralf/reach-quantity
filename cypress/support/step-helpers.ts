@@ -13,3 +13,10 @@ export function fillTextField(fieldName: string, value: string) {
     .clear()
     .type(value);
 }
+
+export function selectDropdownOption(selectFieldName: string, optionToSelect: string) {
+  cy.findByLabelText(selectFieldName)
+    .click();
+  cy.findByText(optionToSelect)
+    .click();
+}

@@ -1,7 +1,7 @@
 import { When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { NumberRadix } from '../../src/constants/number-radix';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
-import { goToCreatePage, shouldSeePage, fillTextField } from '../support/step-helpers';
+import { goToCreatePage, shouldSeePage, fillTextField, selectDropdownOption } from '../support/step-helpers';
 
 When('I go to create target page', () => {
   goToCreatePage();
@@ -22,10 +22,7 @@ When('I specify target {int} of {string}', (quantity: number, measure: string) =
 });
 
 When('I specify date range for {dateRange}', (dateRange: SymbolicRange) => {
-  cy.findByLabelText('Date Range')
-    .click();
-  cy.findByText(dateRange)
-    .click();
+  selectDropdownOption('Date Range', dateRange);
 });
 
 When('I submit the target', () => {
