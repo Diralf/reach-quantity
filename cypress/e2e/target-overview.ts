@@ -1,9 +1,4 @@
-import {
-  Given,
-  Step,
-  When,
-  Then,
-} from '@badeball/cypress-cucumber-preprocessor';
+import { Given, Step, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import * as Cypress from 'cypress';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
 
@@ -41,10 +36,10 @@ function checkContext() {
 }
 
 Then<unknown[], CardContext>(
-  'I should see small property {string} with value {string}/{dateRange} on the card',
+  'I should see small property {string} with value {string} on the card',
   function (
     fieldName: string,
-    value: string | SymbolicRange,
+    value: string,
   ) {
     checkContext.call(this);
     this.card.within(() => {
@@ -76,7 +71,7 @@ Then<unknown[], CardContext>('I should see today target value {int}', function (
   });
 });
 
-Then<unknown[], CardContext>('I should see target {number} for {string}', function (
+Then<unknown[], CardContext>('I should see target {int} for {string}', function (
   quantity: number,
   dayLabel: string,
 ) {

@@ -1,15 +1,15 @@
-import { When, Step, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { NumberRadix } from '../../src/constants/number-radix';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
+import { goToCreatePage, shouldSeePage } from '../support/step-helpers';
 
 When('I go to create target page', () => {
-  cy.findByText('Create', { selector: 'a' })
-    .click();
+  goToCreatePage();
 });
 
-When('I start target create process', function () {
-  Step(this, 'I go to create target page');
-  Step(this, 'I should see "Create Target" page');
+When('I start target create process', () => {
+  goToCreatePage();
+  shouldSeePage('Create Target');
 });
 
 When('I specify the name {string} for target', (name: string) => {
@@ -37,6 +37,6 @@ When('I submit the target', () => {
 });
 
 Then('I should see the target {string} on dashboard', (targetName: string) => {
-  Step(this, 'I should see "Dashboard" page');
+  shouldSeePage('Dashboard');
   cy.findByText(targetName, { selector: 'span' });
 });

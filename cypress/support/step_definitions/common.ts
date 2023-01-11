@@ -1,8 +1,9 @@
-import { When, Then, Given, Step } from '@badeball/cypress-cucumber-preprocessor';
+import { When, Then, Given } from '@badeball/cypress-cucumber-preprocessor';
+import { shouldSeePage } from '../step-helpers';
 
 Given('I on home page', () => {
-  Step(this, 'I visit home page');
-  Step(this, 'I should see "Dashboard" page');
+  cy.visit('/');
+  shouldSeePage('Dashboard');
 });
 
 When('I visit home page', () => {
@@ -10,6 +11,5 @@ When('I visit home page', () => {
 });
 
 Then('I should see {string} page', (title: string) => {
-  cy.findByText(title, { selector: 'h1' })
-    .should('exist');
+  shouldSeePage(title);
 });

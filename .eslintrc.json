@@ -408,7 +408,7 @@
       20
     ],
     "max-statements-per-line": "error",
-    "multiline-comment-style": "warn",
+    "multiline-comment-style": "off",
     "multiline-ternary": [
       "error",
       "always-multiline"
