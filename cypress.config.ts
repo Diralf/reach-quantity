@@ -24,6 +24,7 @@ export default defineConfig({
     },
     baseUrl: 'http://localhost:3000',
     specPattern: ['cypress/e2e/**/*.cy.{ts,tsx}', '**/*.feature'],
+    userAgent: 'e2e',
   },
 
   component: {
