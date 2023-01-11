@@ -1,5 +1,5 @@
 name: 'Run Cypress tests'
-on: [deployment_status]
+on: [ deployment_status ]
 jobs:
   e2e:
     if: github.event.deployment_status.state == 'success'
@@ -21,7 +21,7 @@ jobs:
         with:
           config-file: cypress.config.ts
           build: npx cypress info
-          headless: true
+          userAgent: e2e
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
