@@ -20,3 +20,12 @@ export function selectDropdownOption(selectFieldName: string, optionToSelect: st
   cy.findByText(optionToSelect)
     .click();
 }
+
+export function clickButton(buttonLabel: string) {
+  cy.findByText(buttonLabel, { selector: 'button' })
+    .click();
+}
+
+export function findTargetCard(targetName: string) {
+  cy.findByText(targetName, { selector: 'span' });
+}
