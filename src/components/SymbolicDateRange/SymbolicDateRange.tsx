@@ -1,6 +1,6 @@
 import { InputLabel, Select, MenuItem, FormControl, SelectChangeEvent } from '@mui/material';
 import React from 'react';
-import { SymbolicRange } from '../../constants/symbolic-range';
+import { SymbolicRange, getValuesSymbolicRange } from '../../constants/symbolic-range';
 
 interface Props {
   label: string;
@@ -23,7 +23,10 @@ const SymbolicDateRange: React.FC<Props> = ({
       onChange={onChange}
     >
       <MenuItem value="">None</MenuItem>
-      <MenuItem value={SymbolicRange['Current Quarter']}>{SymbolicRange['Current Quarter']}</MenuItem>
+      {getValuesSymbolicRange()
+        .map((symbolicRange: SymbolicRange) => (
+          <MenuItem value={symbolicRange} key={symbolicRange}>{symbolicRange}</MenuItem>
+        ))}
     </Select>
   </FormControl>
 );
