@@ -2,33 +2,23 @@ import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import * as Cypress from 'cypress';
 import { NumberRadix } from '../../src/constants/number-radix';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
-import { goToCreatePage, shouldSeePage } from '../support/step-helpers';
+import { goToCreatePage, shouldSeePage, fillTextField, selectDropdownOption, clickButton, findTargetCard } from '../support/step-helpers';
 
 Given('I have created {string} target for {int} of {string} during {dateRange}', (
   name: string,
   quantity: number,
-  measurement: string,
+  measure: string,
   dateRange: SymbolicRange,
 ) => {
   goToCreatePage();
   shouldSeePage('Create Target');
-  cy.findByLabelText('Name', { exact: false })
-    .clear()
-    .type(name);
-  cy.findByLabelText('Quantity')
-    .clear()
-    .type(quantity.toString(NumberRadix.Decimal));
-  cy.findByLabelText('Measure')
-    .clear()
-    .type(measurement);
-  cy.findByLabelText('Date Range')
-    .click();
-  cy.findByText(dateRange)
-    .click();
-  cy.findByText('Submit', { selector: 'button' })
-    .click();
+  fillTextField('Name', name);
+  fillTextField('Quantity', quantity.toString(NumberRadix.Decimal));
+  fillTextField('Measure', measure);
+  selectDropdownOption('Date Range', dateRange);
+  clickButton('Submit');
   shouldSeePage('Dashboard');
-  cy.findByText(name, { selector: 'span' });
+  findTargetCard(name);
 });
 Given('I visit dashboard page', () => {
   cy.visit('/dashboard');
