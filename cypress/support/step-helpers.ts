@@ -27,5 +27,5 @@ export function clickButton(buttonLabel: string) {
 }
 
 export function findTargetCard(targetName: string) {
-  cy.findByText(targetName, { selector: 'span' });
+  return cy.findByLabelText(`${targetName} card`);
 }

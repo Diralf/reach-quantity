@@ -31,7 +31,7 @@ interface CardContext extends Mocha.Context {
 When<unknown[], CardContext>('I found {string} target card on dashboard', function (
   name: string,
 ) {
-  this.card = cy.findByLabelText(`${name} card`);
+  this.card = findTargetCard(name);
 });
 
 function checkContext() {
