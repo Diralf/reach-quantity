@@ -12,7 +12,7 @@ Feature: Target overview
     And I should see small property "For" with value "Next 10 Days" on the card
 
   Scenario: Looking for Paper Cranes today's target
-    Then I should see today target with label "Today's target"
+    Then I should see today target with label "Today target"
     And I should see today target value 5
 
   Scenario: Looking for Paper Cranes target for next 5 days
