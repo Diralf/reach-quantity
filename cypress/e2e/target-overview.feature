@@ -16,10 +16,10 @@ Feature: Target overview
     And I should see today target value 5
 
   Scenario: Looking for Paper Cranes target for next 5 days
-    Then I should see target 5 for "<day>"
-      | day   |
-      | Day 1 |
-      | Day 2 |
-      | Day 3 |
-      | Day 4 |
-      | Day 5 |
+    Then I should see target for day
+      | day   | target |
+      | Day 1 | 5      |
+      | Day 2 | 5      |
+      | Day 3 | 5      |
+      | Day 4 | 5      |
+      | Day 5 | 5      |

@@ -1,4 +1,4 @@
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, When, Then, DataTable } from '@badeball/cypress-cucumber-preprocessor';
 import * as Cypress from 'cypress';
 import { NumberRadix } from '../../src/constants/number-radix';
 import { SymbolicRange } from '../../src/constants/symbolic-range';
@@ -76,16 +76,19 @@ Then<unknown[], CardContext>('I should see today target value {int}', function (
   });
 });
 
-Then<unknown[], CardContext>('I should see target {int} for {string}', function (
-  quantity: number,
-  dayLabel: string,
+Then<unknown[], CardContext>('I should see target for day', function (
+  dataTable: DataTable,
 ) {
   checkContext.call(this);
+  const hashes = dataTable.hashes();
   this.card.within(() => {
-    cy.findByLabelText(dayLabel)
-      .within(() => {
-        cy.findByText(quantity)
-          .should('exist');
-      });
+    hashes.forEach(({
+      day,
+      target,
+    }) => {
+      const nextDayBox = cy.findByLabelText(day);
+      nextDayBox.within(() => cy.findByText(target)
+        .should('exist'));
+    });
   });
 });
