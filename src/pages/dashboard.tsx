@@ -26,12 +26,24 @@ const Dashboard: React.FC = () => (
           </Grid>
         </Grid>
         <Grid container direction="row" gap={1}>
-          <Grid container aria-label="Day 1" direction="column" flexShrink={0}>
+          <Grid container aria-label="Day 1" direction="column" width="auto">
             <Typography component="strong" fontWeight="bold">Day 1</Typography>
             <Typography component="span">5</Typography>
           </Grid>
-          <Grid container aria-label="Day 2" direction="column">
+          <Grid container aria-label="Day 2" direction="column" width="auto">
             <Typography component="strong" fontWeight="bold">Day 2</Typography>
+            <Typography component="span">5</Typography>
+          </Grid>
+          <Grid container aria-label="Day 3" direction="column" width="auto">
+            <Typography component="strong" fontWeight="bold">Day 3</Typography>
+            <Typography component="span">5</Typography>
+          </Grid>
+          <Grid container aria-label="Day 4" direction="column" width="auto">
+            <Typography component="strong" fontWeight="bold">Day 4</Typography>
+            <Typography component="span">5</Typography>
+          </Grid>
+          <Grid container aria-label="Day 5" direction="column" width="auto">
+            <Typography component="strong" fontWeight="bold">Day 5</Typography>
             <Typography component="span">5</Typography>
           </Grid>
         </Grid>
