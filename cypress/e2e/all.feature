@@ -20,11 +20,22 @@ Feature: 4. Target calculation
 # example: target 18 for 5 days, distribution will be the following:
 # 4, 4, 4, 3, 3
 
-Feature: 5. Define weight of day
+Feature: 5. Target actions
+Feature: 5.1. Edit target
+Feature: 5.2. Close target
+Feature: 5.3. Reopen target
+Feature: 5.4. Delete target
+
+Feature: 5. Target dashboard
+Feature: 5.1. See active targets
+Feature: 5.2. See closed targets
+Feature: 5.3. Active targets reordering
+
+Feature: 6. Define weight of day
   # By default, each day have weight = 1
   # You can mark some day by 0 weight,
   # it means that this day will not be taken to account, as vacation
   # Or you can mark the day by weight >1
   # and such day will have higher target like a much productive day
 
-Feature: 6. Integration with GitHub
+Feature: 7. Integration with GitHub
