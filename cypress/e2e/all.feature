@@ -27,4 +27,4 @@ Feature: 5. Define weight of day
   # Or you can mark the day by weight >1
   # and such day will have higher target like a much productive day
 
-
+Feature: 6. Integration with GitHub
