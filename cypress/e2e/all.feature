@@ -19,3 +19,12 @@ Feature: 4. Target calculation
 # Target distributes equally between each day, the remaining getting to near days
 # example: target 18 for 5 days, distribution will be the following:
 # 4, 4, 4, 3, 3
+
+Feature: 5. Define weight of day
+  # By default, each day have weight = 1
+  # You can mark some day by 0 weight,
+  # it means that this day will not be taken to account, as vacation
+  # Or you can mark the day by weight >1
+  # and such day will have higher target like a much productive day
+
+
