@@ -4,12 +4,18 @@ Feature: 1. Create target
 Feature: 2. Target overview
 Feature: 2.1. See name, common quantity, measurement, period
 Feature: 2.2. See target for today
-Feature: 2.3. See reached quantity for today
-Feature: 2.4. See remaining quantity overall
-Feature: 2.5. See reached quantity overall
-Feature: 2.6. See target for next 5 days
+Feature: 2.3. See reached quantity today
+Feature: 2.4. See remaining quantity today
+Feature: 2.5. See remaining quantity overall
+Feature: 2.6. See reached quantity overall
+Feature: 2.7. See target for next 5 days
 
 Feature: 3. Define reached quantity
 Feature: 3.1 Define for today
 Feature: 3.2 Define for past days
 Feature: 3.3 Define for unknown day
+
+Feature: 4. Target calculation
+# Target distributes equally between each day, the remaining getting to near days
+# example: target 18 for 5 days, distribution will be the following:
+# 4, 4, 4, 3, 3
