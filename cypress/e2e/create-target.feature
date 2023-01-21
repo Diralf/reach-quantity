@@ -7,7 +7,7 @@ Feature: Create target
     When I go to create target page
     Then I should see 'Create Target' page
 
-  Scenario Outline: create target to make 100 paper cranes during current quarter
+  Scenario Outline: create <name> target to make <quantity> <measurement> during <dateRange>
     When I start target create process
     And I specify the name <name> for target
     And I specify target <quantity> of <measurement>
