@@ -2,12 +2,18 @@ Feature: 1. Create target
 # Create target with name, quantity, measurement and period of time (Symbolic and Specific Dates)
 
 Feature: 2. Target overview
-Feature: 2.1. See name, common quantity, measurement, period
-Feature: 2.2. See target for today
-Feature: 2.3. See reached quantity today
-Feature: 2.4. See remaining quantity today
-Feature: 2.5. See remaining quantity overall
-Feature: 2.6. See reached quantity overall
+Feature: 2.1. See name
+Feature: 2.2. See common quantity, measurement
+Feature: 2.3. Period
+Feature: 2.3.1. See symbolic period
+Feature: 2.3.2. See exact dates
+Feature: 2.4. Today
+Feature: 2.4.1. See target for today
+Feature: 2.4.2. See reached quantity today
+Feature: 2.4.3. See remaining quantity today
+Feature: 2.6. Overall
+Feature: 2.6.1. See remaining quantity overall
+Feature: 2.6.2. See reached quantity overall
 Feature: 2.7. See target for next 5 days
 
 Feature: 3. Define reached quantity
