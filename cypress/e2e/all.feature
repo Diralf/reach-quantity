@@ -1,9 +1,13 @@
 Feature: 1. Create target
-# Create target with name, quantity, measurement and period of time (Symbolic and Specific Dates)
+  # Create target with name, quantity, measurement and period of time (Symbolic and Specific Dates)
+  # Name
+  # Target Quantity
+  # Measurement
+  # Period
+  # _
 
 Feature: 2. Target overview
 Feature: 2.1. See name
-  # name should be unique
 Feature: 2.2. See common quantity, measurement
 Feature: 2.3. Period
 Feature: 2.3.1. See symbolic period
@@ -22,9 +26,10 @@ Feature: 2.7. See target for next 5 days
   # Should display day + week day
 Feature: 2.8. Calendar
 Feature: 2.8.1 See reached number at past days and today
-Feature: 2.8.2 See target number at feature days and today
+Feature: 2.8.2 See target number at future days and today
 Feature: 2.8.2 See target number at past days as greyed out
 Feature: 2.8.2 See start and end of period
+Feature: 2.9. See date of creation
 
 Feature: 3. Define reached quantity
 Feature: 3.1 Define for today
@@ -48,9 +53,15 @@ Feature: 4. Target calculation
 
 Feature: 5. Target actions
 Feature: 5.1. Edit target
+  # Able to edit each field
+  # Change of target will affect targets only for today and future days
+  # Change of period will affect targets only for today and future
 Feature: 5.2. Close target
+  # Will be moved from dashboard to separate list
 Feature: 5.3. Reopen target
+  # Will moved target back to dashboard
 Feature: 5.4. Delete target
+  # Delete target at all (hard delete)
 
 Feature: 5. Target dashboard
 Feature: 5.1. See active targets
