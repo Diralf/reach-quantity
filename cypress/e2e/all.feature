@@ -18,6 +18,8 @@ Feature: 2.4. Today
 Feature: 2.4.1. See target for today
 Feature: 2.4.2. See reached quantity today
 Feature: 2.4.3. See remaining quantity today
+Feature: 2.4.4. See reached weight of the day
+Feature: 2.4.5. See target weight of the day
   # Should be zero when reached >= target
 Feature: 2.6. Overall
 Feature: 2.6.1. See remaining quantity overall
@@ -67,12 +69,18 @@ Feature: 5. Target dashboard
 Feature: 5.1. See active targets
 Feature: 5.2. See closed targets
 Feature: 5.3. Active targets reordering
+  # ordering by up|down arrows
 
-Feature: 6. Define weight of day
+Feature: 6. Define target weight of day
   # By default, each day have weight = 1
   # You can mark some day by 0 weight,
   # it means that this day will not be taken to account, as vacation
   # Or you can mark the day by weight >1
   # and such day will have higher target like a much productive day
+Feature: 6.1 Define target weight on create/edit form
+  # min 0, max 3
+  # 1. Enter target weight
+  # 2. Click to day on calendar to set weight
+Feature: 6.2 Adjust current weight of day based on reached value.
 
 Feature: 7. Integration with GitHub
