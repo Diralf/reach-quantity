@@ -11,6 +11,8 @@ Create target with name, quantity, measurement and period of time (Symbolic and 
 
 # 2. Target overview
 
+[Target overview](cypress/e2e/target-overview.feature)
+
 ## 2.1. See name
 
 ## 2.2. See common quantity, measurement
