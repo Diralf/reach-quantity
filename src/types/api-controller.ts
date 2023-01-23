@@ -3,4 +3,6 @@ import { Target } from './models/target';
 
 export interface ApiController {
   createTarget(body: CreateTargetParams): Promise<Target>;
+
+  getAllTargets(): Promise<Target[]>;
 }

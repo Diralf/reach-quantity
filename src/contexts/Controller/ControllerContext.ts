@@ -10,6 +10,9 @@ const defaultContext: ControllerContextProps = {
     createTarget() {
       throw Error('Controller Context is not defined');
     },
+    getAllTargets() {
+      throw Error('Controller Context is not defined');
+    },
   },
 };
 
