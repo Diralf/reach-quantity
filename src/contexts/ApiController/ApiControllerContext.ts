@@ -1,11 +1,11 @@
 import React from 'react';
 import { ApiController } from '../../types/api-controller';
 
-interface ControllerContextProps {
+interface ApiControllerContextProps {
   controller: ApiController;
 }
 
-const defaultContext: ControllerContextProps = {
+const defaultValue: ApiControllerContextProps = {
   controller: {
     createTarget() {
       throw Error('Controller Context is not defined');
@@ -16,7 +16,7 @@ const defaultContext: ControllerContextProps = {
   },
 };
 
-const ControllerContext = React.createContext<ControllerContextProps>(defaultContext);
+const ApiControllerContext = React.createContext<ApiControllerContextProps>(defaultValue);
 
-export type { ControllerContextProps };
-export { ControllerContext };
+export type { ApiControllerContextProps };
+export { ApiControllerContext };
