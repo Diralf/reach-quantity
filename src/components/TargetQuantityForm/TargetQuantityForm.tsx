@@ -2,6 +2,7 @@ import { Typography, TextField, Button, Grid } from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { SymbolicRange } from '../../constants/symbolic-range';
+import { CreateTargetParams } from '../../types/models/create-target-params';
 import SymbolicDateRange from '../SymbolicDateRange';
 
 export interface TargetQuantityFormValues {
@@ -12,10 +13,10 @@ export interface TargetQuantityFormValues {
 }
 
 interface Props {
-  onSubmit(): void;
+  onSubmit(params: CreateTargetParams): Promise<void>;
 }
 
-const TargetQuantityForm: React.FC<Props> = ({ onSubmit }) => {
+const TargetQuantityForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {
   const {
     control,
     handleSubmit,
@@ -25,8 +26,19 @@ const TargetQuantityForm: React.FC<Props> = ({ onSubmit }) => {
     },
   });
 
+  const handleFormSubmit = (values: TargetQuantityFormValues): void => {
+    if (values.dateRange) {
+      onSubmit({
+        name: values.name,
+        quantity: values.quantity,
+        measurement: values.measure,
+        period: values.dateRange,
+      });
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
       <Grid container direction="column" gap={2}>
         <Typography variant="h2" component="h1">Create Target</Typography>
         <Controller
