@@ -1,6 +1,8 @@
 import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 import React from 'react';
+import { ControllerProvider } from '../contexts/Controller';
+import { getDbApiController } from '../idb/idb-api-controller';
 import '../styles/globals.css';
 
 const App = ({
@@ -8,7 +10,9 @@ const App = ({
   pageProps,
 }: AppProps): JSX.Element => (
   <>
-    <Component {...pageProps} />
+    <ControllerProvider controller={getDbApiController()}>
+      <Component {...pageProps} />
+    </ControllerProvider>
     <Analytics/>
   </>
 );
