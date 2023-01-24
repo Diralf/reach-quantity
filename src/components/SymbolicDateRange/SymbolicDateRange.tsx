@@ -9,11 +9,11 @@ interface Props {
   onChange(event: SelectChangeEvent): void;
 }
 
-const SymbolicDateRange: React.FC<Props> = ({
+const SymbolicDateRange = React.forwardRef(({
   label,
   value,
   onChange,
-}) => (
+}: Props, ref) => (
   <FormControl fullWidth>
     <InputLabel id="date-range-select">{label}</InputLabel>
     <Select
@@ -21,6 +21,7 @@ const SymbolicDateRange: React.FC<Props> = ({
       value={value}
       label={label}
       onChange={onChange}
+      ref={ref}
     >
       <MenuItem value="">None</MenuItem>
       {getValuesSymbolicRange()
@@ -29,6 +30,6 @@ const SymbolicDateRange: React.FC<Props> = ({
         ))}
     </Select>
   </FormControl>
-);
+));
 
 export default SymbolicDateRange;

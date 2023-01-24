@@ -230,7 +230,8 @@
       ],
       "rules": {
         "@typescript-eslint/no-extra-parens": "off",
-        "no-extra-parens": "off"
+        "no-extra-parens": "off",
+        "react/display-name": "off"
       }
     },
     {
