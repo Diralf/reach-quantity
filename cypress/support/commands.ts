@@ -14,6 +14,22 @@
 // Cypress.Commands.add('login', (email, password) => { ... })
 import '@testing-library/cypress/add-commands';
 
+Cypress.Commands.add('clearIndexedDB', async () => {
+  const databases = await window.indexedDB.databases();
+
+  await Promise.all(
+    databases.map(
+      ({ name }) =>
+        new Promise((resolve, reject) => {
+          const request = window.indexedDB.deleteDatabase(name);
+
+          request.addEventListener('success', resolve);
+          request.addEventListener('blocked', resolve);
+          request.addEventListener('error', reject);
+        }),
+    ),
+  );
+});
 //
 //
 // -- This is a child command --
@@ -27,13 +43,14 @@ import '@testing-library/cypress/add-commands';
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      // login(email: string, password: string): Chainable<void>
+      // drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+      // dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+      // visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
+      clearIndexedDB(): Promise<void>;
+    }
+  }
+}

@@ -6,6 +6,10 @@ Given('I on home page', () => {
   shouldSeePage('Dashboard');
 });
 
+Given('I opened the app for the first time', () => {
+  cy.clearIndexedDB();
+});
+
 When('I visit home page', () => {
   cy.visit('/');
 });

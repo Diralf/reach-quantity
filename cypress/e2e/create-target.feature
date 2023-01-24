@@ -2,6 +2,7 @@ Feature: Create target
 
   Background:
     Given I on home page
+    And I opened the app for the first time
 
   Scenario: navigation to create target page
     When I go to create target page

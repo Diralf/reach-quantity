@@ -15,7 +15,7 @@ const TargetQuantityCard: React.FC<Props> = ({
   measurement,
   period,
 }): JSX.Element => (
-  <Card aria-label="Paper Cranes card">
+  <Card aria-label={`${name} card`}>
     <CardContent>
       <Grid container direction="column">
         <Grid container gap={1}>

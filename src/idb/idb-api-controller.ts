@@ -8,7 +8,14 @@ interface Schema {
 }
 
 const openReachQuantityDb = (): Promise<IDBPDatabase<Schema>> => openDB('reach-quantity', 1, {
-  upgrade(dbUpgrade, oldVersion) {
+  upgrade(dbUpgrade, oldVersion, newVersion, transaction, event) {
+    console.warn('Open IDB upgrade', JSON.stringify({
+      dbUpgrade,
+      oldVersion,
+      newVersion,
+      transaction,
+      event,
+    }));
     if (oldVersion === 0) {
       dbUpgrade.createObjectStore('targets', {
         keyPath: 'id',
@@ -17,21 +24,23 @@ const openReachQuantityDb = (): Promise<IDBPDatabase<Schema>> => openDB('reach-q
     }
   },
   blocked(currentVersion, blockedVersion, event) {
-    console.error('IDB blocked', {
+    console.error('Open IDB blocked', {
       currentVersion,
       blockedVersion,
       event,
     });
   },
   blocking(currentVersion, blockedVersion, event) {
-    console.error('IDB blocking', {
+    console.error('Open IDB blocking', JSON.stringify({
       currentVersion,
       blockedVersion,
       event,
-    });
+    }));
+    // @ts-ignore
+    event?.target?.result?.close();
   },
   terminated() {
-    console.error('IDB terminated');
+    console.error('Open IDB terminated');
   },
 });
 
