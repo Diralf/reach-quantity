@@ -22,6 +22,9 @@ const TargetQuantityForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {
     handleSubmit,
   } = useForm<TargetQuantityFormValues>({
     defaultValues: {
+      name: '',
+      quantity: 0,
+      measure: '',
       dateRange: '',
     },
   });
