@@ -23,9 +23,9 @@ Cypress.Commands.add('clearIndexedDB', async () => {
         new Promise((resolve, reject) => {
           const request = window.indexedDB.deleteDatabase(name);
 
-          request.addEventListener('success', resolve);
-          request.addEventListener('blocked', resolve);
-          request.addEventListener('error', reject);
+          request.onsuccess = resolve;
+          request.onblocked = resolve;
+          request.onerror = reject;
         }),
     ),
   );
