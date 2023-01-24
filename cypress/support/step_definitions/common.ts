@@ -1,13 +1,11 @@
-import { When, Then, Given } from '@badeball/cypress-cucumber-preprocessor';
+import { When, Then, Given, Before } from '@badeball/cypress-cucumber-preprocessor';
 import { shouldSeePage } from '../step-helpers';
+
+Before(() => cy.clearIndexedDB());
 
 Given('I on home page', () => {
   cy.visit('/');
   shouldSeePage('Dashboard');
-});
-
-Given('I opened the app for the first time', () => {
-  cy.clearIndexedDB();
 });
 
 When('I visit home page', () => {
