@@ -17,7 +17,7 @@ const useRouteMatch = (patterns: readonly string[]): string | null => {
 };
 
 const Navigation: React.FC = () => {
-  const currentTab = useRouteMatch(['/dashboard', '/create', '/example']);
+  const currentTab = useRouteMatch(['/dashboard', '/create', '/example']) ?? '/dashboard';
 
   return (
     <Tabs value={currentTab}>
