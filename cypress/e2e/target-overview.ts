@@ -7,15 +7,15 @@ import { goToCreatePage, shouldSeePage, fillTextField, selectDropdownOption, cli
 Given('I have created {string} target for {int} of {string} during {period}', (
   name: string,
   quantity: number,
-  measure: string,
-  dateRange: SymbolicPeriod,
+  measurement: string,
+  period: SymbolicPeriod,
 ) => {
   goToCreatePage();
   shouldSeePage('Create Target');
   fillTextField('Name', name);
   fillTextField('Quantity', quantity.toString(NumberRadix.Decimal));
-  fillTextField('Measurement', measure);
-  selectDropdownOption('Period', dateRange);
+  fillTextField('Measurement', measurement);
+  selectDropdownOption('Period', period);
   clickButton('Create');
   shouldSeePage('Dashboard');
   findTargetCard(name);

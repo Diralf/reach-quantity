@@ -15,9 +15,9 @@ const SymbolicPeriodSelector = React.forwardRef(({
   onChange,
 }: Props, ref) => (
   <FormControl fullWidth>
-    <InputLabel id="date-range-select">{label}</InputLabel>
+    <InputLabel id="period-select">{label}</InputLabel>
     <Select
-      labelId="date-range-select"
+      labelId="period-select"
       value={value}
       label={label}
       onChange={onChange}

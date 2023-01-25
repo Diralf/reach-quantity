@@ -11,7 +11,7 @@ Feature: Create target
     When I start target create process
     And I specify the name <name> for target
     And I specify target <quantity> of <measurement>
-    And I specify date range for <period>
+    And I specify period for <period>
     And I submit the target
     Then I should see the target <name> on dashboard
     Examples:

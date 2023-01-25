@@ -16,13 +16,13 @@ When('I specify the name {string} for target', (name: string) => {
   fillTextField('Name', name);
 });
 
-When('I specify target {int} of {string}', (quantity: number, measure: string) => {
+When('I specify target {int} of {string}', (quantity: number, measurement: string) => {
   fillTextField('Quantity', quantity.toString(NumberRadix.Decimal));
-  fillTextField('Measurement', measure);
+  fillTextField('Measurement', measurement);
 });
 
-When('I specify date range for {period}', (dateRange: SymbolicPeriod) => {
-  selectDropdownOption('Period', dateRange);
+When('I specify period for {period}', (period: SymbolicPeriod) => {
+  selectDropdownOption('Period', period);
 });
 
 When('I submit the target', () => {
