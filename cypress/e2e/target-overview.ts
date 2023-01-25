@@ -1,22 +1,22 @@
 import { Given, When, Then, DataTable } from '@badeball/cypress-cucumber-preprocessor';
 import * as Cypress from 'cypress';
 import { NumberRadix } from '../../src/constants/number-radix';
-import { SymbolicRange } from '../../src/constants/symbolic-range';
+import { SymbolicPeriod } from '../../src/constants/symbolic-period';
 import { goToCreatePage, shouldSeePage, fillTextField, selectDropdownOption, clickButton, findTargetCard } from '../support/step-helpers';
 
-Given('I have created {string} target for {int} of {string} during {dateRange}', (
+Given('I have created {string} target for {int} of {string} during {period}', (
   name: string,
   quantity: number,
   measure: string,
-  dateRange: SymbolicRange,
+  dateRange: SymbolicPeriod,
 ) => {
   goToCreatePage();
   shouldSeePage('Create Target');
   fillTextField('Name', name);
   fillTextField('Quantity', quantity.toString(NumberRadix.Decimal));
-  fillTextField('Measure', measure);
-  selectDropdownOption('Date Range', dateRange);
-  clickButton('Submit');
+  fillTextField('Measurement', measure);
+  selectDropdownOption('Period', dateRange);
+  clickButton('Create');
   shouldSeePage('Dashboard');
   findTargetCard(name);
 });

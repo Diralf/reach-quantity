@@ -1,15 +1,15 @@
 import { Typography, TextField, Button, Grid } from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { SymbolicRange } from '../../constants/symbolic-range';
+import { SymbolicPeriod } from '../../constants/symbolic-period';
 import { CreateTargetParams } from '../../types/models/create-target-params';
-import SymbolicDateRange from '../SymbolicDateRange';
+import SymbolicPeriodSelector from '../SymbolicPeriodSelector';
 
 export interface TargetQuantityFormValues {
   name: string;
   quantity: number;
-  measure: string;
-  dateRange: SymbolicRange | '';
+  measurement: string;
+  period: SymbolicPeriod | '';
 }
 
 interface Props {
@@ -24,18 +24,18 @@ const TargetQuantityForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {
     defaultValues: {
       name: '',
       quantity: 0,
-      measure: '',
-      dateRange: '',
+      measurement: '',
+      period: '',
     },
   });
 
   const handleFormSubmit = (values: TargetQuantityFormValues): void => {
-    if (values.dateRange) {
+    if (values.period) {
       onSubmit({
         name: values.name,
         quantity: values.quantity,
-        measurement: values.measure,
-        period: values.dateRange,
+        measurement: values.measurement,
+        period: values.period,
       });
     }
   };
@@ -59,20 +59,20 @@ const TargetQuantityForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {
           )}
         />
         <Controller
-          name="measure"
+          name="measurement"
           control={control}
           render={({ field }) => (
-            <TextField label="Measure" {...field}/>
+            <TextField label="Measurement" {...field}/>
           )}
         />
         <Controller
-          name="dateRange"
+          name="period"
           control={control}
           render={({ field }) => (
-            <SymbolicDateRange label="Date Range" {...field}/>
+            <SymbolicPeriodSelector label="Period" {...field}/>
           )}
         />
-        <Button variant="contained" type="submit">Submit</Button>
+        <Button variant="contained" type="submit">Create</Button>
       </Grid>
     </form>
   );

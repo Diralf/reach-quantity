@@ -1,9 +1,9 @@
 import { defineParameterType } from '@badeball/cypress-cucumber-preprocessor';
-import { SymbolicRange } from '../../../src/constants/symbolic-range';
+import { SymbolicPeriod } from '../../../src/constants/symbolic-period';
 
 defineParameterType({
-  name: 'dateRange',
+  name: 'period',
   regexp: /Current Quarter|Next 10 Days/,
   // regexp: new RegExp('(Current Quarter)|(Next 10 Days)'),
-  transformer: (value) => value as SymbolicRange,
+  transformer: (value) => value as SymbolicPeriod,
 });

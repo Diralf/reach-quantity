@@ -1,12 +1,12 @@
 import { CardContent, Grid, Typography, Card } from '@mui/material';
 import React from 'react';
-import { SymbolicRange } from '../../constants/symbolic-range';
+import { SymbolicPeriod } from '../../constants/symbolic-period';
 
 interface Props {
   name: string;
   quantity: number;
   measurement: string;
-  period: SymbolicRange;
+  period: SymbolicPeriod;
 }
 
 const TargetQuantityCard: React.FC<Props> = ({
