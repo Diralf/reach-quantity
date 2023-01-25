@@ -1,6 +1,7 @@
 import { CardContent, Grid, Typography, Card } from '@mui/material';
 import React from 'react';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
+import CommonInfo from './CommonInfo';
 
 interface Props {
   name: string;
@@ -17,19 +18,8 @@ const TargetQuantityCard: React.FC<Props> = ({
 }): JSX.Element => (
   <Card aria-label={`${name} card`}>
     <CardContent>
+      <CommonInfo name={name} quantity={quantity} measurement={measurement} period={period}/>
       <Grid container direction="column">
-        <Grid container gap={1}>
-          <Typography component="strong" fontWeight="bold">Name</Typography>
-          <Typography component="span">{name}</Typography>
-        </Grid>
-        <Grid container gap={1}>
-          <Typography component="strong" fontWeight="bold">Target</Typography>
-          <Typography component="span">{quantity} {measurement}</Typography>
-        </Grid>
-        <Grid container gap={1}>
-          <Typography component="strong" fontWeight="bold">For</Typography>
-          <Typography component="span">{period}</Typography>
-        </Grid>
         <Grid container gap={1} direction="column">
           <Typography component="span">Today target</Typography>
           <Typography variant="h2">5</Typography>
