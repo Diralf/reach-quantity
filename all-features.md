@@ -17,16 +17,22 @@
 
 ## 2.1. See name
 
+- [x] Display name on the card
+
 ## 2.2. See common quantity, measurement
+
+- [x] Display quantity and measurement on the card
 
 ## 2.3. Period
 
 ### 2.3.1. See symbolic period
 
+- [x] Display symbolic period
+
 ### 2.3.2. See exact dates
 
-Calculate dates for Symbolic
-Display selected dates for Date Range
+- [ ] Calculate dates for Symbolic
+- [ ] Display selected dates for Date Range
 
 ## 2.4. Today
 
