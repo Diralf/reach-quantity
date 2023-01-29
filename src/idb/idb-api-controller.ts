@@ -30,14 +30,13 @@ const openReachQuantityDb = (): Promise<IDBPDatabase<Schema>> => openDB('reach-q
       event,
     });
   },
-  blocking(currentVersion, blockedVersion, event) {
+  blocking(currentVersion, blockedVersion, event: IDBVersionChangeEvent) {
     console.error('Open IDB blocking', JSON.stringify({
       currentVersion,
       blockedVersion,
       event,
     }));
-    // @ts-ignore
-    event?.target?.result?.close();
+    (event?.target as unknown as { result: IDBPDatabase<Schema> })?.result?.close();
   },
   terminated() {
     console.error('Open IDB terminated');
@@ -51,25 +50,16 @@ export const getDbApiController = (): ApiController => ({
     const transaction = db.transaction('targets', 'readwrite');
     const targets = transaction.objectStore('targets');
 
-    let result: Target;
+    const resultKey = await targets.add({
+      ...body,
+      createdOn: new Date(),
+    });
 
-    try {
-      const resultKey = await targets.add({
-        ...body,
-        createdOn: new Date(),
-      });
-      const allTargets = await targets.getAll();
-      console.log({ allTargets });
+    const result = await targets.get(resultKey);
 
-      result = await targets.get(resultKey);
+    await transaction.done;
 
-      await transaction.done;
-      console.log('Target successfully created', result);
-
-      return result;
-    } catch (error) {
-      throw error;
-    }
+    return result;
   },
   async getAllTargets(): Promise<Target[]> {
     const db = await openReachQuantityDb();

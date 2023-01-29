@@ -18,6 +18,9 @@
     "@typescript-eslint",
     "react"
   ],
+  "ignorePatterns": [
+    "**/test-setup.ts"
+  ],
   "overrides": [
     {
       "files": [
