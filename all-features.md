@@ -2,12 +2,12 @@
 
 [create-target.feature](cypress/e2e/create-target.feature)
 
-Create target with name, quantity, measurement and period of time (Symbolic and Specific Dates)
-
-- Name
-- Target Quantity
-- Measurement
-- Period
+- [x] Create target with name, quantity, measurement and period of time (Symbolic and Specific Dates)
+  - Name
+  - Target Quantity
+  - Measurement
+  - Period
+- [x] Save create target to DB
 
 ---
 
