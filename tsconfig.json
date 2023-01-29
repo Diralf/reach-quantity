@@ -29,6 +29,8 @@
     "node_modules",
     "cypress",
     "**/*.cy.ts",
-    "**/*.cy.tsx"
+    "**/*.cy.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }

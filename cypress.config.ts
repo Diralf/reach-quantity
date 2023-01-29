@@ -32,5 +32,6 @@ export default defineConfig({
       framework: 'next',
       bundler: 'webpack',
     },
+    specPattern: ['**/*.cy.{ts,tsx}'],
   },
 });

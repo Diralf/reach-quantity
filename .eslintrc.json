@@ -260,6 +260,32 @@
         "func-names": "off",
         "@typescript-eslint/no-invalid-this": "off"
       }
+    },
+    {
+      "files": [
+        "**/*.spec.ts",
+        "**/*.spec.tsx"
+      ],
+      "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module",
+        "project": [
+          "./tsconfig.spec.json"
+        ]
+      },
+      "rules": {
+        "max-lines-per-function": "off",
+        "no-return-assign": "off",
+        "max-nested-callbacks": "off",
+        "max-lines": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "max-statements": "off",
+        "max-classes-per-file": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "func-names": "off",
+        "@typescript-eslint/no-invalid-this": "off"
+      }
     }
   ],
   "rules": {
