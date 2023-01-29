@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "jest:unit": "jest",
+    "jest:unit": "jest --ci",
     "cypress": "cypress open",
     "cy-e2e:run": "cypress run --e2e",
     "cy-e2e:run:focus": "cypress run --e2e --env tags=@focus",
