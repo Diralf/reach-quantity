@@ -9,6 +9,8 @@ Create target with name, quantity, measurement and period of time (Symbolic and 
 - Measurement
 - Period
 
+---
+
 # 2. Target overview
 
 [Target overview](cypress/e2e/target-overview.feature)
@@ -62,6 +64,8 @@ Should display day + week day
 
 ## 2.9. See date of creation
 
+---
+
 # 3. Define reached quantity
 
 ## 3.1 Define for today
@@ -87,12 +91,16 @@ example: |reached,target|, * - today, "?" - unknown day
 
 Unknown day changed from 20 to 17
 
+---
+
 # 4. Target calculation
 
 Target distributes equally between each day, the remaining getting to near days
 example: target 18 for 5 days, distribution will be the following:
 
 4, 4, 4, 3, 3
+
+---
 
 # 5. Target actions
 
@@ -114,6 +122,8 @@ Will moved target back to dashboard
 
 Delete target at all (hard delete)
 
+---
+
 # 6. Target dashboard
 
 ## 6.1. See active targets
@@ -123,6 +133,8 @@ Delete target at all (hard delete)
 ## 6.3. Active targets reordering
 
 ordering by up|down arrows
+
+---
 
 # 7. Define target weight of day
 
@@ -142,5 +154,7 @@ min 0, max 3
 2. Click to day on calendar to set weight
 
 ## 7.2 Adjust current weight of day based on reached value.
+
+---
 
 # 8. Integration with GitHub
