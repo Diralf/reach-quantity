@@ -38,13 +38,23 @@
 
 ### 2.4.1. See target for today
 
+- [ ] Done
+
 ### 2.4.2. See reached quantity today
+
+- [ ] Done
 
 ### 2.4.3. See remaining quantity today
 
+- [ ] Done
+
 ### 2.4.4. See reached weight of the day
 
+- [ ] Done
+
 ### 2.4.5. See target weight of the day
+
+- [ ] Done
 
 Should be zero when reached >= target
 
@@ -52,9 +62,15 @@ Should be zero when reached >= target
 
 ### 2.6.1. See remaining quantity overall
 
+- [ ] Done
+
 ### 2.6.2. See reached quantity overall
 
+- [ ] Done
+
 ## 2.7. See target for next 5 days
+
+- [ ] Done
 
 Should display day + week day
 
@@ -62,13 +78,23 @@ Should display day + week day
 
 ### 2.8.1 See reached number at past days and today
 
+- [ ] Done
+
 ### 2.8.2 See target number at future days and today
+
+- [ ] Done
 
 ### 2.8.2 See target number at past days as greyed out
 
+- [ ] Done
+
 ### 2.8.2 See start and end of period
 
+- [ ] Done
+
 ## 2.9. See date of creation
+
+- [ ] Done
 
 ---
 
@@ -76,13 +102,19 @@ Should display day + week day
 
 ## 3.1 Define for today
 
+- [ ] Done
+
 number input with arrows
 
 ## 3.2 Define for past days
 
+- [ ] Done
+
 Select date on calendar, define reached quantity only for past days
 
 ## 3.3 Define for unknown day
+
+- [ ] Done
 
 input for unknown day reached quantity
 defined reached quantity in the past decrease number at unknown day automatically
@@ -101,6 +133,8 @@ Unknown day changed from 20 to 17
 
 # 4. Target calculation
 
+- [ ] Done
+
 Target distributes equally between each day, the remaining getting to near days
 example: target 18 for 5 days, distribution will be the following:
 
@@ -112,19 +146,27 @@ example: target 18 for 5 days, distribution will be the following:
 
 ## 5.1. Edit target
 
+- [ ] Done
+
 Able to edit each field
 Change of target will affect targets only for today and future days
 Change of period will affect targets only for today and future
 
 ## 5.2. Close target
 
+- [ ] Done
+
 Will be moved from dashboard to separate list
 
 ## 5.3. Reopen target
 
+- [ ] Done
+
 Will moved target back to dashboard
 
 ## 5.4. Delete target
+
+- [ ] Done
 
 Delete target at all (hard delete)
 
@@ -134,9 +176,15 @@ Delete target at all (hard delete)
 
 ## 6.1. See active targets
 
+- [ ] Done
+
 ## 6.2. See closed targets
 
+- [ ] Done
+
 ## 6.3. Active targets reordering
+
+- [ ] Done
 
 ordering by up|down arrows
 
@@ -154,6 +202,8 @@ and such day will have higher target like a much productive day
 
 ## 7.1 Define target weight on create/edit form
 
+- [ ] Done
+
 min 0, max 3
 
 1. Enter target weight
@@ -161,6 +211,10 @@ min 0, max 3
 
 ## 7.2 Adjust current weight of day based on reached value.
 
+- [ ] Done
+
 ---
 
 # 8. Integration with GitHub
+
+- [ ] Done
