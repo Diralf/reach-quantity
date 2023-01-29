@@ -5,7 +5,11 @@
       "node_modules/@types"
     ]
   },
+  "files": [
+    "./src/test-setup.ts"
+  ],
   "include": [
+    "./src/test-setup.ts",
     "**/*.spec.ts",
     "**/*.spec.tsx"
   ],

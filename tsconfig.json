@@ -26,6 +26,7 @@
     "src/**/*.tsx"
   ],
   "exclude": [
+    "./src/test-setup.ts",
     "node_modules",
     "cypress",
     "**/*.cy.ts",
