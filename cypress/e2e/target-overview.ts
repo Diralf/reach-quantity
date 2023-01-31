@@ -1,8 +1,7 @@
-import { Given, When, Then, DataTable } from '@badeball/cypress-cucumber-preprocessor';
-import * as Cypress from 'cypress';
-import { NumberRadix } from '../../src/constants/number-radix';
 import { SymbolicPeriod } from '../../src/constants/symbolic-period';
-import { goToCreatePage, shouldSeePage, fillTextField, selectDropdownOption, clickButton, findTargetCard } from '../support/step-helpers';
+import { findTargetCard, createTarget } from '../support/step-helpers';
+import { CardContext } from '../support/step-types';
+import { Given, When, Then, DataTable } from '../support/step-utils';
 
 Given('I have created {string} target for {int} of {string} during {period}', (
   name: string,
@@ -10,25 +9,13 @@ Given('I have created {string} target for {int} of {string} during {period}', (
   measurement: string,
   period: SymbolicPeriod,
 ) => {
-  goToCreatePage();
-  shouldSeePage('Create Target');
-  fillTextField('Name', name);
-  fillTextField('Quantity', quantity.toString(NumberRadix.Decimal));
-  fillTextField('Measurement', measurement);
-  selectDropdownOption('Period', period);
-  clickButton('Create');
-  shouldSeePage('Dashboard');
-  findTargetCard(name);
+  createTarget(name, quantity, measurement, period);
 });
 Given('I visit dashboard page', () => {
   cy.visit('/dashboard');
 });
 
-interface CardContext extends Mocha.Context {
-  card?: Cypress.Chainable<JQuery>;
-}
-
-When<unknown[], CardContext>('I found {string} target card on dashboard', function (
+When<CardContext>('I found {string} target card on dashboard', function (
   name: string,
 ) {
   this.card = findTargetCard(name);
@@ -40,7 +27,7 @@ function checkContext() {
   }
 }
 
-Then<unknown[], CardContext>(
+Then<CardContext>(
   'I should see small property {string} with value {string} on the card',
   function (
     fieldName: string,
@@ -56,7 +43,7 @@ Then<unknown[], CardContext>(
   },
 );
 
-Then<unknown[], CardContext>('I should see today target with label {string}', function (
+Then<CardContext>('I should see today target with label {string}', function (
   label: string,
 ) {
   checkContext.call(this);
@@ -66,7 +53,7 @@ Then<unknown[], CardContext>('I should see today target with label {string}', fu
   });
 });
 
-Then<unknown[], CardContext>('I should see today target value {int}', function (
+Then<CardContext>('I should see today target value {int}', function (
   quantity: number,
 ) {
   checkContext.call(this);
@@ -76,7 +63,7 @@ Then<unknown[], CardContext>('I should see today target value {int}', function (
   });
 });
 
-Then<unknown[], CardContext>('I should see target for day', function (
+Then<CardContext>('I should see target for day', function (
   dataTable: DataTable,
 ) {
   checkContext.call(this);

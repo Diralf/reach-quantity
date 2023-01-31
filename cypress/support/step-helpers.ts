@@ -1,3 +1,6 @@
+import { NumberRadix } from '../../src/constants/number-radix';
+import { SymbolicPeriod } from '../../src/constants/symbolic-period';
+
 export function shouldSeePage(title: string) {
   cy.findByText(title, { selector: 'h1' })
     .should('exist');
@@ -28,4 +31,21 @@ export function clickButton(buttonLabel: string) {
 
 export function findTargetCard(targetName: string) {
   return cy.findByLabelText(`${targetName} card`);
+}
+
+export function createTarget(
+  name: string,
+  quantity: number,
+  measurement: string,
+  period: SymbolicPeriod,
+) {
+  goToCreatePage();
+  shouldSeePage('Create Target');
+  fillTextField('Name', name);
+  fillTextField('Quantity', quantity.toString(NumberRadix.Decimal));
+  fillTextField('Measurement', measurement);
+  selectDropdownOption('Period', period);
+  clickButton('Create');
+  shouldSeePage('Dashboard');
+  findTargetCard(name);
 }

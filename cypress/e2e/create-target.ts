@@ -1,7 +1,7 @@
-import { When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { NumberRadix } from '../../src/constants/number-radix';
 import { SymbolicPeriod } from '../../src/constants/symbolic-period';
 import { goToCreatePage, shouldSeePage, fillTextField, selectDropdownOption, clickButton, findTargetCard } from '../support/step-helpers';
+import { When, Then } from '../support/step-utils';
 
 When('I go to create target page', () => {
   goToCreatePage();
