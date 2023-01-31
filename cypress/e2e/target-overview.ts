@@ -1,7 +1,7 @@
 import { SymbolicPeriod } from '../../src/constants/symbolic-period';
 import { CardContext } from '../support/step-contexts';
-import { findTargetCard, createTarget } from '../support/step-helpers';
-import { Given, When, Then, DataTable } from '../support/step-utils';
+import { createTarget } from '../support/step-helpers';
+import { Given, Then, DataTable } from '../support/step-utils';
 
 Given('I have created {string} target for {int} of {string} during {period}', (
   name: string,
@@ -13,12 +13,6 @@ Given('I have created {string} target for {int} of {string} during {period}', (
 });
 Given('I visit dashboard page', () => {
   cy.visit('/dashboard');
-});
-
-When<CardContext>('I found {string} target card on dashboard', function (
-  name: string,
-) {
-  this.card = findTargetCard(name);
 });
 
 Then<CardContext>(

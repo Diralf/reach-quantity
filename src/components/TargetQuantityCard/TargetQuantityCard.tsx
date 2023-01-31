@@ -20,7 +20,7 @@ const TargetQuantityCard: React.FC<Props> = ({
     <CardContent>
       <CommonInfo name={name} quantity={quantity} measurement={measurement} period={period}/>
       <Grid container direction="column">
-        <Grid container gap={1} direction="column">
+        <Grid container gap={1} direction="column" aria-label="Today target">
           <Typography component="span">Today target</Typography>
           <Typography variant="h2">5</Typography>
         </Grid>
