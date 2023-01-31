@@ -116,16 +116,18 @@ Select date on calendar, define reached quantity only for past days
 
 - [ ] Done
 
-input for unknown day reached quantity
-defined reached quantity in the past decrease number at unknown day automatically
-example: |reached,target|, * - today, "?" - unknown day
+Input for unknown day reached quantity
 
-| Step                             | -3  | -2  | -1  | 0   | 1   | Unknown |
-|----------------------------------|-----|-----|-----|-----|-----|---------|
-| 1. Initially:                    | _,5 | _,5 | _,5 | *,5 | 0,5 |         |
-| 2. Define one past day:          | _,5 | 2,5 | _,5 | *,5 | 0,5 |         |
-| 3. Define unknown day as 20:     | _,5 | 2,5 | _,5 | *,5 | 0,5 | 20 ?    | 
-| 4. Define other past day with 3: | 3,5 | 2,5 | _,5 | *,5 | 0,5 | 17 ?    | 
+Defined reached quantity in the past decrease number at unknown day automatically
+
+Example:
+
+| Step                             | -3     | -2     | -1     | Today | 1     | Unknown |
+|----------------------------------|--------|--------|--------|-------|-------|---------|
+| 1. Initially:                    | .. / 5 | .. / 5 | .. / 5 | * / 5 | 0 / 5 | 0       |
+| 2. Define one past day:          | .. / 5 | 2 / 5  | .. / 5 | * / 5 | 0 / 5 | 0       |
+| 3. Define unknown day as 20:     | .. / 5 | 2 / 5  | .. / 5 | * / 5 | 0 / 5 | 20      | 
+| 4. Define other past day with 3: | 3 / 5  | 2 / 5  | .. / 5 | * / 5 | 0 / 5 | 17      | 
 
 Unknown day changed from 20 to 17
 
@@ -136,7 +138,12 @@ Unknown day changed from 20 to 17
 - [ ] Done
 
 Target distributes equally between each day, the remaining getting to near days
-example: target 18 for 5 days, distribution will be the following:
+
+### Example:
+
+Target 18 for 5 days
+
+Distribution will be the following:
 
 4, 4, 4, 3, 3
 
@@ -148,9 +155,9 @@ example: target 18 for 5 days, distribution will be the following:
 
 - [ ] Done
 
-Able to edit each field
-Change of target will affect targets only for today and future days
-Change of period will affect targets only for today and future
+- Able to edit each field
+- Change of target will affect targets only for today and future days
+- Change of period will affect targets only for today and future
 
 ## 5.2. Close target
 
@@ -192,13 +199,13 @@ ordering by up|down arrows
 
 # 7. Define target weight of day
 
-By default, each day have weight = 1
+- By default, each day have weight = 1
 
-You can mark some day by 0 weight,
-it means that this day will not be taken to account, as vacation
+- You can mark some day by 0 weight,
+  it means that this day will not be taken to account, as vacation
 
-Or you can mark the day by weight >1
-and such day will have higher target like a much productive day
+- Or you can mark the day by weight >1
+  and such day will have higher target like a much productive day
 
 ## 7.1 Define target weight on create/edit form
 
