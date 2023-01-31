@@ -49,3 +49,7 @@ export function createTarget(
   shouldSeePage('Dashboard');
   findTargetCard(name);
 }
+
+export function setToday(date: string) {
+  cy.clock(new Date(date), ['Date'], { log: true });
+}

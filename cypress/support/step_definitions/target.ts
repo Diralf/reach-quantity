@@ -1,9 +1,9 @@
 import { SymbolicPeriod } from '../../../src/constants/symbolic-period';
+import { CardContext } from '../step-contexts';
 import { createTarget, findTargetCard } from '../step-helpers';
-import { CardContext } from '../step-types';
-import { Given } from '../step-utils';
+import { When } from '../step-utils';
 
-Given<CardContext>('I found just created {string} target for {int} of {string} during {period}', function (
+When<CardContext>('I found just created {string} target for {int} of {string} during {period}', function (
   name: string,
   quantity: number,
   measurement: string,
