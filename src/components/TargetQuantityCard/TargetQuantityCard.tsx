@@ -8,6 +8,7 @@ interface Props {
   quantity: number;
   measurement: string;
   period: SymbolicPeriod;
+  todayTarget: number;
 }
 
 const TargetQuantityCard: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const TargetQuantityCard: React.FC<Props> = ({
   quantity,
   measurement,
   period,
+  todayTarget,
 }): JSX.Element => (
   <Card aria-label={`${name} card`}>
     <CardContent>
@@ -22,7 +24,7 @@ const TargetQuantityCard: React.FC<Props> = ({
       <Grid container direction="column">
         <Grid container gap={1} direction="column" aria-label="Today target">
           <Typography component="span">Today target</Typography>
-          <Typography variant="h2">5</Typography>
+          <Typography variant="h2">{todayTarget}</Typography>
         </Grid>
       </Grid>
       <Grid container direction="row" gap={1}>
