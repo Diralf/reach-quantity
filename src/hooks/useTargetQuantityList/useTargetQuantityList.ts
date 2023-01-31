@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useApiController } from '../../contexts/ApiController';
 import { Target } from '../../types/models/target';
 
-const useTargetQuantityList = () => {
+const useTargetQuantityList = (): { targetQuantityList: Target[] } => {
   const { getAllTargets } = useApiController();
   const [targetQuantityList, setTargetQuantityList] = useState<Target[]>([]);
 
