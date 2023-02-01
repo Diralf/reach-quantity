@@ -1,6 +1,6 @@
 import { SymbolicPeriod } from '../../../src/constants/symbolic-period';
 import { CardContext } from '../step-contexts';
-import { createTarget, findTargetCard, setToday } from '../step-helpers';
+import { createTarget, findTargetCard, setToday, shouldSeePage } from '../step-helpers';
 import { When, Given } from '../step-utils';
 
 Given('I have created {string} target for {int} of {string} during {period} at {string}', (
@@ -12,6 +12,7 @@ Given('I have created {string} target for {int} of {string} during {period} at {
 ) => {
   setToday(createDate);
   cy.visit('/');
+  shouldSeePage('Dashboard');
   createTarget(name, quantity, measurement, period);
 });
 
@@ -22,6 +23,7 @@ When<CardContext>('I found just created {string} target for {int} of {string} du
   period: SymbolicPeriod,
 ) {
   cy.visit('/');
+  shouldSeePage('Dashboard');
   createTarget(name, quantity, measurement, period);
   this.card = findTargetCard(name);
 });
