@@ -1,7 +1,7 @@
-import { SymbolicPeriod } from '../../src/constants/symbolic-period';
-import { CardContext } from '../support/step-contexts';
-import { createTarget } from '../support/step-helpers';
-import { Given, Then, DataTable } from '../support/step-utils';
+import { SymbolicPeriod } from '../../../src/constants/symbolic-period';
+import { CardContext } from '../../support/step-contexts';
+import { createTarget } from '../../support/step-helpers';
+import { Given, Then, DataTable } from '../../support/step-utils';
 
 Given('I have created {string} target for {int} of {string} during {period}', (
   name: string,
