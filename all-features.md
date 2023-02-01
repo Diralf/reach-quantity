@@ -13,7 +13,7 @@
 
 # 2. Target overview
 
-[target-overview.feature](cypress/e2e/target-overview.feature)
+[target-overview.feature](cypress/e2e/target-overview/target-overview.feature)
 
 ## 2.1. See name
 
@@ -38,7 +38,7 @@
 
 ### 2.4.1. See target for today
 
-[today-target.feature](cypress/e2e/today-target.feature)
+[today-target.feature](cypress/e2e/target-overview/today-target.feature)
 
 - [ ] Done
 
@@ -137,7 +137,7 @@ Unknown day changed from 20 to 17
 
 # 4. Target calculation
 
-[today-target.feature](cypress/e2e/today-target.feature)
+[today-target.feature](cypress/e2e/target-overview/today-target.feature)
 
 - [ ] Done
 

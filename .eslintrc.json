@@ -179,12 +179,6 @@
         "@typescript-eslint/no-magic-numbers": [
           "warn",
           {
-            "ignore": [
-              -1,
-              0,
-              1,
-              2
-            ],
             "ignoreEnums": true,
             "ignoreNumericLiteralTypes": true,
             "ignoreReadonlyClassProperties": true
