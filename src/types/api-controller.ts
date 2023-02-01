@@ -1,8 +1,8 @@
-import { CreateTargetParams } from './models/create-target-params';
-import { Target } from './models/target';
+import { CreateTargetParamsDto } from './models/create-target-params-dto';
+import { TargetDto } from './models/targetDto';
 
 export interface ApiController {
-  createTarget(body: CreateTargetParams): Promise<Target>;
+  createTarget(body: CreateTargetParamsDto): Promise<TargetDto>;
 
-  getAllTargets(): Promise<Target[]>;
+  getAllTargets(): Promise<TargetDto[]>;
 }

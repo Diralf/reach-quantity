@@ -2,7 +2,7 @@ import { Typography, TextField, Button, Grid } from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
-import { CreateTargetParams } from '../../types/models/create-target-params';
+import { CreateTargetParamsDto } from '../../types/models/create-target-params-dto';
 import SymbolicPeriodSelector from '../SymbolicPeriodSelector';
 
 export interface TargetQuantityFormValues {
@@ -13,7 +13,7 @@ export interface TargetQuantityFormValues {
 }
 
 interface Props {
-  onSubmit(params: CreateTargetParams): Promise<void>;
+  onSubmit(params: CreateTargetParamsDto): Promise<void>;
 }
 
 const TargetQuantityForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { useApiController } from '../../contexts/ApiController';
-import { CreateTargetParams } from '../../types/models/create-target-params';
+import { CreateTargetParamsDto } from '../../types/models/create-target-params-dto';
 
 interface HookProps {
-  handleSubmit(params: CreateTargetParams): Promise<void>;
+  handleSubmit(params: CreateTargetParamsDto): Promise<void>;
 }
 
 interface Props {
@@ -14,7 +14,7 @@ const useTargetQuantitySubmit = ({ redirectTo }: Props): HookProps => {
   const { createTarget } = useApiController();
   const router = useRouter();
 
-  const handleSubmit = async (params: CreateTargetParams): Promise<void> => {
+  const handleSubmit = async (params: CreateTargetParamsDto): Promise<void> => {
     await createTarget(params);
     await router.push(redirectTo);
   };

@@ -1,10 +1,10 @@
 import { openDB, IDBPDatabase } from 'idb';
 import { ApiController } from '../types/api-controller';
-import { CreateTargetParams } from '../types/models/create-target-params';
-import { Target } from '../types/models/target';
+import { CreateTargetParamsDto } from '../types/models/create-target-params-dto';
+import { TargetDto } from '../types/models/targetDto';
 
 interface Schema {
-  targets: Target[];
+  targets: TargetDto[];
 }
 
 const openReachQuantityDb = (): Promise<IDBPDatabase<Schema>> => openDB('reach-quantity', 1, {
@@ -44,7 +44,7 @@ const openReachQuantityDb = (): Promise<IDBPDatabase<Schema>> => openDB('reach-q
 });
 
 export const getDbApiController = (): ApiController => ({
-  async createTarget(body: CreateTargetParams): Promise<Target> {
+  async createTarget(body: CreateTargetParamsDto): Promise<TargetDto> {
     const db = await openReachQuantityDb();
 
     const transaction = db.transaction('targets', 'readwrite');
@@ -61,7 +61,7 @@ export const getDbApiController = (): ApiController => ({
 
     return result;
   },
-  async getAllTargets(): Promise<Target[]> {
+  async getAllTargets(): Promise<TargetDto[]> {
     const db = await openReachQuantityDb();
     const transaction = db.transaction('targets');
     const targets = transaction.objectStore('targets');

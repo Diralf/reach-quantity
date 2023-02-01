@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useApiController } from '../../contexts/ApiController';
-import { Target } from '../../types/models/target';
+import { convertTargetFromDto } from '../../services/convert-target/convert-target';
+import { Target } from '../../types/view/target';
 
 const useTargetQuantityList = (): { targetQuantityList: Target[] } => {
   const { getAllTargets } = useApiController();
@@ -9,7 +10,7 @@ const useTargetQuantityList = (): { targetQuantityList: Target[] } => {
   useEffect(() => {
     const load = async (): Promise<void> => {
       const result = await getAllTargets();
-      setTargetQuantityList(result);
+      setTargetQuantityList(result.map((targetDto) => convertTargetFromDto(targetDto)));
     };
     load();
   });

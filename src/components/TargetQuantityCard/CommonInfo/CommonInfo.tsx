@@ -1,12 +1,15 @@
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { SymbolicPeriod } from '../../../constants/symbolic-period';
+import { formatDate } from '../../../services/date-time/date-time';
 
 interface Props {
   name: string;
   quantity: number;
   measurement: string;
   period: SymbolicPeriod;
+  startDate: Date;
+  endDate: Date;
 }
 
 const CommonInfo: React.FC<Props> = ({
@@ -14,6 +17,8 @@ const CommonInfo: React.FC<Props> = ({
   quantity,
   measurement,
   period,
+  startDate,
+  endDate,
 }) => (
   <Grid container direction="column">
     <Grid container gap={1}>
@@ -27,6 +32,10 @@ const CommonInfo: React.FC<Props> = ({
     <Grid container gap={1}>
       <Typography component="strong" fontWeight="bold">For</Typography>
       <Typography component="span">{period}</Typography>
+    </Grid>
+    <Grid container gap={1}>
+      <Typography component="strong" fontWeight="bold">Dates</Typography>
+      <Typography component="span">{formatDate(startDate)} - {formatDate(endDate)}</Typography>
     </Grid>
   </Grid>
 );

@@ -1,26 +1,21 @@
 import { CardContent, Grid, Typography, Card } from '@mui/material';
 import React from 'react';
-import { SymbolicPeriod } from '../../constants/symbolic-period';
-import CommonInfo from './CommonInfo';
 
 interface Props {
   name: string;
-  quantity: number;
-  measurement: string;
-  period: SymbolicPeriod;
   todayTarget: number;
+
+  CommonInfo(): React.ReactNode;
 }
 
 const TargetQuantityCard: React.FC<Props> = ({
+  CommonInfo,
   name,
-  quantity,
-  measurement,
-  period,
   todayTarget,
 }): JSX.Element => (
   <Card aria-label={`${name} card`}>
     <CardContent>
-      <CommonInfo name={name} quantity={quantity} measurement={measurement} period={period}/>
+      {CommonInfo()}
       <Grid container direction="column">
         <Grid container gap={1} direction="column" aria-label="Today target">
           <Typography component="span">Today target</Typography>

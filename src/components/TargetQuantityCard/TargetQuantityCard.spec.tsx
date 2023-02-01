@@ -1,14 +1,13 @@
 import { render, screen, within } from '@testing-library/react';
 import React, { ComponentProps } from 'react';
-import { SymbolicPeriod } from '../../constants/symbolic-period';
 import TargetQuantityCard from './TargetQuantityCard';
 
 type Props = ComponentProps<typeof TargetQuantityCard>;
 const generateProps = (props: Partial<Props> = {}): Props => ({
   name: 'test',
-  quantity: 12,
-  measurement: 'test',
-  period: SymbolicPeriod['Current Quarter'],
+  CommonInfo(): React.ReactNode {
+    return <div>Common Info</div>;
+  },
   todayTarget: 0,
   ...props,
 });
@@ -18,6 +17,12 @@ describe('TargetQuantityCard', () => {
     const { baseElement } = render(<TargetQuantityCard {...generateProps()}/>);
 
     expect(baseElement).toBeTruthy();
+  });
+
+  it('should render common info component', () => {
+    render(<TargetQuantityCard {...generateProps()}/>);
+
+    expect(screen.getByText('Common Info')).toBeInTheDocument();
   });
 
   it.each([1, 2, 3, 4, 5])('should render correct today target %d', (todayTarget) => {
