@@ -1,32 +1,32 @@
 import { DateTime } from 'luxon';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
 
-export const getExactDatesFromPeriod = (period: SymbolicPeriod, current: Date = new Date()): [Date, Date] => {
-  const currentDt = DateTime.fromJSDate(current);
-  let result: [Date, Date];
+export const getExactDatesFromPeriod = (period: SymbolicPeriod): [DateTime, DateTime] => {
+  const current = DateTime.utc();
+  let result: [DateTime, DateTime];
   switch (period) {
     case SymbolicPeriod.CurrentQuarter: {
-      const start = currentDt.startOf('quarter');
-      const end = currentDt.endOf('quarter');
+      const start = current.startOf('quarter');
+      const end = current.endOf('quarter');
       result = [
-        start.toJSDate(),
-        end.toJSDate(),
+        start,
+        end.startOf('day'),
       ];
       break;
     }
     case SymbolicPeriod.Next10Days: {
-      const endDt = currentDt.plus({ day: 9 });
+      const endDt = current.plus({ day: 9 });
       result = [
         current,
-        endDt.toJSDate(),
+        endDt,
       ];
       break;
     }
     case SymbolicPeriod.Next5Days: {
-      const endDt = currentDt.plus({ day: 4 });
+      const endDt = current.plus({ day: 4 });
       result = [
         current,
-        endDt.toJSDate(),
+        endDt,
       ];
       break;
     }

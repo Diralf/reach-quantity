@@ -7,5 +7,4 @@ export interface TargetDto {
   measurement: string;
   period: SymbolicPeriod;
   createdOn: Date;
-  todayTarget: number;
 }

@@ -1,4 +1,5 @@
 import { Grid, Typography } from '@mui/material';
+import { DateTime } from 'luxon';
 import React from 'react';
 import { SymbolicPeriod } from '../../../constants/symbolic-period';
 import { formatDate } from '../../../services/date-time/date-time';
@@ -8,8 +9,8 @@ interface Props {
   quantity: number;
   measurement: string;
   period: SymbolicPeriod;
-  startDate: Date;
-  endDate: Date;
+  startDate: DateTime;
+  endDate: DateTime;
 }
 
 const CommonInfo: React.FC<Props> = ({

@@ -1,7 +1,9 @@
-import { formatDate } from './date-time';
+import { formatDate, toUtcDateTime } from './date-time';
 
 describe('date-time', () => {
   it('Should return formatted date', () => {
-    expect(formatDate(new Date('2023-01-01'))).toEqual('2023-01-01');
+    const result = formatDate(toUtcDateTime('2023-01-01'));
+
+    expect(result).toEqual('2023-01-01');
   });
 });

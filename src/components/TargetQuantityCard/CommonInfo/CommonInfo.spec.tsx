@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { SymbolicPeriod } from '../../../constants/symbolic-period';
+import { toUtcDateTime } from '../../../services/date-time/date-time';
 import CommonInfo from './CommonInfo';
 
 type Props = React.ComponentProps<typeof CommonInfo>;
@@ -15,8 +16,8 @@ const generateProps = (props?: Partial<Props>): Props => ({
   quantity: 12,
   measurement: 'tests',
   period: SymbolicPeriod.CurrentQuarter,
-  startDate: new Date('2023-01-01'),
-  endDate: new Date('2023-01-01'),
+  startDate: toUtcDateTime('2023-01-01'),
+  endDate: toUtcDateTime('2023-01-01'),
   ...props,
 });
 
@@ -64,8 +65,8 @@ describe('CommonInfo', () => {
     ['2023-02-01', '2023-03-10'],
   ])('should display exact dates %p - %p', (startDate, endDate) => {
     const props = generateProps({
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      startDate: toUtcDateTime(startDate),
+      endDate: toUtcDateTime(endDate),
     });
 
     render(<CommonInfo {...props}/>);

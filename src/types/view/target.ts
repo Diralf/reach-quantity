@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
 
 export interface Target {
@@ -11,7 +12,7 @@ export interface TargetCommonInfo {
   quantity: number;
   measurement: string;
   period: SymbolicPeriod;
-  startDate: Date;
-  endDate: Date;
-  createdOn: Date;
+  startDate: DateTime;
+  endDate: DateTime;
+  createdOn: DateTime;
 }
