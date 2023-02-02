@@ -14,7 +14,7 @@ const generateProps = (props?: Partial<Props>): Props => ({
   name: 'Test',
   quantity: 12,
   measurement: 'tests',
-  period: SymbolicPeriod['Current Quarter'],
+  period: SymbolicPeriod.CurrentQuarter,
   startDate: new Date('2023-01-01'),
   endDate: new Date('2023-01-01'),
   ...props,
@@ -49,8 +49,8 @@ describe('CommonInfo', () => {
   });
 
   it.each([
-    SymbolicPeriod['Current Quarter'],
-    SymbolicPeriod['Next 10 Days'],
+    SymbolicPeriod.CurrentQuarter,
+    SymbolicPeriod.Next10Days,
   ])('should display period %p', (period) => {
     const props = generateProps({ period });
 

@@ -5,7 +5,7 @@ export const getExactDatesFromPeriod = (period: SymbolicPeriod, current: Date = 
   const currentDt = DateTime.fromJSDate(current);
   let result: [Date, Date];
   switch (period) {
-    case SymbolicPeriod['Current Quarter']: {
+    case SymbolicPeriod.CurrentQuarter: {
       const start = currentDt.startOf('quarter');
       const end = currentDt.endOf('quarter');
       result = [
@@ -14,7 +14,7 @@ export const getExactDatesFromPeriod = (period: SymbolicPeriod, current: Date = 
       ];
       break;
     }
-    case SymbolicPeriod['Next 10 Days']: {
+    case SymbolicPeriod.Next10Days: {
       const endDt = currentDt.plus({ day: 9 });
       result = [
         current,
@@ -22,7 +22,7 @@ export const getExactDatesFromPeriod = (period: SymbolicPeriod, current: Date = 
       ];
       break;
     }
-    case SymbolicPeriod['Next 5 Days']: {
+    case SymbolicPeriod.Next5Days: {
       const endDt = currentDt.plus({ day: 4 });
       result = [
         current,

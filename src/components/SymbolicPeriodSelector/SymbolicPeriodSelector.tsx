@@ -1,6 +1,6 @@
 import { InputLabel, Select, MenuItem, FormControl, SelectChangeEvent } from '@mui/material';
 import React from 'react';
-import { SymbolicPeriod, getValuesSymbolicRange } from '../../constants/symbolic-period';
+import { SymbolicPeriod, getSymbolicPeriodValues } from '../../constants/symbolic-period';
 
 interface Props {
   label: string;
@@ -24,7 +24,7 @@ const SymbolicPeriodSelector = React.forwardRef(({
       ref={ref}
     >
       <MenuItem value="">None</MenuItem>
-      {getValuesSymbolicRange()
+      {getSymbolicPeriodValues()
         .map((symbolicRange: SymbolicPeriod) => (
           <MenuItem value={symbolicRange} key={symbolicRange}>{symbolicRange}</MenuItem>
         ))}

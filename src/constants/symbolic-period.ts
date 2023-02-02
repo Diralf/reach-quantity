@@ -1,7 +1,7 @@
 export enum SymbolicPeriod {
-  'Current Quarter' = 'Current Quarter',
-  'Next 5 Days' = 'Next 5 Days',
-  'Next 10 Days' = 'Next 10 Days',
+  CurrentQuarter = 'Current Quarter',
+  Next5Days = 'Next 5 Days',
+  Next10Days = 'Next 10 Days',
 }
 
-export const getValuesSymbolicRange = (): SymbolicPeriod[] => Object.keys(SymbolicPeriod) as SymbolicPeriod[];
+export const getSymbolicPeriodValues = (): SymbolicPeriod[] => Object.values(SymbolicPeriod) as SymbolicPeriod[];
