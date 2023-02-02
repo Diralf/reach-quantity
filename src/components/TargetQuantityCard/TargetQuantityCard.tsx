@@ -5,7 +5,7 @@ interface Props {
   name: string;
   todayTarget: number;
 
-  CommonInfo(): React.ReactNode;
+  CommonInfo: React.ReactNode;
 }
 
 const TargetQuantityCard: React.FC<Props> = ({
@@ -15,7 +15,7 @@ const TargetQuantityCard: React.FC<Props> = ({
 }): JSX.Element => (
   <Card aria-label={`${name} card`}>
     <CardContent>
-      {CommonInfo()}
+      {CommonInfo}
       <Grid container direction="column">
         <Grid container gap={1} direction="column" aria-label="Today target">
           <Typography component="span">Today target</Typography>

@@ -19,7 +19,7 @@ const TargetQuantityList: React.FC<Props> = ({ targets }) => (
       <TargetQuantityCard
         key={id}
         name={name}
-        CommonInfo={() => <CommonInfo name={name} {...commonInfo}/>}
+        CommonInfo={<CommonInfo name={name} {...commonInfo}/>}
         {...target}
       />
     ))}
