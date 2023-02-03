@@ -31,7 +31,10 @@ describe('period-dates', () => {
     end,
   }: { createdOn: string, period: SymbolicPeriod, start: string, end: string }) => {
     const expected = [toUtcDateTime(start), toUtcDateTime(end)];
-    const result = getExactDatesFromPeriod(period, toUtcDateTime(createdOn));
+    const result = getExactDatesFromPeriod({
+      period,
+      createdOn: toUtcDateTime(createdOn),
+    });
 
     expect(result).toEqual(expected);
   });

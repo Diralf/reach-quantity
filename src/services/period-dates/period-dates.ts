@@ -1,7 +1,12 @@
 import { DateTime } from 'luxon';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
 
-export const getExactDatesFromPeriod = (period: SymbolicPeriod, createdOn: DateTime): [DateTime, DateTime] => {
+interface Props {
+  period: SymbolicPeriod;
+  createdOn: DateTime;
+}
+
+export const getExactDatesFromPeriod = ({ period, createdOn }: Props): [DateTime, DateTime] => {
   let result: [DateTime, DateTime];
   switch (period) {
     case SymbolicPeriod.CurrentQuarter: {

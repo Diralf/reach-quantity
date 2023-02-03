@@ -6,7 +6,10 @@ import { getTodayTarget } from '../target-calculation/get-today-target';
 
 export const convertTargetFromDto = (targetDto: TargetDto): Target => {
   const createdOn = DateTime.fromJSDate(targetDto.createdOn, { zone: 'utc' }).startOf('day');
-  const [periodStartDate, periodEndDate] = getExactDatesFromPeriod(targetDto.period, createdOn);
+  const [periodStartDate, periodEndDate] = getExactDatesFromPeriod({
+    period: targetDto.period,
+    createdOn,
+  });
   const todayTarget = getTodayTarget({
     periodEndDate,
     targetOverall: targetDto.quantity,
