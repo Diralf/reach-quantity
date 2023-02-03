@@ -12,7 +12,7 @@ describe('period-dates', () => {
   });
 
   it.each`
-    current         | period                           | start           | end
+    createdOn       | period                           | start           | end
     ${'2023-01-01'} | ${SymbolicPeriod.Next5Days}      | ${'2023-01-01'} | ${'2023-01-05'}
     ${'2022-12-30'} | ${SymbolicPeriod.Next5Days}      | ${'2022-12-30'} | ${'2023-01-03'}
     ${'2023-01-01'} | ${SymbolicPeriod.Next10Days}     | ${'2023-01-01'} | ${'2023-01-10'}
@@ -25,14 +25,13 @@ describe('period-dates', () => {
     ${'2023-08-10'} | ${SymbolicPeriod.CurrentQuarter} | ${'2023-07-01'} | ${'2023-09-30'}
     ${'2023-11-05'} | ${SymbolicPeriod.CurrentQuarter} | ${'2023-10-01'} | ${'2023-12-31'}
   `('Should return exact dates for period $period when current day is $current', ({
-    current,
+    createdOn,
     period,
     start,
     end,
-  }: { current: string, period: SymbolicPeriod, start: string, end: string }) => {
-    jest.setSystemTime(new Date(current));
+  }: { createdOn: string, period: SymbolicPeriod, start: string, end: string }) => {
     const expected = [toUtcDateTime(start), toUtcDateTime(end)];
-    const result = getExactDatesFromPeriod(period);
+    const result = getExactDatesFromPeriod(period, toUtcDateTime(createdOn));
 
     expect(result).toEqual(expected);
   });

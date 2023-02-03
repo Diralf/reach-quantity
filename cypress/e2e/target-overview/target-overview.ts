@@ -36,7 +36,10 @@ Then<CardContext>('I should see today target with label {string}', function (
 ) {
   CardContext.check(this);
   this.card.within(() => {
-    cy.findByText(label, { selector: 'span' })
+    cy.findByText(label, {
+      selector: 'span',
+      exact: false,
+    })
       .should('exist');
   });
 });

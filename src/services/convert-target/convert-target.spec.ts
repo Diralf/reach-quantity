@@ -52,11 +52,13 @@ describe('convertTargetFromDto', () => {
   });
 
   describe('period and exact dates', () => {
-    it.each<[string, string, DeepPartial<TargetDto>, DeepPartial<Target>]>([
+    it.each<[string, DeepPartial<TargetDto>, DeepPartial<Target>]>([
       [
         'Next10Days',
-        '2023-02-01',
-        { period: SymbolicPeriod.Next10Days },
+        {
+          period: SymbolicPeriod.Next10Days,
+          createdOn: new Date('2023-02-01'),
+        },
         {
           commonInfo: {
             period: SymbolicPeriod.Next10Days,
@@ -67,8 +69,10 @@ describe('convertTargetFromDto', () => {
       ],
       [
         'CurrentQuarter',
-        '2023-02-01',
-        { period: SymbolicPeriod.CurrentQuarter },
+        {
+          period: SymbolicPeriod.CurrentQuarter,
+          createdOn: new Date('2023-02-01'),
+        },
         {
           commonInfo: {
             period: SymbolicPeriod.CurrentQuarter,
@@ -77,12 +81,62 @@ describe('convertTargetFromDto', () => {
           },
         },
       ],
-    ])('Should convert %p field from DTO to commonInfo', (testCase, currentDate, dto, expected) => {
-      jest.setSystemTime(new Date(currentDate));
-
+    ])('Should convert %p field from DTO to commonInfo', (testCase, dto, expected) => {
       const result = convertTargetFromDto(generateDto(dto));
 
       expect(result.commonInfo).toEqual(expect.objectContaining(expected.commonInfo));
+    });
+  });
+
+  describe('today target', () => {
+    it.each`
+      currentDate     | expectedTarget | reached
+      ${'2023-01-01'} | ${4}           | ${0}
+      ${'2023-01-02'} | ${5}           | ${0}
+      ${'2023-01-03'} | ${6}           | ${0}
+      ${'2023-01-04'} | ${9}           | ${0}
+      ${'2023-01-05'} | ${18}          | ${0}
+    `('Should set today target $expectedTarget for $currentDate when reached $reached', ({
+      currentDate,
+      expectedTarget,
+    }: { currentDate: string, expectedTarget: number }) => {
+      jest.setSystemTime(new Date(currentDate));
+
+      const result = convertTargetFromDto(generateDto({
+        period: SymbolicPeriod.Next5Days,
+        createdOn: new Date('2023-01-01'),
+        quantity: 18,
+      }));
+
+      expect(result.todayTarget).toEqual(expectedTarget);
+    });
+
+    it.each([
+      {
+        createdOn: '2023-02-03',
+        currentDate: '2023-02-03T12:23',
+      },
+      {
+        createdOn: '2023-02-03T08:23',
+        currentDate: '2023-02-03',
+      },
+      {
+        createdOn: '2023-02-03T08:23',
+        currentDate: '2023-02-03T12:23',
+      },
+    ])('Should set today right target when created on is $createdOn and current date is $currentDate', ({
+      createdOn,
+      currentDate,
+    }) => {
+      jest.setSystemTime(new Date(currentDate));
+
+      const result = convertTargetFromDto(generateDto({
+        period: SymbolicPeriod.Next10Days,
+        createdOn: new Date(createdOn),
+        quantity: 50,
+      }));
+
+      expect(result.todayTarget).toEqual(5);
     });
   });
 });

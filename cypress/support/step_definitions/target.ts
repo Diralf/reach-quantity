@@ -14,6 +14,7 @@ Given('I have created {string} target for {int} of {string} during {period} at {
   cy.visit('/');
   shouldSeePage('Dashboard');
   createTarget(name, quantity, measurement, period);
+  cy.clock().invoke('restore');
 });
 
 When<CardContext>('I found just created {string} target for {int} of {string} during {period}', function (

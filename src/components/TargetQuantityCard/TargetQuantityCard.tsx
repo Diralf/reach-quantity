@@ -1,4 +1,5 @@
 import { CardContent, Grid, Typography, Card } from '@mui/material';
+import { DateTime } from 'luxon';
 import React from 'react';
 
 interface Props {
@@ -18,7 +19,7 @@ const TargetQuantityCard: React.FC<Props> = ({
       {CommonInfo}
       <Grid container direction="column">
         <Grid container gap={1} direction="column" aria-label="Today target">
-          <Typography component="span">Today target</Typography>
+          <Typography component="span">Today target ({DateTime.utc().toISODate()})</Typography>
           <Typography variant="h2">{todayTarget}</Typography>
         </Grid>
       </Grid>

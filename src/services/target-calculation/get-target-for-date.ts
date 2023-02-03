@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-export const getTargetForDate = (currentDate: DateTime, targets: number[], startDate: DateTime): number => {
-  const offset = Math.floor(currentDate.diff(startDate, 'days').days);
+export const getTargetForDate = (specificDate: DateTime, targets: number[], targetsStartDate: DateTime): number => {
+  const offset = Math.floor(specificDate.diff(targetsStartDate, 'days').days);
   return targets[offset];
 };
