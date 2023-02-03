@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import { TargetDto } from '../../types/models/targetDto';
 import { Target } from '../../types/view/target';
-import { getExactDatesFromPeriod } from '../period-dates/period-dates';
+import { getExactDatesFromPeriod } from '../period-dates/get-exact-dates-from-period';
 import { getTodayTarget } from '../target-calculation/get-today-target';
 
 export const convertTargetFromDto = (targetDto: TargetDto): Target => {

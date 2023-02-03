@@ -1,8 +1,8 @@
 import { SymbolicPeriod } from '../../constants/symbolic-period';
 import { toUtcDateTime } from '../date-time/date-time';
-import { getExactDatesFromPeriod } from './period-dates';
+import { getExactDatesFromPeriod } from './get-exact-dates-from-period';
 
-describe('period-dates', () => {
+describe('getExactDatesFromPeriod', () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
