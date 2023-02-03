@@ -62,8 +62,8 @@ describe('convertTargetFromDto', () => {
         {
           commonInfo: {
             period: SymbolicPeriod.Next10Days,
-            startDate: toUtcDateTime('2023-02-01'),
-            endDate: toUtcDateTime('2023-02-10'),
+            periodStartDate: toUtcDateTime('2023-02-01'),
+            periodEndDate: toUtcDateTime('2023-02-10'),
           },
         },
       ],
@@ -76,8 +76,8 @@ describe('convertTargetFromDto', () => {
         {
           commonInfo: {
             period: SymbolicPeriod.CurrentQuarter,
-            startDate: toUtcDateTime('2023-01-01'),
-            endDate: toUtcDateTime('2023-03-31'),
+            periodStartDate: toUtcDateTime('2023-01-01'),
+            periodEndDate: toUtcDateTime('2023-03-31'),
           },
         },
       ],

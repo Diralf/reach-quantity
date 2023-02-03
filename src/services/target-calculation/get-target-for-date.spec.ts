@@ -13,10 +13,10 @@ describe('getTargetForDate', () => {
     expectedTarget,
   }: { current: string, expectedTarget: number }) => {
     const targets = [1, 2, 3, 4, 5];
-    const startDate = toUtcDateTime('2023-01-01');
+    const targetsStartDate = toUtcDateTime('2023-01-01');
     const currentDate = toUtcDateTime(current);
 
-    const resultTarget = getTargetForDate(currentDate, targets, startDate);
+    const resultTarget = getTargetForDate(currentDate, targets, targetsStartDate);
 
     expect(resultTarget).toEqual(expectedTarget);
   });

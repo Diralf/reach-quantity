@@ -12,7 +12,7 @@ export interface TargetCommonInfo {
   quantity: number;
   measurement: string;
   period: SymbolicPeriod;
-  startDate: DateTime;
-  endDate: DateTime;
+  periodStartDate: DateTime;
+  periodEndDate: DateTime;
   createdOn: DateTime;
 }

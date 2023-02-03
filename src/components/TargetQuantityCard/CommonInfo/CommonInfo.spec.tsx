@@ -16,8 +16,8 @@ const generateProps = (props?: Partial<Props>): Props => ({
   quantity: 12,
   measurement: 'tests',
   period: SymbolicPeriod.CurrentQuarter,
-  startDate: toUtcDateTime('2023-01-01'),
-  endDate: toUtcDateTime('2023-01-01'),
+  periodStartDate: toUtcDateTime('2023-01-01'),
+  periodEndDate: toUtcDateTime('2023-01-01'),
   ...props,
 });
 
@@ -63,14 +63,14 @@ describe('CommonInfo', () => {
   it.each([
     ['2023-01-01', '2023-01-10'],
     ['2023-02-01', '2023-03-10'],
-  ])('should display exact dates %p - %p', (startDate, endDate) => {
+  ])('should display exact dates %p - %p', (periodStartDate, periodEndDate) => {
     const props = generateProps({
-      startDate: toUtcDateTime(startDate),
-      endDate: toUtcDateTime(endDate),
+      periodStartDate: toUtcDateTime(periodStartDate),
+      periodEndDate: toUtcDateTime(periodEndDate),
     });
 
     render(<CommonInfo {...props}/>);
 
-    expect(screen.getByText(`${startDate} - ${endDate}`)).toBeInTheDocument();
+    expect(screen.getByText(`${periodStartDate} - ${periodEndDate}`)).toBeInTheDocument();
   });
 });

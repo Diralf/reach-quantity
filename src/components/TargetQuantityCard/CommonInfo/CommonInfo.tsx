@@ -9,8 +9,8 @@ interface Props {
   quantity: number;
   measurement: string;
   period: SymbolicPeriod;
-  startDate: DateTime;
-  endDate: DateTime;
+  periodStartDate: DateTime;
+  periodEndDate: DateTime;
 }
 
 const CommonInfo: React.FC<Props> = ({
@@ -18,8 +18,8 @@ const CommonInfo: React.FC<Props> = ({
   quantity,
   measurement,
   period,
-  startDate,
-  endDate,
+  periodStartDate,
+  periodEndDate,
 }) => (
   <Grid container direction="column">
     <Grid container gap={1}>
@@ -36,7 +36,7 @@ const CommonInfo: React.FC<Props> = ({
     </Grid>
     <Grid container gap={1}>
       <Typography component="strong" fontWeight="bold">Dates</Typography>
-      <Typography component="span">{formatDate(startDate)} - {formatDate(endDate)}</Typography>
+      <Typography component="span">{formatDate(periodStartDate)} - {formatDate(periodEndDate)}</Typography>
     </Grid>
   </Grid>
 );
