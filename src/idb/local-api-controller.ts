@@ -1,5 +1,5 @@
-import { DateTime } from 'luxon';
-import { convertTargetFromEntityToDto } from '../services/convert-target/convert-target';
+import { convertCreateTargetParamsDtoToEntity } from '../services/convert-target/convertCreateTargetParamsDtoToEntity';
+import { convertTargetFromEntityToDto } from '../services/convert-target/convertTargetFromEntityToDto';
 import { ApiController } from '../types/api-controller';
 import { CreateTargetParamsDto } from '../types/models/create-target-params.dto';
 import { TargetDto } from '../types/models/target.dto';
@@ -11,11 +11,9 @@ export const getLocalApiController = (): ApiController => ({
 
     return targets.map((target) => convertTargetFromEntityToDto(target));
   },
+
   async createTarget(body: CreateTargetParamsDto): Promise<TargetDto> {
-    const target = await dbCreateTarget({
-      ...body,
-      createdOn: DateTime.utc().toJSDate(),
-    });
+    const target = await dbCreateTarget(convertCreateTargetParamsDtoToEntity(body));
 
     return convertTargetFromEntityToDto(target);
   },

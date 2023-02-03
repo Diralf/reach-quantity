@@ -54,10 +54,7 @@ export const dbCreateTarget = async (body: CreateTargetParamsEntity): Promise<Ta
   const transaction = db.transaction('targets', 'readwrite');
   const targets = transaction.objectStore('targets');
 
-  const resultKey = await targets.add({
-    ...body,
-    createdOn: new Date(),
-  });
+  const resultKey = await targets.add(body);
 
   const result = await targets.get(resultKey);
 

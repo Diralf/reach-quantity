@@ -3,7 +3,7 @@ import { TargetEntity } from '../../types/entities/target.entity';
 import { TargetDto } from '../../types/models/target.dto';
 import { DeepPartial } from '../../types/utils/deep-partial';
 import { toUtcDateTime } from '../date-time/date-time';
-import { convertTargetFromEntityToDto } from './convert-target';
+import { convertTargetFromEntityToDto } from './convertTargetFromEntityToDto';
 
 const generateEntity = (entity?: DeepPartial<TargetEntity>): TargetEntity => ({
   id: 1,
@@ -15,7 +15,7 @@ const generateEntity = (entity?: DeepPartial<TargetEntity>): TargetEntity => ({
   ...entity,
 });
 
-describe('convertTargetFromDto', () => {
+describe('convertTargetFromEntityToDto', () => {
   beforeEach(() => {
     jest.useFakeTimers().setSystemTime(new Date('2023-01-01'));
   });
@@ -28,6 +28,7 @@ describe('convertTargetFromDto', () => {
     ['id', { id: 1 }, { id: 1 }],
     ['name', { name: 'Test name' }, { name: 'Test name' }],
     ['quantity', { quantity: 10 }, { quantity: 10 }],
+    ['quantity string', { quantity: '10' } as unknown as DeepPartial<TargetEntity>, { quantity: 10 }],
     ['measurement', { measurement: 'some tests' }, { measurement: 'some tests' }],
     [
       'createdOn',
