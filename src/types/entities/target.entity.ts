@@ -1,6 +1,6 @@
 import { SymbolicPeriod } from '../../constants/symbolic-period';
 
-export interface TargetDto {
+export interface TargetEntity {
   id: number;
   name: string;
   quantity: number;

@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { Target } from '../../types/view/target';
+import { TargetDto } from '../../types/models/target.dto';
 import TargetQuantityCard from '../TargetQuantityCard';
 import CommonInfo from '../TargetQuantityCard/CommonInfo';
 
 interface Props {
-  targets: Target[];
+  targets: TargetDto[];
 }
 
 const TargetQuantityList: React.FC<Props> = ({ targets }) => (
@@ -13,13 +13,12 @@ const TargetQuantityList: React.FC<Props> = ({ targets }) => (
     {targets.map(({
       id,
       name,
-      commonInfo,
       ...target
     }) => (
       <TargetQuantityCard
         key={id}
         name={name}
-        CommonInfo={<CommonInfo name={name} {...commonInfo}/>}
+        CommonInfo={<CommonInfo name={name} {...target}/>}
         {...target}
       />
     ))}

@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useApiController } from '../../contexts/ApiController';
-import { convertTargetFromDto } from '../../services/convert-target/convert-target';
-import { Target } from '../../types/view/target';
+import { TargetDto } from '../../types/models/target.dto';
 
-const useTargetQuantityList = (): { targetQuantityList: Target[] } => {
+const useTargetQuantityList = (): { targetQuantityList: TargetDto[] } => {
   const { getAllTargets } = useApiController();
-  const [targetQuantityList, setTargetQuantityList] = useState<Target[]>([]);
+  const [targetQuantityList, setTargetQuantityList] = useState<TargetDto[]>([]);
 
   useEffect(() => {
     const load = async (): Promise<void> => {
       const result = await getAllTargets();
-      setTargetQuantityList(result.map((targetDto) => convertTargetFromDto(targetDto)));
+      setTargetQuantityList(result);
     };
     load();
   });

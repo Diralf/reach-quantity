@@ -1,18 +1,18 @@
 import { SymbolicPeriod } from '../../constants/symbolic-period';
-import { TargetDto } from '../../types/models/targetDto';
+import { TargetEntity } from '../../types/entities/target.entity';
+import { TargetDto } from '../../types/models/target.dto';
 import { DeepPartial } from '../../types/utils/deep-partial';
-import { Target } from '../../types/view/target';
 import { toUtcDateTime } from '../date-time/date-time';
-import { convertTargetFromDto } from './convert-target';
+import { convertTargetFromEntityToDto } from './convert-target';
 
-const generateDto = (dto?: DeepPartial<TargetDto>): TargetDto => ({
+const generateEntity = (entity?: DeepPartial<TargetEntity>): TargetEntity => ({
   id: 1,
   name: 'test',
   quantity: 18,
   measurement: 'tests',
   period: SymbolicPeriod.Next5Days,
   createdOn: new Date('2023-01-01'),
-  ...dto,
+  ...entity,
 });
 
 describe('convertTargetFromDto', () => {
@@ -24,35 +24,24 @@ describe('convertTargetFromDto', () => {
     jest.useRealTimers();
   });
 
-  it.each<[string, DeepPartial<TargetDto>, DeepPartial<Target>]>([
+  it.each<[string, DeepPartial<TargetEntity>, DeepPartial<TargetDto>]>([
     ['id', { id: 1 }, { id: 1 }],
     ['name', { name: 'Test name' }, { name: 'Test name' }],
-  ])('Should convert %p field from DTO to root', (testCase, dto, expected) => {
-    const result = convertTargetFromDto(generateDto(dto));
+    ['quantity', { quantity: 10 }, { quantity: 10 }],
+    ['measurement', { measurement: 'some tests' }, { measurement: 'some tests' }],
+    [
+      'createdOn',
+      { createdOn: new Date('2023-02-03') },
+      { createdOn: toUtcDateTime('2023-02-03') },
+    ],
+  ])('Should convert %p field from Entity to DTO', (testCase, entity, expected) => {
+    const result = convertTargetFromEntityToDto(generateEntity(entity));
 
     expect(result).toEqual(expect.objectContaining(expected));
   });
 
-  it.each<[string, DeepPartial<TargetDto>, DeepPartial<Target>]>([
-    ['quantity', { quantity: 10 }, { commonInfo: { quantity: 10 } }],
-    ['measurement', { measurement: 'some tests' }, { commonInfo: { measurement: 'some tests' } }],
-    [
-      'createdOn',
-      {
-        createdOn: new Date('2023-02-03'),
-      },
-      {
-        commonInfo: { createdOn: toUtcDateTime('2023-02-03') },
-      },
-    ],
-  ])('Should convert %p field from DTO to commonInfo', (testCase, dto, expected) => {
-    const result = convertTargetFromDto(generateDto(dto));
-
-    expect(result.commonInfo).toEqual(expect.objectContaining(expected.commonInfo));
-  });
-
   describe('period and exact dates', () => {
-    it.each<[string, DeepPartial<TargetDto>, DeepPartial<Target>]>([
+    it.each<[string, DeepPartial<TargetEntity>, DeepPartial<TargetDto>]>([
       [
         'Next10Days',
         {
@@ -60,11 +49,9 @@ describe('convertTargetFromDto', () => {
           createdOn: new Date('2023-02-01'),
         },
         {
-          commonInfo: {
-            period: SymbolicPeriod.Next10Days,
-            periodStartDate: toUtcDateTime('2023-02-01'),
-            periodEndDate: toUtcDateTime('2023-02-10'),
-          },
+          period: SymbolicPeriod.Next10Days,
+          periodStartDate: toUtcDateTime('2023-02-01'),
+          periodEndDate: toUtcDateTime('2023-02-10'),
         },
       ],
       [
@@ -74,17 +61,15 @@ describe('convertTargetFromDto', () => {
           createdOn: new Date('2023-02-01'),
         },
         {
-          commonInfo: {
-            period: SymbolicPeriod.CurrentQuarter,
-            periodStartDate: toUtcDateTime('2023-01-01'),
-            periodEndDate: toUtcDateTime('2023-03-31'),
-          },
+          period: SymbolicPeriod.CurrentQuarter,
+          periodStartDate: toUtcDateTime('2023-01-01'),
+          periodEndDate: toUtcDateTime('2023-03-31'),
         },
       ],
-    ])('Should convert %p field from DTO to commonInfo', (testCase, dto, expected) => {
-      const result = convertTargetFromDto(generateDto(dto));
+    ])('Should convert %p field from DTO to commonInfo', (testCase, entity, expected) => {
+      const result = convertTargetFromEntityToDto(generateEntity(entity));
 
-      expect(result.commonInfo).toEqual(expect.objectContaining(expected.commonInfo));
+      expect(result).toEqual(expect.objectContaining(expected));
     });
   });
 
@@ -102,7 +87,7 @@ describe('convertTargetFromDto', () => {
     }: { currentDate: string, expectedTarget: number }) => {
       jest.setSystemTime(new Date(currentDate));
 
-      const result = convertTargetFromDto(generateDto({
+      const result = convertTargetFromEntityToDto(generateEntity({
         period: SymbolicPeriod.Next5Days,
         createdOn: new Date('2023-01-01'),
         quantity: 18,
@@ -130,7 +115,7 @@ describe('convertTargetFromDto', () => {
     }) => {
       jest.setSystemTime(new Date(currentDate));
 
-      const result = convertTargetFromDto(generateDto({
+      const result = convertTargetFromEntityToDto(generateEntity({
         period: SymbolicPeriod.Next10Days,
         createdOn: new Date(createdOn),
         quantity: 50,

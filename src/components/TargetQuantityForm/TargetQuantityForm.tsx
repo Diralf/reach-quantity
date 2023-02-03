@@ -2,7 +2,7 @@ import { Typography, TextField, Button, Grid } from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
-import { CreateTargetParamsDto } from '../../types/models/create-target-params-dto';
+import { CreateTargetParamsDto } from '../../types/models/create-target-params.dto';
 import SymbolicPeriodSelector from '../SymbolicPeriodSelector';
 
 export interface TargetQuantityFormValues {
