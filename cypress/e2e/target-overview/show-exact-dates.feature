@@ -1,9 +1,7 @@
 Feature: Show exact dates
 
   Scenario Outline: Symbolic period <Period> is selected at <Created On>
-    And I have created 'Paper Cranes' target for 50 of 'paper cranes' during <Period> at <Created On>
-    When Today is <Created On>
-    And I found 'Paper Cranes' target card on dashboard
+    Given Today <Created On> I see 'Paper Cranes' target for 50 of 'paper cranes' during <Period> create at <Created On>
     Then I should see period <Period> on the card
     And I should see exact dates <Exact Dates> on the card
     Examples:

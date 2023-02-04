@@ -1,10 +1,7 @@
 Feature: Target overview
 
   Background:
-    Given I on home page
-    And I have created 'Paper Cranes' target for 50 of 'paper cranes' during Next 10 Days
-    When I visit dashboard page
-    And I found 'Paper Cranes' target card on dashboard
+    Given Today '2023-01-01' I see 'Paper Cranes' target for 50 of 'paper cranes' during Next 10 Days create at '2023-01-01'
 
   Scenario: Looking for Paper Cranes common target on dashboard
     Then I should see small property 'Name' with value 'Paper Cranes' on the card

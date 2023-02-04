@@ -11,4 +11,5 @@ export interface TargetDto {
   periodEndDate: DateTime;
   createdOn: DateTime;
   todayTarget: number;
+  todayReached: number;
 }

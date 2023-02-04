@@ -7,6 +7,7 @@ const generateProps = (props: Partial<Props> = {}): Props => ({
   name: 'test',
   CommonInfo: <div>Common Info</div>,
   todayTarget: 0,
+  todayReached: 0,
   ...props,
 });
 
@@ -34,5 +35,14 @@ describe('TargetQuantityCard', () => {
     expect(within(todayTargetArea)
       .getByText(todayTarget))
       .toBeInTheDocument();
+  });
+
+  it.each([1, 2, 3])('should render correct today reached %d', (todayReached) => {
+    const props = generateProps({ todayReached });
+
+    render(<TargetQuantityCard {...props}/>);
+    const todayTargetArea = screen.getByLabelText('Today');
+
+    expect(within(todayTargetArea).getByLabelText('Reached today')).toHaveValue(todayReached);
   });
 });

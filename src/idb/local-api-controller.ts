@@ -3,7 +3,8 @@ import { convertTargetFromEntityToDto } from '../services/convert-target/convert
 import { ApiController } from '../types/api-controller';
 import { CreateTargetParamsDto } from '../types/models/create-target-params.dto';
 import { TargetDto } from '../types/models/target.dto';
-import { dbGetAllTargets, dbCreateTarget } from './idb-api-controller';
+import { UpdateReachedDto } from '../types/models/update-reached.dto';
+import { dbGetAllTargets, dbCreateTarget, dbUpdateReached } from './idb-api-controller';
 
 export const getLocalApiController = (): ApiController => ({
   async getAllTargets(): Promise<TargetDto[]> {
@@ -16,5 +17,9 @@ export const getLocalApiController = (): ApiController => ({
     const target = await dbCreateTarget(convertCreateTargetParamsDtoToEntity(body));
 
     return convertTargetFromEntityToDto(target);
+  },
+
+  async updateReached(body: UpdateReachedDto): Promise<void> {
+    await dbUpdateReached({ ...body, date: body.date.toJSDate() });
   },
 });

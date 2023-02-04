@@ -6,9 +6,11 @@ import CommonInfo from '../TargetQuantityCard/CommonInfo';
 
 interface Props {
   targets: TargetDto[];
+
+  onTodayReachedChange(value: number, targetId: number): void;
 }
 
-const TargetQuantityList: React.FC<Props> = ({ targets }) => (
+const TargetQuantityList: React.FC<Props> = ({ targets, onTodayReachedChange }) => (
   <Grid container direction="column" gap={2}>
     {targets.map(({
       id,
@@ -17,8 +19,10 @@ const TargetQuantityList: React.FC<Props> = ({ targets }) => (
     }) => (
       <TargetQuantityCard
         key={id}
+        id={id}
         name={name}
         CommonInfo={<CommonInfo name={name} {...target}/>}
+        onTodayReachedChange={onTodayReachedChange}
         {...target}
       />
     ))}

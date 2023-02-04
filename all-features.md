@@ -40,7 +40,7 @@
 
 [today-target.feature](cypress/e2e/target-overview/today-target.feature)
 
-- [ ] Done
+- [x] Done
 
 ### 2.4.2. See reached quantity today
 

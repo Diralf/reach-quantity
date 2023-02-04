@@ -1,31 +1,47 @@
 import { openDB, IDBPDatabase } from 'idb';
 import { CreateTargetParamsEntity } from '../types/entities/create-target-params.entity';
+import { ReachedEntity } from '../types/entities/reached.entity';
 import { TargetEntity } from '../types/entities/target.entity';
-import { TargetDto } from '../types/models/target.dto';
+import { UpdateReachedEntity } from '../types/entities/update-reached.entity';
 
-interface Schema {
-  targets: TargetDto[];
+export const DB_NAME = 'reach-quantity';
+
+export interface Schema {
+  targets: TargetEntity[];
+  reached: ReachedEntity[];
 }
 
-enum DbVersions {
+export enum DbVersions {
   vNO_IDB = 0,
   v1 = 1,
+  v2 = 2,
 }
 
-const openReachQuantityDb = (): Promise<IDBPDatabase<Schema>> => openDB('reach-quantity', DbVersions.v1, {
+export const openReachQuantityDb = (
+  version?: DbVersions,
+): Promise<IDBPDatabase<Schema>> => openDB(DB_NAME, version ?? DbVersions.v2, {
   upgrade(dbUpgrade, oldVersion, newVersion, transaction, event) {
-    console.warn('Open IDB upgrade', JSON.stringify({
+    console.warn('Open IDB upgrade', {
       dbUpgrade,
       oldVersion,
       newVersion,
       transaction,
       event,
-    }));
-    if (oldVersion === DbVersions.vNO_IDB) {
-      dbUpgrade.createObjectStore('targets', {
-        keyPath: 'id',
-        autoIncrement: true,
-      });
+    });
+    if (newVersion) {
+      if (oldVersion < DbVersions.v1 && newVersion >= DbVersions.v1) {
+        dbUpgrade.createObjectStore('targets', {
+          keyPath: 'id',
+          autoIncrement: true,
+        });
+      }
+      if (oldVersion < DbVersions.v2 && newVersion >= DbVersions.v2) {
+        const reached = dbUpgrade.createObjectStore('reached', {
+          keyPath: 'id',
+          autoIncrement: true,
+        });
+        reached.createIndex('targetIdIdx', 'targetId');
+      }
     }
   },
   blocked(currentVersion, blockedVersion, event) {
@@ -36,11 +52,11 @@ const openReachQuantityDb = (): Promise<IDBPDatabase<Schema>> => openDB('reach-q
     });
   },
   blocking(currentVersion, blockedVersion, event: IDBVersionChangeEvent) {
-    console.error('Open IDB blocking', JSON.stringify({
+    console.error('Open IDB blocking', {
       currentVersion,
       blockedVersion,
       event,
-    }));
+    });
     (event?.target as unknown as { result: IDBPDatabase<Schema> })?.result?.close();
   },
   terminated() {
@@ -65,7 +81,28 @@ export const dbCreateTarget = async (body: CreateTargetParamsEntity): Promise<Ta
 
 export const dbGetAllTargets = async (): Promise<TargetEntity[]> => {
   const db = await openReachQuantityDb();
-  const transaction = db.transaction('targets');
+  const transaction = db.transaction(['targets', 'reached']);
   const targets = transaction.objectStore('targets');
-  return targets.getAll();
+  const allTargets = await targets.getAll();
+  const reached = transaction.objectStore('reached');
+
+  let reachedCursor = await reached.index('targetIdIdx').openCursor();
+  while (reachedCursor) {
+    console.log(reachedCursor.key, reachedCursor.value);
+    reachedCursor = await reachedCursor.continue();
+  }
+  return allTargets;
+};
+
+export const dbUpdateReached = async (body: UpdateReachedEntity): Promise<void> => {
+  const db = await openReachQuantityDb();
+  const transaction = db.transaction('reached', 'readwrite');
+  const reached = transaction.objectStore('reached');
+
+  const resultKey = await reached.add(body);
+
+  const result = await reached.get(resultKey);
+  console.log({ result });
+
+  return transaction.done;
 };
