@@ -42,4 +42,8 @@ describe('idb', () => {
       expect(db.objectStoreNames).toEqual(['reached', 'targets']);
     });
   });
+
+  describe('stores', () => {
+
+  });
 });
