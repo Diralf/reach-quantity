@@ -57,7 +57,7 @@ export const openReachQuantityDb = (
       blockedVersion,
       event,
     });
-    (event?.target as unknown as { result: IDBPDatabase<Schema> })?.result?.close();
+    (event?.target as unknown as IDBPDatabase<Schema>)?.close();
   },
   terminated() {
     console.error('Open IDB terminated');
