@@ -5,7 +5,9 @@ import { DBSchema } from 'idb/build/entry';
 interface InitDbUtils<Schema extends DBSchema, Stores extends StoreNames<Schema>, Versions extends number> {
   openTestDB(version?: Versions): Promise<IDBPDatabase<Schema>>;
 
-  getAll(store: Stores): Promise<Array<StoreValue<Schema, Stores>>>;
+  testGetAll(store: Stores): Promise<Array<StoreValue<Schema, Stores>>>;
+
+  testAdd(store: Stores, value: StoreValue<Schema, Stores>): Promise<void>;
 
   restoreTestDB(): Promise<void>;
 }
@@ -21,12 +23,20 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
     return testDB;
   };
 
-  const getAll: InitDbUtils<Schema, Stores, Versions>['getAll'] = async (store: Stores) => {
+  const testGetAll: InitDbUtils<Schema, Stores, Versions>['testGetAll'] = async (store: Stores) => {
     const db = await openTestDB();
     return db
       .transaction([store])
       .objectStore(store)
       .getAll();
+  };
+
+  const testAdd: InitDbUtils<Schema, Stores, Versions>['testAdd'] = async <S extends Stores>(store: S, value: StoreValue<Schema, S>) => {
+    const db = await openTestDB();
+    const objectStore = db
+      .transaction([store], 'readwrite')
+      .objectStore(store);
+    await objectStore.add(value);
   };
 
   const restoreTestDB: InitDbUtils<Schema, Stores, Versions>['restoreTestDB'] = async () => {
@@ -38,7 +48,8 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
 
   return {
     openTestDB,
-    getAll,
+    testGetAll,
+    testAdd,
     restoreTestDB,
   };
 };

@@ -5,7 +5,7 @@ import { DbSchema, DbStoreNames } from '../../types/db.schema';
 import { mockTarget } from '../__test-data__/target';
 import { dbCreateTarget } from './db-create-target';
 
-const { restoreTestDB, getAll } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
+const { restoreTestDB, testGetAll } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
 describe('dbCreateTarget', () => {
   afterEach(async () => {
@@ -17,7 +17,7 @@ describe('dbCreateTarget', () => {
 
     await dbCreateTarget(target);
     await dbCreateTarget(target);
-    const allTargets = await getAll('TARGETS');
+    const allTargets = await testGetAll('TARGETS');
 
     expect(allTargets).toEqual([
       { ...target, id: 1 },
