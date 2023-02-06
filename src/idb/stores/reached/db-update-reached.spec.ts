@@ -3,11 +3,11 @@ import { initDbUtils } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
-import { dbCreateTarget } from './db-create-target';
+import { dbCreateTarget } from '../targets/db-create-target';
 
 const { restoreTestDB, getAll } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
-describe('dbCreateTarget', () => {
+describe('dbUpdateReached', () => {
   afterEach(async () => {
     await restoreTestDB();
   });

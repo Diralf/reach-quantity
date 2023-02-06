@@ -1,6 +1,6 @@
 import { CreateTargetParamsEntity } from '../../../types/entities/create-target-params.entity';
 import { TargetEntity } from '../../../types/entities/target.entity';
-import { openReachQuantityDb } from '../../open-reach-quantity-db';
+import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 
 export const dbCreateTarget = async (body: CreateTargetParamsEntity): Promise<TargetEntity> => {
   const db = await openReachQuantityDb();

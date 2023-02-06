@@ -1,3 +1,4 @@
 import { TargetEntity } from '../../types/entities/target.entity';
+import { WithOptional } from './db.utils';
 
-export type DbTargets = Omit<TargetEntity, 'id' | 'reachedQuantities'> & Partial<Pick<TargetEntity, 'id' | 'reachedQuantities'>>;
+export type DbTargets = WithOptional<TargetEntity, 'id' | 'reachedQuantities'>;

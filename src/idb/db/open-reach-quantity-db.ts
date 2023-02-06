@@ -1,6 +1,6 @@
 import { IDBPDatabase, openDB } from 'idb';
+import { DbSchema } from '../types/db.schema';
 import { DbVersions, DB_NAME } from './db.constants';
-import { DbSchema } from './types/db.schema';
 
 export const openReachQuantityDb = (
   version?: DbVersions,

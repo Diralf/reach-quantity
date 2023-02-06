@@ -1,6 +1,6 @@
 import { StoreNames } from 'idb';
 import { DBSchema } from 'idb/build/entry';
-import { ReachedEntity } from '../../types/entities/reached.entity';
+import { DbReached } from './db.reached';
 import { DbTargets } from './db.targets';
 
 export interface DbSchema extends DBSchema {
@@ -10,7 +10,7 @@ export interface DbSchema extends DBSchema {
   };
   REACHED: {
     key: number;
-    value: ReachedEntity;
+    value: DbReached;
     indexes: {
       REACHED__TARGET_ID: 'targetId'
     }

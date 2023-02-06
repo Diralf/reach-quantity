@@ -1,5 +1,5 @@
 import { UpdateReachedEntity } from '../../../types/entities/update-reached.entity';
-import { openReachQuantityDb } from '../../open-reach-quantity-db';
+import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 
 export const dbUpdateReached = async (body: UpdateReachedEntity): Promise<void> => {
   const db = await openReachQuantityDb();

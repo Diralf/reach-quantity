@@ -7,7 +7,7 @@ import { dbCreateTarget } from './db-create-target';
 
 const { restoreTestDB, getAll } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
-describe('dbCreateTarget', () => {
+describe('dbGetAllTargets', () => {
   afterEach(async () => {
     await restoreTestDB();
   });
