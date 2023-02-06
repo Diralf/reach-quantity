@@ -29,6 +29,7 @@ export const openReachQuantityDb = (
             autoIncrement: true,
           });
           reached.createIndex('REACHED__TARGET_ID', 'targetId');
+          reached.createIndex('REACHED__TARGET_ID__DATE', ['targetId', 'date']);
         }
       }
     },
