@@ -4,15 +4,16 @@ import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
 import { dbCreateTarget } from './db-create-target';
+import { dbGetAllTargets } from './db-get-all-targets';
 
-const { restoreTestDB, getAll } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
+const { restoreTestDB } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
 describe('dbGetAllTargets', () => {
   afterEach(async () => {
     await restoreTestDB();
   });
 
-  it('Should create target', async () => {
+  it('Should get all targets', async () => {
     const target = {
       name: 'test name',
       quantity: 5,
@@ -23,7 +24,8 @@ describe('dbGetAllTargets', () => {
 
     await dbCreateTarget(target);
     await dbCreateTarget(target);
-    const allTargets = await getAll('TARGETS');
+    await dbCreateTarget(target);
+    const allTargets = await dbGetAllTargets();
 
     expect(allTargets).toEqual([
       {
@@ -33,6 +35,10 @@ describe('dbGetAllTargets', () => {
       {
         ...target,
         id: 2,
+      },
+      {
+        ...target,
+        id: 3,
       },
     ]);
   });
