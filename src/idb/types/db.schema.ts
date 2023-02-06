@@ -14,6 +14,7 @@ export interface DbSchema extends DBSchema {
     indexes: {
       REACHED__TARGET_ID: number;
       REACHED__TARGET_ID__DATE: [number, Date];
+      REACHED__DATE: Date;
     }
   };
 }

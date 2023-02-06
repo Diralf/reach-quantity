@@ -9,6 +9,8 @@ interface InitDbUtils<Schema extends DBSchema, Stores extends StoreNames<Schema>
 
   testAdd(store: Stores, value: StoreValue<Schema, Stores>): Promise<void>;
 
+  testBulkAction<Entity, Return>(reachedInitial: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]>;
+
   restoreTestDB(): Promise<void>;
 }
 
@@ -39,6 +41,11 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
     await objectStore.add(value);
   };
 
+  function testBulkAction<Entity, Return = void>(reachedInitial: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]> {
+    const updates = reachedInitial.map(action);
+    return Promise.all(updates);
+  }
+
   const restoreTestDB: InitDbUtils<Schema, Stores, Versions>['restoreTestDB'] = async () => {
     if (testDB) {
       testDB.close();
@@ -50,6 +57,7 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
     openTestDB,
     testGetAll,
     testAdd,
+    testBulkAction,
     restoreTestDB,
   };
 };

@@ -1,4 +1,4 @@
-import { IDBPDatabase, openDB } from 'idb';
+import { IDBPDatabase, openDB } from 'idb/with-async-ittr';
 import { DbSchema } from '../types/db.schema';
 import { DbVersions, DB_NAME } from './db.constants';
 
@@ -30,6 +30,7 @@ export const openReachQuantityDb = (
           });
           reached.createIndex('REACHED__TARGET_ID', 'targetId');
           reached.createIndex('REACHED__TARGET_ID__DATE', ['targetId', 'date']);
+          reached.createIndex('REACHED__DATE', 'date');
         }
       }
     },

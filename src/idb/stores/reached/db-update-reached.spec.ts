@@ -8,7 +8,12 @@ import { mockTarget } from '../__test-data__/target';
 import { dbCreateTarget } from '../targets/db-create-target';
 import { dbUpdateReached } from './db-update-reached';
 
-const { restoreTestDB, testGetAll, testAdd } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
+const {
+  restoreTestDB,
+  testGetAll,
+  testAdd,
+  testBulkAction,
+} = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
 describe('dbUpdateReached', () => {
   afterEach(async () => {
@@ -47,8 +52,7 @@ describe('dbUpdateReached', () => {
 
     await dbCreateTarget(target);
     await dbCreateTarget(target);
-    const updates = reachedInitial.map((reached) => dbUpdateReached(reached));
-    await Promise.all(updates);
+    await testBulkAction(reachedInitial, dbUpdateReached);
     const allTargets = await testGetAll('TARGETS');
     const allReached = await testGetAll('REACHED');
 
