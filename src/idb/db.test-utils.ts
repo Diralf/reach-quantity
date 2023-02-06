@@ -1,23 +1,26 @@
-import { IDBPDatabase, deleteDB, StoreValue } from 'idb';
-import { DbObjectStores, DbVersions, Schema, DB_NAME } from './idb-api-controller';
+import { IDBPDatabase, deleteDB, StoreValue, StoreNames } from 'idb';
+import { DBSchema } from 'idb/build/entry';
 
-interface InitDbUtils {
-  openTestDB(version?: DbVersions): Promise<IDBPDatabase<Schema>>;
+interface InitDbUtils<Schema extends DBSchema, Stores extends StoreNames<Schema>, Versions extends number> {
+  openTestDB(version?: Versions): Promise<IDBPDatabase<Schema>>;
 
-  getAll(store: DbObjectStores): Promise<Array<StoreValue<Schema, DbObjectStores>>>;
+  getAll(store: Stores): Promise<Array<StoreValue<Schema, Stores>>>;
 
   restoreTestDB(): Promise<void>;
 }
 
-export const initDbUtils = (openDBCallback: (version?: DbVersions) => Promise<IDBPDatabase<Schema>>): InitDbUtils => {
+export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<Schema>, Versions extends number>(
+  dbName: string,
+  openDBCallback: (version?: Versions) => Promise<IDBPDatabase<Schema>>,
+): InitDbUtils<Schema, Stores, Versions> => {
   let testDB: IDBPDatabase<Schema>;
 
-  const openTestDB: InitDbUtils['openTestDB'] = async (version?: DbVersions) => {
+  const openTestDB: InitDbUtils<Schema, Stores, Versions>['openTestDB'] = async (version?: Versions) => {
     testDB = await openDBCallback(version);
     return testDB;
   };
 
-  const getAll: InitDbUtils['getAll'] = async (store: DbObjectStores) => {
+  const getAll: InitDbUtils<Schema, Stores, Versions>['getAll'] = async (store: Stores) => {
     const db = await openTestDB();
     return db
       .transaction([store])
@@ -25,11 +28,11 @@ export const initDbUtils = (openDBCallback: (version?: DbVersions) => Promise<ID
       .getAll();
   };
 
-  const restoreTestDB: InitDbUtils['restoreTestDB'] = async () => {
+  const restoreTestDB: InitDbUtils<Schema, Stores, Versions>['restoreTestDB'] = async () => {
     if (testDB) {
       testDB.close();
     }
-    await deleteDB(DB_NAME);
+    await deleteDB(dbName);
   };
 
   return {

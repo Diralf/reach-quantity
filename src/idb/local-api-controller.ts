@@ -4,7 +4,9 @@ import { ApiController } from '../types/api-controller';
 import { CreateTargetParamsDto } from '../types/models/create-target-params.dto';
 import { TargetDto } from '../types/models/target.dto';
 import { UpdateReachedDto } from '../types/models/update-reached.dto';
-import { dbGetAllTargets, dbCreateTarget, dbUpdateReached } from './idb-api-controller';
+import { dbUpdateReached } from './stores/reached/db-update-reached';
+import { dbCreateTarget } from './stores/targets/db-create-target';
+import { dbGetAllTargets } from './stores/targets/db-get-all-targets';
 
 export const getLocalApiController = (): ApiController => ({
   async getAllTargets(): Promise<TargetDto[]> {

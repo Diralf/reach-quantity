@@ -1,9 +1,12 @@
 import 'fake-indexeddb/auto';
 import { SymbolicPeriod } from '../constants/symbolic-period';
+import { DbVersions, DB_NAME } from './db.constants';
 import { initDbUtils } from './db.test-utils';
-import { openReachQuantityDb, DbVersions, DbObjectStores, dbCreateTarget } from './idb-api-controller';
+import { openReachQuantityDb } from './open-reach-quantity-db';
+import { dbCreateTarget } from './stores/targets/db-create-target';
+import { DbStoreNames, DbSchema } from './types/db.schema';
 
-const { openTestDB, restoreTestDB, getAll } = initDbUtils(openReachQuantityDb);
+const { openTestDB, restoreTestDB, getAll } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
 describe('idb', () => {
   afterEach(async () => {
@@ -14,30 +17,30 @@ describe('idb', () => {
     it('should update from 0 to 1 version', async () => {
       const db = await openTestDB(DbVersions.v1);
 
-      expect(db.objectStoreNames).toEqual([DbObjectStores.TARGETS]);
+      expect(db.objectStoreNames).toEqual(['TARGETS']);
     });
 
     it('should update from 0 to 2 version', async () => {
       const db = await openTestDB(DbVersions.v2);
 
-      expect(db.objectStoreNames).toEqual([DbObjectStores.REACHED, DbObjectStores.TARGETS]);
+      expect(db.objectStoreNames).toEqual(['REACHED', 'TARGETS']);
     });
 
     it('should update from 1 to 2 version', async () => {
       const db1 = await openReachQuantityDb(DbVersions.v1);
       db1.close();
-      expect(db1.objectStoreNames).toEqual([DbObjectStores.TARGETS]);
+      expect(db1.objectStoreNames).toEqual(['TARGETS']);
 
       const db = await openTestDB(DbVersions.v2);
 
-      expect(db.objectStoreNames).toEqual([DbObjectStores.REACHED, DbObjectStores.TARGETS]);
+      expect(db.objectStoreNames).toEqual(['REACHED', 'TARGETS']);
     });
 
     it('should handle update from 1 unclosed to 2 version', async () => {
       await openReachQuantityDb(DbVersions.v1);
       const db = await openTestDB(DbVersions.v2);
 
-      expect(db.objectStoreNames).toEqual([DbObjectStores.REACHED, DbObjectStores.TARGETS]);
+      expect(db.objectStoreNames).toEqual(['REACHED', 'TARGETS']);
     });
   });
 
@@ -53,7 +56,7 @@ describe('idb', () => {
 
       await dbCreateTarget(target);
       await dbCreateTarget(target);
-      const allTargets = await getAll(DbObjectStores.TARGETS);
+      const allTargets = await getAll('TARGETS');
 
       expect(allTargets).toEqual([
         {

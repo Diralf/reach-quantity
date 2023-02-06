@@ -68,6 +68,7 @@
         "@typescript-eslint/type-annotation-spacing": "error",
         "@typescript-eslint/unified-signatures": "error",
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/prefer-as-const": "off",
         "@typescript-eslint/ban-ts-comment": [
           "error",
           {
