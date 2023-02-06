@@ -1,8 +1,8 @@
-import { SymbolicPeriod } from '../../../constants/symbolic-period';
 import { initDbUtils } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
+import { mockTarget } from '../__test-data__/target';
 import { dbCreateTarget } from './db-create-target';
 import { dbGetAllTargets } from './db-get-all-targets';
 
@@ -14,13 +14,7 @@ describe('dbGetAllTargets', () => {
   });
 
   it('Should get all targets', async () => {
-    const target = {
-      name: 'test name',
-      quantity: 5,
-      measurement: 'tests',
-      period: SymbolicPeriod.CurrentQuarter,
-      createdOn: new Date('2023-01-01'),
-    };
+    const target = mockTarget;
 
     await dbCreateTarget(target);
     await dbCreateTarget(target);
@@ -28,18 +22,9 @@ describe('dbGetAllTargets', () => {
     const allTargets = await dbGetAllTargets();
 
     expect(allTargets).toEqual([
-      {
-        ...target,
-        id: 1,
-      },
-      {
-        ...target,
-        id: 2,
-      },
-      {
-        ...target,
-        id: 3,
-      },
+      { ...target, id: 1 },
+      { ...target, id: 2 },
+      { ...target, id: 3 },
     ]);
   });
 });
