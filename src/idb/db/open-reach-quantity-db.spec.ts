@@ -1,4 +1,3 @@
-import 'fake-indexeddb/auto';
 import { initDbUtils } from '../db.test-utils';
 import { DbSchema, DbStoreNames } from '../types/db.schema';
 import { DbVersions, DB_NAME } from './db.constants';

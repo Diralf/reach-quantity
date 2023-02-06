@@ -1,3 +1,4 @@
+import 'fake-indexeddb/auto';
 import { IDBPDatabase, deleteDB, StoreValue, StoreNames } from 'idb';
 import { DBSchema } from 'idb/build/entry';
 
