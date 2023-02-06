@@ -1,34 +1,9 @@
 import 'fake-indexeddb/auto';
-import { IDBPDatabase, deleteDB } from 'idb';
 import { SymbolicPeriod } from '../constants/symbolic-period';
-import { openReachQuantityDb, DbVersions, DB_NAME, Schema, DbObjectStores, dbCreateTarget } from './idb-api-controller';
+import { initDbUtils } from './db.test-utils';
+import { openReachQuantityDb, DbVersions, DbObjectStores, dbCreateTarget } from './idb-api-controller';
 
-const initDbUtils = (openDBCallback: (version?: DbVersions) => Promise<IDBPDatabase<Schema>>) => {
-  let testDB: IDBPDatabase<Schema>;
-
-  return {
-    async openTestDB(version?: DbVersions) {
-      testDB = await openDBCallback(version);
-      return testDB;
-    },
-    async restoreTestDB() {
-      if (testDB) {
-        testDB.close();
-      }
-      await deleteDB(DB_NAME);
-    },
-  };
-};
-
-const { openTestDB, restoreTestDB } = initDbUtils((version?: DbVersions) => openReachQuantityDb(version));
-
-const getAll = async (store: DbObjectStores) => {
-  const db = await openTestDB();
-  return db
-    .transaction([store])
-    .objectStore(store)
-    .getAll();
-};
+const { openTestDB, restoreTestDB, getAll } = initDbUtils(openReachQuantityDb);
 
 describe('idb', () => {
   afterEach(async () => {
