@@ -9,7 +9,7 @@ interface InitDbUtils<Schema extends DBSchema, Stores extends StoreNames<Schema>
 
   testAdd(store: Stores, value: StoreValue<Schema, Stores>): Promise<void>;
 
-  testBulkAction<Entity, Return>(reachedInitial: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]>;
+  testBulkAction<Entity, Return>(entities: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]>;
 
   restoreTestDB(): Promise<void>;
 }
@@ -43,8 +43,8 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
     }
   };
 
-  function testBulkAction<Entity, Return = void>(reachedInitial: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]> {
-    const updates = reachedInitial.map(action);
+  function testBulkAction<Entity, Return = void>(entities: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]> {
+    const updates = entities.map(action);
     return Promise.all(updates);
   }
 
@@ -65,7 +65,7 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
 };
 
 const ID_COUNT_START = 1;
-export const withIds = <T extends Partial<Record<keyof T, unknown>>>(list: T[]): T[] => list.map((item, index) => ({
+export const withIds = <T extends Partial<Record<keyof T, unknown>>>(list: T[]): Array<T & { id: number }> => list.map((item, index) => ({
   ...item,
   id: ID_COUNT_START + index,
 }));

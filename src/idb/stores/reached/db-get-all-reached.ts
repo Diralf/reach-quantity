@@ -4,7 +4,7 @@ import { GetReachedParamsEntity } from '../../../types/entities/get-reached-para
 import { ReachedEntity } from '../../../types/entities/reached.entity';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbReached } from '../../types/db.reached';
-import { DbSchema } from '../../types/db.schema';
+import { DbSchema, DbStoreNames } from '../../types/db.schema';
 
 function addReachedToTargetGroup(reachedItem: DbReached, targetIds: number[], reachedByTargets: Map<number, DbReached[]>): void {
   const { targetId } = reachedItem;
@@ -15,7 +15,7 @@ function addReachedToTargetGroup(reachedItem: DbReached, targetIds: number[], re
 }
 
 interface FetchProps {
-  index: IDBPIndex<DbSchema, ['REACHED'], 'REACHED', 'REACHED__DATE'>;
+  index: IDBPIndex<DbSchema, DbStoreNames[], 'REACHED', 'REACHED__DATE'>;
   startDate: Date;
   endDate: Date;
   targetIds: number[];
