@@ -6,7 +6,8 @@ import { DbReached } from '../../types/db.reached';
 export const dbGetReached = async ({ startDate, endDate, targetIds }: GetReachedParamsEntity) => {
   const db = await openReachQuantityDb();
 
-  const index = db.transaction('REACHED').store.index('REACHED__DATE');
+  const transaction = db.transaction('REACHED');
+  const index = transaction.store.index('REACHED__DATE');
 
   const result = new Map<number, DbReached[]>();
 
@@ -19,6 +20,8 @@ export const dbGetReached = async ({ startDate, endDate, targetIds }: GetReached
       result.set(reachedItem.targetId, reachedForTarget);
     }
   }
+
+  await transaction.done;
 
   return Array.from(result);
 };

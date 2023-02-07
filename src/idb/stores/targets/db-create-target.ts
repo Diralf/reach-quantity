@@ -6,11 +6,8 @@ export const dbCreateTarget = async (body: CreateTargetParamsEntity): Promise<Ta
   const db = await openReachQuantityDb();
 
   const transaction = db.transaction('TARGETS', 'readwrite');
-  const targets = transaction.objectStore('TARGETS');
-
-  const resultKey = await targets.add(body);
-
-  const result = await targets.get(resultKey);
+  const resultKey = await transaction.store.add(body);
+  const result = await transaction.store.get(resultKey);
 
   await transaction.done;
 
