@@ -27,18 +27,20 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
 
   const testGetAll: InitDbUtils<Schema, Stores, Versions>['testGetAll'] = async (store: Stores) => {
     const db = await openTestDB();
-    return db
-      .transaction([store])
-      .objectStore(store)
-      .getAll();
+    const tx = db.transaction(store);
+    return tx.store.getAll();
   };
 
   const testAdd: InitDbUtils<Schema, Stores, Versions>['testAdd'] = async <S extends Stores>(store: S, value: StoreValue<Schema, S>) => {
     const db = await openTestDB();
-    const objectStore = db
-      .transaction([store], 'readwrite')
-      .objectStore(store);
-    await objectStore.add(value);
+    try {
+      const tx = db.transaction(store, 'readwrite');
+      await tx.store.add(value);
+      await tx.done;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   };
 
   function testBulkAction<Entity, Return = void>(reachedInitial: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]> {
