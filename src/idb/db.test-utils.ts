@@ -63,3 +63,9 @@ export const initDbUtils = <Schema extends DBSchema, Stores extends StoreNames<S
     restoreTestDB,
   };
 };
+
+const ID_COUNT_START = 1;
+export const withIds = <T extends Partial<Record<keyof T, unknown>>>(list: T[]): T[] => list.map((item, index) => ({
+  ...item,
+  id: ID_COUNT_START + index,
+}));

@@ -1,9 +1,9 @@
-import { initDbUtils } from '../../db.test-utils';
+import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbReached } from '../../types/db.reached';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
-import { mockReached } from '../__test-data__/reached';
+import { mockReachedList } from '../__test-data__/reached';
 import { mockTarget } from '../__test-data__/target';
 import { dbCreateTarget } from '../targets/db-create-target';
 import { dbGetReached } from './db-get-all-reached';
@@ -11,20 +11,7 @@ import { dbUpdateReached } from './db-update-reached';
 
 const { restoreTestDB, testGetAll, testBulkAction } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
-const reachedInitial = [
-  {
-    ...mockReached, date: new Date('2023-01-01'), targetId: 1,
-  },
-  {
-    ...mockReached, date: new Date('2023-01-02'), targetId: 1,
-  },
-  {
-    ...mockReached, date: new Date('2023-01-02'), targetId: 2,
-  },
-  {
-    ...mockReached, date: new Date('2023-01-03'), targetId: 2,
-  },
-];
+const reachedInitial: DbReached[] = mockReachedList;
 
 describe('dbGetReached', () => {
   afterEach(async () => {
@@ -47,11 +34,8 @@ describe('dbGetReached', () => {
     const allTargets = await testGetAll('TARGETS');
     const allReached = await testGetAll('REACHED');
 
-    expect(allTargets).toEqual([
-      { ...target, id: 1 },
-      { ...target, id: 2 },
-    ]);
-    expect(allReached).toEqual(reachedInitial.map((reached, index) => ({ ...reached, id: index + 1 })));
+    expect(allTargets).toEqual(withIds([target, target]));
+    expect(allReached).toEqual(withIds(reachedInitial));
 
     const allReachedGrouped = await dbGetReached({
       startDate: new Date(startDate), endDate: new Date(endDate), targetIds,

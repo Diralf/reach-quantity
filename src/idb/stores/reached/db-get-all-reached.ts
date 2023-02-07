@@ -21,7 +21,7 @@ interface FetchProps {
   targetIds: number[];
 }
 
-async function fetchReachedGroupedByTargets({
+export async function fetchReachedGroupedByTargets({
   index,
   startDate,
   endDate,

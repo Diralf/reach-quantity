@@ -4,11 +4,11 @@ import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
 import { mockTarget } from '../__test-data__/target';
 import { dbCreateTarget } from './db-create-target';
-import { dbGetAllTargets } from './db-get-all-targets';
+import { dbGetAllTargetsWithReached } from './db-get-all-targets-with-reached';
 
 const { restoreTestDB, testBulkAction } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
-describe('dbGetAllTargets', () => {
+describe('dbGetAllTargetsWithReached', () => {
   afterEach(async () => {
     await restoreTestDB();
   });
@@ -17,7 +17,7 @@ describe('dbGetAllTargets', () => {
     const target = mockTarget;
 
     await testBulkAction([target, target, target], dbCreateTarget);
-    const allTargets = await dbGetAllTargets();
+    const allTargets = await dbGetAllTargetsWithReached();
 
     expect(allTargets).toEqual(withIds([target, target, target]));
   });
