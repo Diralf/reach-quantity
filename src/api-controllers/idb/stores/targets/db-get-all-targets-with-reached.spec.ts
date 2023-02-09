@@ -1,4 +1,4 @@
-import { TargetEntity } from '../../../types/entities/target.entity';
+import { TargetEntity } from '../../../../types/entities/target.entity';
 import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
@@ -9,7 +9,11 @@ import { dbUpdateReached } from '../reached/db-update-reached';
 import { dbCreateTarget } from './db-create-target';
 import { dbGetAllTargetsWithReached } from './db-get-all-targets-with-reached';
 
-const { restoreTestDB, testBulkAction, testGetAll } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
+const {
+  restoreTestDB,
+  testBulkAction,
+  testGetAll,
+} = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
 describe('dbGetAllTargetsWithReached', () => {
   afterEach(async () => {
@@ -20,28 +24,39 @@ describe('dbGetAllTargetsWithReached', () => {
     const target = mockTarget;
     const reachedList = [
       {
-        ...mockReached, date: new Date('2023-01-01'), targetId: 1,
+        ...mockReached,
+        date: new Date('2023-01-01'),
+        targetId: 1,
       },
       {
-        ...mockReached, date: new Date('2023-01-02'), targetId: 1,
+        ...mockReached,
+        date: new Date('2023-01-02'),
+        targetId: 1,
       },
       {
-        ...mockReached, date: new Date('2023-01-02'), targetId: 2,
+        ...mockReached,
+        date: new Date('2023-01-02'),
+        targetId: 2,
       },
       {
-        ...mockReached, date: new Date('2023-01-03'), targetId: 2,
+        ...mockReached,
+        date: new Date('2023-01-03'),
+        targetId: 2,
       },
     ];
     const reachedListWithId = withIds(reachedList);
     const targetEntities: TargetEntity[] = withIds([
       {
-        ...target, reachedQuantities: [reachedListWithId[0], reachedListWithId[1]],
+        ...target,
+        reachedQuantities: [reachedListWithId[0], reachedListWithId[1]],
       },
       {
-        ...target, reachedQuantities: [reachedListWithId[2], reachedListWithId[3]],
+        ...target,
+        reachedQuantities: [reachedListWithId[2], reachedListWithId[3]],
       },
       {
-        ...target, reachedQuantities: [],
+        ...target,
+        reachedQuantities: [],
       },
     ]);
 
@@ -53,7 +68,9 @@ describe('dbGetAllTargetsWithReached', () => {
     });
     const allReached = await testGetAll('REACHED');
 
-    expect(allReached).toEqual(withIds(reachedList));
-    expect(allTargets).toEqual(targetEntities);
+    expect(allReached)
+      .toEqual(withIds(reachedList));
+    expect(allTargets)
+      .toEqual(targetEntities);
   });
 });

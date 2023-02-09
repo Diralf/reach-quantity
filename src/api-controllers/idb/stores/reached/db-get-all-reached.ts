@@ -1,7 +1,7 @@
 import { IDBKeyRange } from 'fake-indexeddb';
 import { IDBPIndex } from 'idb';
-import { GetReachedParamsEntity } from '../../../types/entities/get-reached-params.entity';
-import { ReachedEntity } from '../../../types/entities/reached.entity';
+import { GetReachedParamsEntity } from '../../../../types/entities/get-reached-params.entity';
+import { ReachedEntity } from '../../../../types/entities/reached.entity';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbReached } from '../../types/db.reached';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
@@ -47,7 +47,10 @@ export const dbGetReached = async ({
   const index = tx.store.index('REACHED__DATE');
 
   const reachedByTargets = await fetchReachedGroupedByTargets({
-    index, startDate, endDate, targetIds,
+    index,
+    startDate,
+    endDate,
+    targetIds,
   });
 
   await tx.done;

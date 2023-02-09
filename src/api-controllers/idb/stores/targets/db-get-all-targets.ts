@@ -1,4 +1,4 @@
-import { TargetEntity } from '../../../types/entities/target.entity';
+import { TargetEntity } from '../../../../types/entities/target.entity';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 
 export const dbGetAllTargets = async (): Promise<TargetEntity[]> => {
