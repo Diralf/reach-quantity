@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { TargetDto } from '../../types/models/target.dto';
+import { TargetDto } from '../../types/dto/target.dto';
 import TargetQuantityCard from '../TargetQuantityCard';
 import CommonInfo from '../TargetQuantityCard/CommonInfo';
 
@@ -10,7 +10,10 @@ interface Props {
   onTodayReachedChange(value: number, targetId: number): void;
 }
 
-const TargetQuantityList: React.FC<Props> = ({ targets, onTodayReachedChange }) => (
+const TargetQuantityList: React.FC<Props> = ({
+  targets,
+  onTodayReachedChange,
+}) => (
   <Grid container direction="column" gap={2}>
     {targets.map(({
       id,

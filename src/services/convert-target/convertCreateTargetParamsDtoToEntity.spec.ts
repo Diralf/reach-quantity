@@ -1,6 +1,6 @@
 import { SymbolicPeriod } from '../../constants/symbolic-period';
-import { CreateTargetParamsEntity } from '../../types/entities/create-target-params.entity';
-import { CreateTargetParamsDto } from '../../types/models/create-target-params.dto';
+import { CreateTargetParamsDto } from '../../types/dto/create-target-params.dto';
+import { CreateTargetParams } from '../../types/params/create-target.params';
 import { convertCreateTargetParamsDtoToEntity } from './convertCreateTargetParamsDtoToEntity';
 
 const generateDto = (dto?: Partial<CreateTargetParamsDto>): CreateTargetParamsDto => ({
@@ -12,7 +12,7 @@ const generateDto = (dto?: Partial<CreateTargetParamsDto>): CreateTargetParamsDt
 });
 
 describe('convertCreateTargetParamsDtoToEntity', () => {
-  it.each<[string, Partial<CreateTargetParamsDto>, Partial<CreateTargetParamsEntity>]>([
+  it.each<[string, Partial<CreateTargetParamsDto>, Partial<CreateTargetParams>]>([
     ['name', { name: 'Test name' }, { name: 'Test name' }],
     ['quantity', { quantity: 50 }, { quantity: 50 }],
     ['quantity string', { quantity: '50' as unknown as number }, { quantity: 50 }],
@@ -21,16 +21,19 @@ describe('convertCreateTargetParamsDtoToEntity', () => {
   ])('Should convert correctly %p', (testCase, dto, expectedEntity) => {
     const entity = convertCreateTargetParamsDtoToEntity(generateDto(dto));
 
-    expect(entity).toEqual(expect.objectContaining(expectedEntity));
+    expect(entity)
+      .toEqual(expect.objectContaining(expectedEntity));
   });
 
   it('should set create on', () => {
     const currentDate = new Date('2023-01-01');
-    jest.useFakeTimers().setSystemTime(currentDate);
+    jest.useFakeTimers()
+      .setSystemTime(currentDate);
 
     const entity = convertCreateTargetParamsDtoToEntity(generateDto());
 
-    expect(entity).toEqual(expect.objectContaining({ createdOn: currentDate }));
+    expect(entity)
+      .toEqual(expect.objectContaining({ createdOn: currentDate }));
 
     jest.useRealTimers();
   });

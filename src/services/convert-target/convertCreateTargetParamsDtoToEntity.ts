@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon';
-import { CreateTargetParamsEntity } from '../../types/entities/create-target-params.entity';
-import { CreateTargetParamsDto } from '../../types/models/create-target-params.dto';
+import { CreateTargetParamsDto } from '../../types/dto/create-target-params.dto';
+import { CreateTargetParams } from '../../types/params/create-target.params';
 
-export const convertCreateTargetParamsDtoToEntity = (dto: CreateTargetParamsDto): CreateTargetParamsEntity => ({
+export const convertCreateTargetParamsDtoToEntity = (dto: CreateTargetParamsDto): CreateTargetParams => ({
   ...dto,
   quantity: Number(dto.quantity),
-  createdOn: DateTime.utc().toJSDate(),
+  createdOn: DateTime.utc()
+    .toJSDate(),
 });

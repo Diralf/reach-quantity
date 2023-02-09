@@ -1,5 +1,4 @@
 import { SymbolicPeriod } from '../../constants/symbolic-period';
-import { ReachedEntity } from './reached.entity';
 
 export interface TargetEntity {
   id: number;
@@ -8,5 +7,4 @@ export interface TargetEntity {
   measurement: string;
   period: SymbolicPeriod;
   createdOn: Date;
-  reachedQuantities: ReachedEntity[];
 }

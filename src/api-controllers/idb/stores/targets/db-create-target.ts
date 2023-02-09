@@ -1,8 +1,8 @@
-import { CreateTargetParamsEntity } from '../../../../types/entities/create-target-params.entity';
 import { TargetEntity } from '../../../../types/entities/target.entity';
+import { CreateTargetParams } from '../../../../types/params/create-target.params';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 
-export const dbCreateTarget = async (body: CreateTargetParamsEntity): Promise<TargetEntity> => {
+export const dbCreateTarget = async (body: CreateTargetParams): Promise<TargetEntity> => {
   const db = await openReachQuantityDb();
 
   const tx = db.transaction('TARGETS', 'readwrite');

@@ -1,7 +1,7 @@
-import { UpdateReachedEntity } from '../../../../types/entities/update-reached.entity';
+import { UpdateReachedParams } from '../../../../types/params/update-reached.params';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 
-export const dbUpdateReached = async (body: UpdateReachedEntity): Promise<void> => {
+export const dbUpdateReached = async (body: UpdateReachedParams): Promise<void> => {
   const db = await openReachQuantityDb();
   const tx = db.transaction('REACHED', 'readwrite');
   const index = tx.store.index('REACHED__TARGET_ID__DATE');

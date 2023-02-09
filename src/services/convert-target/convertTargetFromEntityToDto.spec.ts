@@ -1,6 +1,6 @@
 import { SymbolicPeriod } from '../../constants/symbolic-period';
+import { TargetDto } from '../../types/dto/target.dto';
 import { TargetEntity } from '../../types/entities/target.entity';
-import { TargetDto } from '../../types/models/target.dto';
 import { DeepPartial } from '../../types/utils/deep-partial';
 import { toUtcDateTime } from '../date-time/date-time';
 import { convertTargetFromEntityToDto } from './convertTargetFromEntityToDto';
@@ -17,7 +17,8 @@ const generateEntity = (entity?: DeepPartial<TargetEntity>): TargetEntity => ({
 
 describe('convertTargetFromEntityToDto', () => {
   beforeEach(() => {
-    jest.useFakeTimers().setSystemTime(new Date('2023-01-01'));
+    jest.useFakeTimers()
+      .setSystemTime(new Date('2023-01-01'));
   });
 
   afterEach(() => {
@@ -38,7 +39,8 @@ describe('convertTargetFromEntityToDto', () => {
   ])('Should convert %p field from Entity to DTO', (testCase, entity, expected) => {
     const result = convertTargetFromEntityToDto(generateEntity(entity));
 
-    expect(result).toEqual(expect.objectContaining(expected));
+    expect(result)
+      .toEqual(expect.objectContaining(expected));
   });
 
   describe('period and exact dates', () => {
@@ -70,7 +72,8 @@ describe('convertTargetFromEntityToDto', () => {
     ])('Should convert %p field from DTO to commonInfo', (testCase, entity, expected) => {
       const result = convertTargetFromEntityToDto(generateEntity(entity));
 
-      expect(result).toEqual(expect.objectContaining(expected));
+      expect(result)
+        .toEqual(expect.objectContaining(expected));
     });
   });
 
@@ -94,7 +97,8 @@ describe('convertTargetFromEntityToDto', () => {
         quantity: 18,
       }));
 
-      expect(result.todayTarget).toEqual(expectedTarget);
+      expect(result.todayTarget)
+        .toEqual(expectedTarget);
     });
 
     it.each([
@@ -122,7 +126,8 @@ describe('convertTargetFromEntityToDto', () => {
         quantity: 50,
       }));
 
-      expect(result.todayTarget).toEqual(5);
+      expect(result.todayTarget)
+        .toEqual(5);
     });
   });
 });

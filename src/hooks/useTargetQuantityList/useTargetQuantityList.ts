@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useApiController } from '../../contexts/ApiController';
-import { TargetDto } from '../../types/models/target.dto';
+import { TargetDto } from '../../types/dto/target.dto';
 
 const useTargetQuantityList = (): { targetQuantityList: TargetDto[] } => {
   const { getAllTargets } = useApiController();

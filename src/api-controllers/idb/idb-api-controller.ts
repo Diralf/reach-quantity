@@ -1,9 +1,9 @@
 import { convertCreateTargetParamsDtoToEntity } from '../../services/convert-target/convertCreateTargetParamsDtoToEntity';
 import { convertTargetFromEntityToDto } from '../../services/convert-target/convertTargetFromEntityToDto';
 import { ApiController } from '../../types/api-controller';
-import { CreateTargetParamsDto } from '../../types/models/create-target-params.dto';
-import { TargetDto } from '../../types/models/target.dto';
-import { UpdateReachedDto } from '../../types/models/update-reached.dto';
+import { CreateTargetParamsDto } from '../../types/dto/create-target-params.dto';
+import { TargetDto } from '../../types/dto/target.dto';
+import { UpdateReachedDto } from '../../types/dto/update-reached.dto';
 import { dbUpdateReached } from './stores/reached/db-update-reached';
 import { dbCreateTarget } from './stores/targets/db-create-target';
 import { dbGetAllTargets } from './stores/targets/db-get-all-targets';

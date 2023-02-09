@@ -1,6 +1,6 @@
 import { SymbolicPeriod } from '../../constants/symbolic-period';
 
-export interface CreateTargetParamsEntity {
+export interface CreateTargetParams {
   name: string;
   quantity: number;
   measurement: string;

@@ -1,4 +1,4 @@
-import { UpdateReachedEntity } from '../../../../types/entities/update-reached.entity';
+import { UpdateReachedParams } from '../../../../types/params/update-reached.params';
 import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
@@ -22,7 +22,7 @@ describe('dbUpdateReached', () => {
 
   it('Should add reached for target', async () => {
     const target = mockTarget;
-    const reachedBody: UpdateReachedEntity = mockReached;
+    const reachedBody: UpdateReachedParams = mockReached;
 
     await dbCreateTarget(target);
     await dbUpdateReached(reachedBody);
@@ -43,8 +43,8 @@ describe('dbUpdateReached', () => {
 
   it('Should update existing reached for target', async () => {
     const target = mockTarget;
-    const reachedInitial: UpdateReachedEntity[] = mockReachedList;
-    const reachedUpdate: UpdateReachedEntity = {
+    const reachedInitial: UpdateReachedParams[] = mockReachedList;
+    const reachedUpdate: UpdateReachedParams = {
       ...mockReached,
       quantity: 3,
       date: new Date('2023-01-01'),
@@ -83,7 +83,7 @@ describe('dbUpdateReached', () => {
 
   it('Should not add same reached twice', async () => {
     const target = mockTarget;
-    const reachedBody: UpdateReachedEntity = mockReached;
+    const reachedBody: UpdateReachedParams = mockReached;
 
     await dbCreateTarget(target);
     await dbUpdateReached(reachedBody);
@@ -99,11 +99,11 @@ describe('dbUpdateReached', () => {
 
   it('Should handle manually added the same reached, update only first but ignore the second', async () => {
     const target = mockTarget;
-    const reachedAddedManually: UpdateReachedEntity = {
+    const reachedAddedManually: UpdateReachedParams = {
       ...mockReached,
       quantity: 1,
     };
-    const reachedAddedByApi: UpdateReachedEntity = {
+    const reachedAddedByApi: UpdateReachedParams = {
       ...mockReached,
       quantity: 3,
     };

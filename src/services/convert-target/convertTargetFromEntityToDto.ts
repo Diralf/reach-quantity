@@ -1,12 +1,13 @@
 import { DateTime } from 'luxon';
+import { TargetDto } from '../../types/dto/target.dto';
 import { TargetEntity } from '../../types/entities/target.entity';
-import { TargetDto } from '../../types/models/target.dto';
 import { getExactDatesFromPeriod } from '../period-dates/get-exact-dates-from-period';
 import { getTodayTarget } from '../target-calculation/get-today-target';
 
 export const convertTargetFromEntityToDto = (targetEntity: TargetEntity): TargetDto => {
   const targetOverall = Number(targetEntity.quantity);
-  const createdOn = DateTime.fromJSDate(targetEntity.createdOn, { zone: 'utc' }).startOf('day');
+  const createdOn = DateTime.fromJSDate(targetEntity.createdOn, { zone: 'utc' })
+    .startOf('day');
   const [periodStartDate, periodEndDate] = getExactDatesFromPeriod({
     period: targetEntity.period,
     createdOn,
