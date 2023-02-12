@@ -20,7 +20,7 @@
     "incremental": true,
     "baseUrl": "/",
     "paths": {
-      "@reached-quantity/types": [
+      "@reach-quantity/types": [
         "src/types"
       ]
     }
