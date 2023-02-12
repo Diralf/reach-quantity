@@ -23,5 +23,5 @@ const distributeTargets = (remainTarget: number, countDays: number): number[] =>
 
 export const calculateRemainTargets = (remainTarget: number, currentDate: DateTime, periodEndDate: DateTime): number[] => {
   const countDays = getCountOfDays(currentDate, periodEndDate);
-  return distributeTargets(remainTarget, countDays);
+  return distributeTargets(remainTarget, countDays > 0 ? countDays : 0);
 };
