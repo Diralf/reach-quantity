@@ -7,11 +7,12 @@ interface InitDbUtils {
 
   restoreTestDB(): Promise<void>;
 
-  // testGetAll(store: Stores): Promise<Array<StoreValue<Schema, Stores>>>;
+  testGetAll<Return>(table: string): Promise<Return[]>;
+
   //
   // testAdd(store: Stores, value: StoreValue<Schema, Stores>): Promise<void>;
   //
-  // testBulkAction<Entity, Return>(entities: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]>;
+  testBulkAction<Entity, Return>(con: Connection, entities: Entity[], action: (con: Connection, entity: Entity) => Promise<Return>): Promise<Return[]>;
 
 }
 
@@ -29,12 +30,10 @@ export const initDbUtils = (): InitDbUtils => {
     await connection.terminate();
   };
 
-  // const testGetAll: InitDbUtils<Schema, Stores, Versions>['testGetAll'] = async (store: Stores) => {
-  //   const db = await openTestDB();
-  //   const tx = db.transaction(store);
-  //   return tx.store.getAll();
-  // };
-  //
+  const testGetAll: InitDbUtils['testGetAll'] = (table: string) => connection.select({
+    from: table,
+  });
+
   // const testAdd: InitDbUtils<Schema, Stores, Versions>['testAdd'] = async <S extends Stores>(store: S, value: StoreValue<Schema, S>) => {
   //   const db = await openTestDB();
   //   try {
@@ -46,16 +45,29 @@ export const initDbUtils = (): InitDbUtils => {
   //     throw error;
   //   }
   // };
-  //
-  // function testBulkAction<Entity, Return = void>(entities: Entity[], action: (entity: Entity) => Promise<Return>): Promise<Return[]> {
-  //   const updates = entities.map(action);
-  //   return Promise.all(updates);
-  // }
+
+  async function testBulkAction<Entity, Return = void>(
+    con: Connection,
+    entities: Entity[],
+    action: (con: Connection, entity: Entity) => Promise<Return>,
+  ): Promise<Return[]> {
+    const updates = entities.map((entity) => action(con, entity));
+    const results: Return[] = [];
+
+    for (const update of updates) {
+      const result = await update;
+      results.push(result);
+    }
+
+    return results;
+  }
 
 
   return {
     openConnection,
     restoreTestDB,
+    testGetAll,
+    testBulkAction,
   };
 };
 

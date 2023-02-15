@@ -6,6 +6,7 @@ import { dbCreateTarget } from './db-create-target';
 const {
   openConnection,
   restoreTestDB,
+  testGetAll,
 } = initDbUtils();
 
 describe('dbCreateTarget', () => {
@@ -18,19 +19,22 @@ describe('dbCreateTarget', () => {
     const target = mockTarget;
 
     await dbCreateTarget(connection, target);
-    const allTargets = await connection.get(targetsTable.name);
+    const allTargets = await testGetAll(targetsTable.name);
 
-    expect(allTargets)
-      .toEqual(withIds([target, target]));
+    expect(allTargets).toEqual(withIds([target]));
   });
 
   it('Should create two targets', async () => {
+    const connection = await openConnection();
     const target = mockTarget;
 
-    await testBulkAction([target, target], dbCreateTarget);
-    const allTargets = await testGetAll('TARGETS');
+    await dbCreateTarget(connection, target);
+    const firstTargets = await testGetAll(targetsTable.name);
+    expect(firstTargets).toEqual(withIds([target]));
 
-    expect(allTargets)
-      .toEqual(withIds([target, target]));
+    await dbCreateTarget(connection, target);
+    const allTargets = await testGetAll(targetsTable.name);
+
+    expect(allTargets).toEqual(withIds([target, target]));
   });
 });
