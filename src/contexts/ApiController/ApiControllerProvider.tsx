@@ -1,15 +1,32 @@
-import React from 'react';
-import { ApiControllerContext, ApiControllerContextProps } from './ApiControllerContext';
+import { ApiController } from '@reach-quantity/types';
+import React, { useState, useEffect } from 'react';
+import { ApiControllerContext } from './ApiControllerContext';
 
-type ApiControllerProviderProps = ApiControllerContextProps;
+interface ApiControllerProviderProps {
+  controller(): ApiController | Promise<ApiController>;
+}
 
 const ApiControllerProvider: React.FC<React.PropsWithChildren<ApiControllerProviderProps>> = ({
   children,
-  ...props
-}) => (
-  <ApiControllerContext.Provider value={props}>
-    {children}
-  </ApiControllerContext.Provider>
-);
+  controller,
+}) => {
+  const [api, setApi] = useState<ApiController>(null);
+  useEffect(() => {
+    const getController = async (): Promise<void> => {
+      const ctrl = await controller();
+      setApi(ctrl);
+    };
+    getController();
+  });
+  return (
+    <>
+      {api && (
+        <ApiControllerContext.Provider value={{ controller: api }}>
+          {children}
+        </ApiControllerContext.Provider>
+      )}
+    </>
+  );
+};
 
 export default ApiControllerProvider;
