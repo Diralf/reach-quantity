@@ -1,12 +1,7 @@
-import { TargetEntity } from '../../../../types/entities/target.entity';
-import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
+import { TargetEntity } from '@reach-quantity/types';
+import { Connection } from 'jsstore';
+import { targetsTable } from '../../db/tables/targets.table';
 
-export const dbGetAllTargets = async (): Promise<TargetEntity[]> => {
-  const db = await openReachQuantityDb();
-  const tx = db.transaction('TARGETS');
-  const allTargets = await tx.store.getAll();
-
-  await tx.done;
-
-  return allTargets as TargetEntity[];
-};
+export const dbGetAllTargets = async (connection: Connection): Promise<TargetEntity[]> => connection.select({
+  from: targetsTable.name,
+});

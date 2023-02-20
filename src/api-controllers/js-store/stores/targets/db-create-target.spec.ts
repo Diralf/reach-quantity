@@ -28,11 +28,7 @@ describe('dbCreateTarget', () => {
     const connection = await openConnection();
     const target = mockTarget;
 
-    await dbCreateTarget(connection, target);
-    const firstTargets = await testGetAll(targetsTable.name);
-    expect(firstTargets).toEqual(withIds([target]));
-
-    await dbCreateTarget(connection, target);
+    await dbCreateTarget(connection, [{ ...target }, { id: 2, ...target }]);
     const allTargets = await testGetAll(targetsTable.name);
 
     expect(allTargets).toEqual(withIds([target, target]));
