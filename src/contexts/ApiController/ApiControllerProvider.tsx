@@ -1,5 +1,5 @@
 import { ApiController } from '@reach-quantity/types';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ApiControllerContext } from './ApiControllerContext';
 
 interface ApiControllerProviderProps {
@@ -9,24 +9,10 @@ interface ApiControllerProviderProps {
 const ApiControllerProvider: React.FC<React.PropsWithChildren<ApiControllerProviderProps>> = ({
   children,
   controller,
-}) => {
-  const [api, setApi] = useState<ApiController>(null);
-  useEffect(() => {
-    const getController = async (): Promise<void> => {
-      const ctrl = await controller();
-      setApi(ctrl);
-    };
-    getController();
-  });
-  return (
-    <>
-      {api && (
-        <ApiControllerContext.Provider value={{ controller: api }}>
-          {children}
-        </ApiControllerContext.Provider>
-      )}
-    </>
-  );
-};
+}) => (
+  <ApiControllerContext.Provider value={{ controller: controller() }}>
+    {children}
+  </ApiControllerContext.Provider>
+);
 
 export default ApiControllerProvider;

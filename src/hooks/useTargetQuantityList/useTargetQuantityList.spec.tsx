@@ -7,10 +7,11 @@ import useTargetQuantityList from './useTargetQuantityList';
 const mockApiController: ApiController = {
   createTarget: jest.fn(),
   getAllTargets: jest.fn(),
+  updateReached: jest.fn(),
 };
 
 const Wrapper = () => (
-  <ApiControllerProvider controller={mockApiController}></ApiControllerProvider>
+  <ApiControllerProvider controller={() => mockApiController}></ApiControllerProvider>
 );
 
 describe('useTargetQuantityList', () => {

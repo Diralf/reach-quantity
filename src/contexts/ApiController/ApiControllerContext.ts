@@ -1,5 +1,5 @@
+import { ApiController } from '@reach-quantity/types';
 import React from 'react';
-import { ApiController } from '../../types/api-controller';
 
 interface ApiControllerContextProps {
   controller: ApiController;
@@ -11,6 +11,9 @@ const defaultValue: ApiControllerContextProps = {
       throw Error('Controller Context is not defined');
     },
     getAllTargets() {
+      throw Error('Controller Context is not defined');
+    },
+    updateReached() {
       throw Error('Controller Context is not defined');
     },
   },
