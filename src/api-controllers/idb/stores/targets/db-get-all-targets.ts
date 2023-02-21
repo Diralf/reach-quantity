@@ -8,5 +8,5 @@ export const dbGetAllTargets = async (): Promise<TargetEntity[]> => {
 
   await tx.done;
 
-  return allTargets as TargetEntity[];
+  return allTargets;
 };

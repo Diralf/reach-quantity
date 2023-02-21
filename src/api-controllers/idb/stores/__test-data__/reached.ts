@@ -1,29 +1,29 @@
-import { DbReached } from '../../types/db.reached';
+import { UpdateReachedParams } from '@reach-quantity/types';
 
-export const mockReached: DbReached = {
+export const mockUpdateReachedParams: UpdateReachedParams = {
   targetId: 1,
   date: new Date('2023-01-01'),
   quantity: 4,
 };
 
-export const mockReachedList: DbReached[] = [
+export const mockUpdateReachedParamsList: UpdateReachedParams[] = [
   {
-    ...mockReached,
+    ...mockUpdateReachedParams,
     date: new Date('2023-01-01'),
     targetId: 1,
   },
   {
-    ...mockReached,
+    ...mockUpdateReachedParams,
     date: new Date('2023-01-02'),
     targetId: 1,
   },
   {
-    ...mockReached,
+    ...mockUpdateReachedParams,
     date: new Date('2023-01-02'),
     targetId: 2,
   },
   {
-    ...mockReached,
+    ...mockUpdateReachedParams,
     date: new Date('2023-01-03'),
     targetId: 2,
   },

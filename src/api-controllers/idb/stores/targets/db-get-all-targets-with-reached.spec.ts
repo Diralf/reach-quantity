@@ -3,8 +3,8 @@ import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
-import { mockReached } from '../__test-data__/reached';
-import { mockTarget } from '../__test-data__/target';
+import { mockUpdateReachedParams } from '../__test-data__/reached';
+import { mockCreateTargetParams } from '../__test-data__/target';
 import { dbUpdateReached } from '../reached/db-update-reached';
 import { dbCreateTarget } from './db-create-target';
 import { dbGetAllTargetsWithReached } from './db-get-all-targets-with-reached';
@@ -21,25 +21,25 @@ describe('dbGetAllTargetsWithReached', () => {
   });
 
   it('Should get all targets', async () => {
-    const target = mockTarget;
+    const target = mockCreateTargetParams;
     const reachedList = [
       {
-        ...mockReached,
+        ...mockUpdateReachedParams,
         date: new Date('2023-01-01'),
         targetId: 1,
       },
       {
-        ...mockReached,
+        ...mockUpdateReachedParams,
         date: new Date('2023-01-02'),
         targetId: 1,
       },
       {
-        ...mockReached,
+        ...mockUpdateReachedParams,
         date: new Date('2023-01-02'),
         targetId: 2,
       },
       {
-        ...mockReached,
+        ...mockUpdateReachedParams,
         date: new Date('2023-01-03'),
         targetId: 2,
       },

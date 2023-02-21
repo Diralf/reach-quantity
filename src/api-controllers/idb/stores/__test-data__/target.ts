@@ -1,7 +1,7 @@
+import { CreateTargetParams } from '@reach-quantity/types';
 import { SymbolicPeriod } from '../../../../constants/symbolic-period';
-import { DbTargets } from '../../types/db.targets';
 
-export const mockTarget: DbTargets = {
+export const mockCreateTargetParams: CreateTargetParams = {
   name: 'test name',
   quantity: 5,
   measurement: 'tests',

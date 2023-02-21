@@ -3,15 +3,15 @@ import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbReached } from '../../types/db.reached';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
-import { mockReachedList } from '../__test-data__/reached';
-import { mockTarget } from '../__test-data__/target';
+import { mockUpdateReachedParamsList } from '../__test-data__/reached';
+import { mockCreateTargetParams } from '../__test-data__/target';
 import { dbCreateTarget } from '../targets/db-create-target';
 import { dbGetReached } from './db-get-all-reached';
 import { dbUpdateReached } from './db-update-reached';
 
 const { restoreTestDB, testGetAll, testBulkAction } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
-const reachedInitial: DbReached[] = mockReachedList;
+const reachedInitial: DbReached[] = mockUpdateReachedParamsList;
 
 describe('dbGetReached', () => {
   afterEach(async () => {
@@ -26,7 +26,7 @@ describe('dbGetReached', () => {
       expected: [[1, [reachedInitial[0], reachedInitial[1]]], [2, [reachedInitial[2], reachedInitial[3]]]],
     },
   ])('Should get reached for range $startDate - $endDate and target $targetId', async ({ startDate, endDate, targetIds, expected }) => {
-    const target = mockTarget;
+    const target = mockCreateTargetParams;
 
     await testBulkAction([target, target], dbCreateTarget);
     await testBulkAction(reachedInitial, dbUpdateReached);

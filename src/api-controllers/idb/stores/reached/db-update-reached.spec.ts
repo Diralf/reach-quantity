@@ -3,8 +3,8 @@ import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
-import { mockReached, mockReachedList } from '../__test-data__/reached';
-import { mockTarget } from '../__test-data__/target';
+import { mockUpdateReachedParams, mockUpdateReachedParamsList } from '../__test-data__/reached';
+import { mockCreateTargetParams } from '../__test-data__/target';
 import { dbCreateTarget } from '../targets/db-create-target';
 import { dbUpdateReached } from './db-update-reached';
 
@@ -21,8 +21,8 @@ describe('dbUpdateReached', () => {
   });
 
   it('Should add reached for target', async () => {
-    const target = mockTarget;
-    const reachedBody: UpdateReachedParams = mockReached;
+    const target = mockCreateTargetParams;
+    const reachedBody: UpdateReachedParams = mockUpdateReachedParams;
 
     await dbCreateTarget(target);
     await dbUpdateReached(reachedBody);
@@ -42,10 +42,10 @@ describe('dbUpdateReached', () => {
   });
 
   it('Should update existing reached for target', async () => {
-    const target = mockTarget;
-    const reachedInitial: UpdateReachedParams[] = mockReachedList;
+    const target = mockCreateTargetParams;
+    const reachedInitial: UpdateReachedParams[] = mockUpdateReachedParamsList;
     const reachedUpdate: UpdateReachedParams = {
-      ...mockReached,
+      ...mockUpdateReachedParams,
       quantity: 3,
       date: new Date('2023-01-01'),
       targetId: 1,
@@ -82,8 +82,8 @@ describe('dbUpdateReached', () => {
   });
 
   it('Should not add same reached twice', async () => {
-    const target = mockTarget;
-    const reachedBody: UpdateReachedParams = mockReached;
+    const target = mockCreateTargetParams;
+    const reachedBody: UpdateReachedParams = mockUpdateReachedParams;
 
     await dbCreateTarget(target);
     await dbUpdateReached(reachedBody);
@@ -98,13 +98,13 @@ describe('dbUpdateReached', () => {
   });
 
   it('Should handle manually added the same reached, update only first but ignore the second', async () => {
-    const target = mockTarget;
+    const target = mockCreateTargetParams;
     const reachedAddedManually: UpdateReachedParams = {
-      ...mockReached,
+      ...mockUpdateReachedParams,
       quantity: 1,
     };
     const reachedAddedByApi: UpdateReachedParams = {
-      ...mockReached,
+      ...mockUpdateReachedParams,
       quantity: 3,
     };
 

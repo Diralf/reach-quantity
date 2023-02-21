@@ -1,5 +1,4 @@
-import { TargetEntity } from '../../../../types/entities/target.entity';
-import { GetTargetsWithReachedParams } from '../../../../types/params/get-targets-with-reached.params';
+import { TargetEntity, GetTargetsWithReachedParams } from '@reach-quantity/types';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { fetchReachedGroupedByTargets } from '../reached/db-get-all-reached';
 
@@ -17,15 +16,15 @@ export const dbGetAllTargetsWithReached = async ({
     index: reachedDateIndex,
     startDate,
     endDate,
-    targetIds: allTargets.map((target) => target.id) as number[],
+    targetIds: allTargets.map((target) => target.id),
   });
 
   await tx.done;
 
   const reachedByTargetMap = new Map(reachedByTargets);
 
-  return (allTargets as TargetEntity[]).map((target: TargetEntity) => ({
+  return allTargets.map((target: TargetEntity) => ({
     ...target,
     reachedQuantities: reachedByTargetMap.get(target.id) ?? [],
-  } as TargetEntity));
+  }));
 };

@@ -1,5 +1,4 @@
-import { TargetEntity } from '../../../../types/entities/target.entity';
-import { CreateTargetParams } from '../../../../types/params/create-target.params';
+import { TargetEntity, CreateTargetParams } from '@reach-quantity/types';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 
 export const dbCreateTarget = async (body: CreateTargetParams): Promise<TargetEntity> => {
@@ -15,5 +14,5 @@ export const dbCreateTarget = async (body: CreateTargetParams): Promise<TargetEn
     throw new Error('Target wasn\'t added to the store');
   }
 
-  return result as TargetEntity;
+  return result;
 };

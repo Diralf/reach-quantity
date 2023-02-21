@@ -2,7 +2,7 @@ import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
-import { mockTarget } from '../__test-data__/target';
+import { mockCreateTargetParams } from '../__test-data__/target';
 import { dbCreateTarget } from './db-create-target';
 
 const { restoreTestDB, testGetAll, testBulkAction } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
@@ -13,7 +13,7 @@ describe('dbCreateTarget', () => {
   });
 
   it('Should create target', async () => {
-    const target = mockTarget;
+    const target = mockCreateTargetParams;
 
     await testBulkAction([target, target], dbCreateTarget);
     const allTargets = await testGetAll('TARGETS');
