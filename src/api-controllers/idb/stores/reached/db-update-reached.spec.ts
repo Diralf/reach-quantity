@@ -29,16 +29,8 @@ describe('dbUpdateReached', () => {
     const allTargets = await testGetAll('TARGETS');
     const allReached = await testGetAll('REACHED');
 
-    expect(allTargets)
-      .toEqual([{
-        ...target,
-        id: 1,
-      }]);
-    expect(allReached)
-      .toEqual([{
-        ...reachedBody,
-        id: 1,
-      }]);
+    expect(allTargets).toEqual(withIds([target]));
+    expect(allReached).toEqual(withIds([reachedBody]));
   });
 
   it('Should update existing reached for target', async () => {
@@ -57,19 +49,8 @@ describe('dbUpdateReached', () => {
     const allTargetsInitial = await testGetAll('TARGETS');
     const allReachedInitial = await testGetAll('REACHED');
 
-    expect(allTargetsInitial)
-      .toEqual([{
-        ...target,
-        id: 1,
-      }, {
-        ...target,
-        id: 2,
-      }]);
-    expect(allReachedInitial)
-      .toEqual(reachedInitial.map((reached, index) => ({
-        ...reached,
-        id: index + 1,
-      })));
+    expect(allTargetsInitial).toEqual(withIds([target, target]));
+    expect(allReachedInitial).toEqual(withIds(reachedInitial));
 
     await dbUpdateReached(reachedUpdate);
     const allTargetsAfterUpdate = await testGetAll('TARGETS');
@@ -91,10 +72,8 @@ describe('dbUpdateReached', () => {
     const allTargets = await testGetAll('TARGETS');
     const allReached = await testGetAll('REACHED');
 
-    expect(allTargets)
-      .toEqual(withIds([target]));
-    expect(allReached)
-      .toEqual(withIds([reachedBody]));
+    expect(allTargets).toEqual(withIds([target]));
+    expect(allReached).toEqual(withIds([reachedBody]));
   });
 
   it('Should handle manually added the same reached, update only first but ignore the second', async () => {
