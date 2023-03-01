@@ -1,11 +1,11 @@
-import { TargetEntity, GetTargetsWithReachedParams } from '@reach-quantity/types';
+import { TargetEntity, GetTargetsWithReachedParams, GetTargetsWithReachedQuery } from '@reach-quantity/types';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { fetchReachedGroupedByTargets } from '../reached/db-get-all-reached';
 
 export const dbGetAllTargetsWithReached = async ({
   startDate,
   endDate,
-}: GetTargetsWithReachedParams): Promise<TargetEntity[]> => {
+}: GetTargetsWithReachedParams): Promise<GetTargetsWithReachedQuery[]> => {
   const db = await openReachQuantityDb();
   const tx = db.transaction(['TARGETS', 'REACHED']);
   const allTargets = await tx.objectStore('TARGETS')

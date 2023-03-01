@@ -21,7 +21,7 @@
     "baseUrl": "/",
     "paths": {
       "@reach-quantity/types": [
-        "src/types"
+        "src/types/index.ts"
       ]
     }
   },

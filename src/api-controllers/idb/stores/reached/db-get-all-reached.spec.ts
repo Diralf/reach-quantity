@@ -1,7 +1,7 @@
+import { ReachedEntity, UpdateReachedParams } from '@reach-quantity/types';
 import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
-import { DbReached } from '../../types/db.reached';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
 import { mockUpdateReachedParamsList } from '../__test-data__/reached';
 import { mockCreateTargetParams } from '../__test-data__/target';
@@ -11,14 +11,14 @@ import { dbUpdateReached } from './db-update-reached';
 
 const { restoreTestDB, testGetAll, testBulkAction } = initDbUtils<DbSchema, DbStoreNames, DbVersions>(DB_NAME, openReachQuantityDb);
 
-const reachedInitial: DbReached[] = mockUpdateReachedParamsList;
+const reachedInitial: UpdateReachedParams[] = mockUpdateReachedParamsList;
 
 describe('dbGetReached', () => {
   afterEach(async () => {
     await restoreTestDB();
   });
 
-  it.each<{ startDate: string, endDate: string, targetIds: number[], expected: Array<[number, DbReached[]]> }>([
+  it.each<{ startDate: string, endDate: string, targetIds: number[], expected: Array<[number, ReachedEntity[]]> }>([
     {
       startDate: '2023-01-01',
       endDate: '2023-01-03',
