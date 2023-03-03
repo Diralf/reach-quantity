@@ -1,10 +1,9 @@
+import { GetTargetsWithReachedQuery, TargetDto } from '@reach-quantity/types';
 import { DateTime } from 'luxon';
-import { TargetDto } from '../../types/dto/target.dto';
-import { TargetEntity } from '../../types/entities/target.entity';
 import { getExactDatesFromPeriod } from '../period-dates/get-exact-dates-from-period';
 import { getTodayTarget } from '../target-calculation/get-today-target';
 
-export const convertTargetFromEntityToDto = (targetEntity: TargetEntity): TargetDto => {
+export const convertTargetFromEntityToDto = (targetEntity: GetTargetsWithReachedQuery): TargetDto => {
   const targetOverall = Number(targetEntity.quantity);
   const createdOn = DateTime.fromJSDate(targetEntity.createdOn, { zone: 'utc' })
     .startOf('day');
@@ -27,6 +26,6 @@ export const convertTargetFromEntityToDto = (targetEntity: TargetEntity): Target
     periodEndDate,
     createdOn,
     todayTarget,
-    todayReached: 0,
+    todayReached: targetEntity.reachedQuantities[0]?.quantity ?? 0,
   };
 };

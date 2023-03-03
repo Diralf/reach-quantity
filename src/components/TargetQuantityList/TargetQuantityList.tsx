@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
+import { TargetDto } from '@reach-quantity/types';
 import React from 'react';
-import { TargetDto } from '../../types/dto/target.dto';
 import TargetQuantityCard from '../TargetQuantityCard';
 import CommonInfo from '../TargetQuantityCard/CommonInfo';
 

@@ -1,10 +1,10 @@
-import { ReachedEntity, GetReachedParams, UpdateReachedParams } from '@reach-quantity/types';
+import { ReachedEntity, GetReachedParams } from '@reach-quantity/types';
 import { IDBKeyRange } from 'fake-indexeddb';
 import { IDBPIndex } from 'idb';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
 
-function addReachedToTargetGroup(reachedItem: UpdateReachedParams, targetIds: number[], reachedByTargets: Map<number, ReachedEntity[]>): void {
+function addReachedToTargetGroup(reachedItem: ReachedEntity, targetIds: number[], reachedByTargets: Map<number, ReachedEntity[]>): void {
   const { targetId } = reachedItem;
   if (targetIds.includes(targetId)) {
     const reachedByTarget = reachedByTargets.get(targetId) ?? [];

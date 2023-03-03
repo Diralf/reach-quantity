@@ -3,7 +3,7 @@ import React from 'react';
 import { ApiControllerContext } from './ApiControllerContext';
 
 interface ApiControllerProviderProps {
-  controller(): ApiController | Promise<ApiController>;
+  controller(): ApiController;
 }
 
 const ApiControllerProvider: React.FC<React.PropsWithChildren<ApiControllerProviderProps>> = ({

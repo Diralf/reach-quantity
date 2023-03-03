@@ -1,9 +1,7 @@
-import { CreateTargetParamsDto } from './dto/create-target-params.dto';
-import { TargetDto } from './dto/target.dto';
-import { UpdateReachedDto } from './dto/update-reached.dto';
+import { CreateTargetParamsDto, TargetDto, UpdateReachedDto } from './dto';
 
 export interface ApiController {
-  createTarget(body: CreateTargetParamsDto): Promise<TargetDto>;
+  createTarget(body: CreateTargetParamsDto): Promise<number>;
 
   getAllTargets(): Promise<TargetDto[]>;
 

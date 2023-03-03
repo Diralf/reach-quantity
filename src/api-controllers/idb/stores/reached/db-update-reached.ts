@@ -1,4 +1,4 @@
-import { UpdateReachedParams } from '@reach-quantity/types';
+import { UpdateReachedParams, ReachedEntity } from '@reach-quantity/types';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 
 export const dbUpdateReached = async (body: UpdateReachedParams): Promise<void> => {
@@ -12,7 +12,7 @@ export const dbUpdateReached = async (body: UpdateReachedParams): Promise<void> 
     ...body,
   };
 
-  await tx.store.put(updatedItem);
+  await tx.store.put(updatedItem as ReachedEntity);
 
   return tx.done;
 };

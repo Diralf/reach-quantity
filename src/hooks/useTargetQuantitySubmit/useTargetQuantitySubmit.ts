@@ -1,6 +1,6 @@
+import { CreateTargetParamsDto } from '@reach-quantity/types';
 import { useRouter } from 'next/router';
 import { useApiController } from '../../contexts/ApiController';
-import { CreateTargetParamsDto } from '../../types/dto/create-target-params.dto';
 
 interface HookProps {
   handleSubmit(params: CreateTargetParamsDto): Promise<void>;

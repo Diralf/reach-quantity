@@ -1,17 +1,16 @@
+import { TargetDto, TargetEntity, DeepPartial, GetTargetsWithReachedQuery } from '@reach-quantity/types';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
-import { TargetDto } from '../../types/dto/target.dto';
-import { TargetEntity } from '../../types/entities/target.entity';
-import { DeepPartial } from '../../types/utils/deep-partial';
 import { toUtcDateTime } from '../date-time/date-time';
 import { convertTargetFromEntityToDto } from './convertTargetFromEntityToDto';
 
-const generateEntity = (entity?: DeepPartial<TargetEntity>): TargetEntity => ({
+const generateEntity = (entity?: DeepPartial<GetTargetsWithReachedQuery>): GetTargetsWithReachedQuery => ({
   id: 1,
   name: 'test',
   quantity: 18,
   measurement: 'tests',
   period: SymbolicPeriod.Next5Days,
   createdOn: new Date('2023-01-01'),
+  reachedQuantities: [],
   ...entity,
 });
 
@@ -39,8 +38,7 @@ describe('convertTargetFromEntityToDto', () => {
   ])('Should convert %p field from Entity to DTO', (testCase, entity, expected) => {
     const result = convertTargetFromEntityToDto(generateEntity(entity));
 
-    expect(result)
-      .toEqual(expect.objectContaining(expected));
+    expect(result).toEqual(expect.objectContaining(expected));
   });
 
   describe('period and exact dates', () => {

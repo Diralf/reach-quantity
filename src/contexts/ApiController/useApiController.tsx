@@ -1,5 +1,5 @@
+import { ApiController } from '@reach-quantity/types';
 import React from 'react';
-import { ApiController } from '../../types/api-controller';
 import { ApiControllerContext } from './ApiControllerContext';
 
 const useApiController = (): ApiController => {

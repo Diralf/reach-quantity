@@ -1,6 +1,5 @@
+import { CreateTargetParamsDto, CreateTargetParams } from '@reach-quantity/types';
 import { DateTime } from 'luxon';
-import { CreateTargetParamsDto } from '../../types/dto/create-target-params.dto';
-import { CreateTargetParams } from '../../types/params/create-target.params';
 
 export const convertCreateTargetParamsDtoToEntity = (dto: CreateTargetParamsDto): CreateTargetParams => ({
   ...dto,

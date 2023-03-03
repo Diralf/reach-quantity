@@ -1,6 +1,5 @@
+import { CreateTargetParamsDto, CreateTargetParams } from '@reach-quantity/types';
 import { SymbolicPeriod } from '../../constants/symbolic-period';
-import { CreateTargetParamsDto } from '../../types/dto/create-target-params.dto';
-import { CreateTargetParams } from '../../types/params/create-target.params';
 import { convertCreateTargetParamsDtoToEntity } from './convertCreateTargetParamsDtoToEntity';
 
 const generateDto = (dto?: Partial<CreateTargetParamsDto>): CreateTargetParamsDto => ({

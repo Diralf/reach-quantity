@@ -1,6 +1,6 @@
+import { TargetDto } from '@reach-quantity/types';
 import { useState, useEffect } from 'react';
 import { useApiController } from '../../contexts/ApiController';
-import { TargetDto } from '../../types/dto/target.dto';
 
 const useTargetQuantityList = (): { targetQuantityList: TargetDto[] } => {
   const { getAllTargets } = useApiController();

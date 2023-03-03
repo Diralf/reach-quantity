@@ -1,7 +1,7 @@
+import { ApiController } from '@reach-quantity/types';
 import { renderHook } from '@testing-library/react';
 import React from 'react';
 import ApiControllerProvider from '../../contexts/ApiController/ApiControllerProvider';
-import { ApiController } from '../../types/api-controller';
 import useTargetQuantityList from './useTargetQuantityList';
 
 const mockApiController: ApiController = {
