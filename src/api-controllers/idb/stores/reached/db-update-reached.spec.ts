@@ -1,4 +1,4 @@
-import { UpdateReachedParams } from '@reach-quantity/types';
+import { UpdateReachedParams, ReachedEntity } from '@reach-quantity/types';
 import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
@@ -88,8 +88,8 @@ describe('dbUpdateReached', () => {
     };
 
     await dbCreateTarget(target);
-    await testAdd('REACHED', reachedAddedManually);
-    await testAdd('REACHED', reachedAddedManually);
+    await testAdd('REACHED', reachedAddedManually as ReachedEntity);
+    await testAdd('REACHED', reachedAddedManually as ReachedEntity);
     await dbUpdateReached(reachedAddedByApi);
     const allTargets = await testGetAll('TARGETS');
     const allReached = await testGetAll('REACHED');

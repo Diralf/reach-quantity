@@ -1,4 +1,4 @@
-import { ReachedEntity, UpdateReachedParams } from '@reach-quantity/types';
+import { UpdateReachedParams } from '@reach-quantity/types';
 import { initDbUtils, withIds } from '../../db.test-utils';
 import { DbVersions, DB_NAME } from '../../db/db.constants';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
@@ -18,7 +18,7 @@ describe('dbGetReached', () => {
     await restoreTestDB();
   });
 
-  it.each<{ startDate: string, endDate: string, targetIds: number[], expected: Array<[number, ReachedEntity[]]> }>([
+  it.each<{ startDate: string, endDate: string, targetIds: number[], expected: Array<[number, UpdateReachedParams[]]> }>([
     {
       startDate: '2023-01-01',
       endDate: '2023-01-03',

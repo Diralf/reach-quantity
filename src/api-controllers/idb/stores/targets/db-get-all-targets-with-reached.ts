@@ -8,10 +8,8 @@ export const dbGetAllTargetsWithReached = async ({
 }: GetTargetsWithReachedParams): Promise<GetTargetsWithReachedQuery[]> => {
   const db = await openReachQuantityDb();
   const tx = db.transaction(['TARGETS', 'REACHED']);
-  const allTargets = await tx.objectStore('TARGETS')
-    .getAll();
-  const reachedDateIndex = tx.objectStore('REACHED')
-    .index('REACHED__DATE');
+  const allTargets = await tx.objectStore('TARGETS').getAll();
+  const reachedDateIndex = tx.objectStore('REACHED').index('REACHED__DATE');
   const reachedByTargets = await fetchReachedGroupedByTargets({
     index: reachedDateIndex,
     startDate,
