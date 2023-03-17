@@ -1,6 +1,5 @@
 import { ReachedEntity, GetReachedParams } from '@reach-quantity/types';
-import { IDBKeyRange } from 'fake-indexeddb';
-import { IDBPIndex } from 'idb';
+import { IDBPIndex } from 'idb/with-async-ittr';
 import { openReachQuantityDb } from '../../db/open-reach-quantity-db';
 import { DbSchema, DbStoreNames } from '../../types/db.schema';
 
@@ -26,8 +25,8 @@ export async function fetchReachedGroupedByTargets({
   targetIds,
 }: FetchProps): Promise<Array<[number, ReachedEntity[]]>> {
   const reachedByTargets = new Map<number, ReachedEntity[]>();
-
-  for await (const cursor of index.iterate(IDBKeyRange.bound(startDate, endDate))) {
+  const range = IDBKeyRange.bound(startDate, endDate);
+  for await (const cursor of index.iterate(range)) {
     const reachedItem = cursor.value;
     addReachedToTargetGroup(reachedItem, targetIds, reachedByTargets);
   }
